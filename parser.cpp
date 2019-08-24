@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "functions.h"
+#include "parser.h"
 
 std::vector<int> get_number_from_string(std::string s, char type)
 {
@@ -35,7 +35,7 @@ std::vector<int> get_number_from_string(std::string s, char type)
     return numbers;
 }
 
-std::vector<std::vector<int>> get_adj_matrix(std::string filename)
+std::vector<std::vector<int> > get_adj_matrix(std::string filename)
 {
     std::ifstream file;
     std::string line;
@@ -50,7 +50,7 @@ std::vector<std::vector<int>> get_adj_matrix(std::string filename)
         {
             if (line[0] == 'G')
             {
-                type = 'G';
+                type = line[0];
                 continue;
             }
             else if (line[0] == 'N')
@@ -87,42 +87,3 @@ std::vector<std::vector<int>> get_adj_matrix(std::string filename)
     return adj_matrix;
 }
 
-int main()
-{
-    
-    std::ifstream file;
-    std::string filename;
-    file.open("all_files");
-
-    if (file.is_open())
-    {
-        while (getline(file, filename))
-        {
-            std::vector<std::vector<int>> adj_matrix;
-            std::cout << filename << " ";
-            try
-            {
-                adj_matrix = get_adj_matrix(filename);
-                std::vector<int> initial_solution;
-                for( int i = 0; i < adj_matrix.size(); i++ )
-                {
-                    initial_solution.push_back( i );
-                }
-                std::cout << local_search(adj_matrix, initial_solution) << std::endl;
-            }
-            catch (char const *param)
-            {
-                std::cout << param << std::endl;
-                return 0;
-            }
-            
-        }
-        file.close();
-    }
-    else
-    {
-        throw "Unable to open the file";
-    }
-    
-    return 0;
-}

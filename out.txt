@@ -119,3 +119,4 @@ CMPLIB2010/harwellboeing/bcspwr02.mtx.rnd  33 33
 CMPLIB2010/harwellboeing/str__600.mtx.rnd  1757 1757
 CMPLIB2010/harwellboeing/bcsstk22.mtx.rnd  121 119
 CMPLIB2010/harwellboeing/west0479.mtx.rnd  936 930
+CMPLIB2010/harwellboeing/mbeacxc.mtx.rnd  20944 20927

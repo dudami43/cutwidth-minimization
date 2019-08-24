@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include "functions.h"
+
 int evaluate(std::vector<std::vector<int>>& adj_matrix, std::vector<int>& solution)
 {
     int max_cut = 0;
@@ -26,7 +27,31 @@ int evaluate(std::vector<std::vector<int>>& adj_matrix, std::vector<int>& soluti
         //Novas funções de avaliação:
         //--Multiplicar o max_cut pelo número de vezes que ele aparece
         //--Média dos cortes
-        //--Multiplicar o max_cut pelo número de vezes que ele aparece e normalizar pelo número de vértices
+    }
+    return max_cut;
+}
+
+int cutwidth(std::vector<std::vector<int>>& adj_matrix, std::vector<int>& solution)
+{
+    int max_cut = 0;
+    int cut = 0;
+    for (int i = 0; i < solution.size(); i++)
+    {
+        for (int j = 0; j < i; j++)
+        {
+            for (int k = i; k < solution.size(); k++)
+            {
+                if (adj_matrix[solution[j]][solution[k]] == 1 and j != k)
+                {
+                    cut += 1;
+                }
+            }
+        }
+        if (cut >= max_cut)
+        {
+            max_cut = cut;
+        }
+        cut = 0;
     }
     return max_cut;
 }
@@ -80,6 +105,11 @@ int local_search(std::vector<std::vector<int>>& adj_matrix, std::vector<int>& in
         for(int i = 0; i < neighbours.size(); i++)
         {                       
             current_value = evaluate(adj_matrix, neighbours[i]);
+            /*for(int j = 0; j < neighbours[i].size(); j++)
+            {
+                std::cout << neighbours[i][j] << " ";
+            }
+            std::cout << std::endl << "cur_val " << current_value << std::endl;*/
             if(current_value < best_value)
             {
                 best_solution = neighbours[i];
