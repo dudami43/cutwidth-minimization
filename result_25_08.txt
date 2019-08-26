@@ -1,93 +1,46 @@
-CMPLIB2010/small/p17_16_24:
-best improviment - solucao inicial: 13 - vizinhanca nao adjacente: 11
-CMPLIB2010/small/p18_16_21:
-best improviment - solucao inicial: 8 - vizinhanca nao adjacente: 8 
-CMPLIB2010/small/p19_16_19:
-best improviment - solucao inicial: 10 - vizinhanca nao adjacente: 8
-CMPLIB2010/small/p20_16_18:
-best improviment - solucao inicial: 10 - vizinhanca nao adjacente: 9
-CMPLIB2010/small/p21_17_20:
-best improviment - solucao inicial: 10 - vizinhanca nao adjacente: 7
-CMPLIB2010/small/p23_17_23:
-best improviment - solucao inicial: 12 - vizinhanca nao adjacente: 11
-CMPLIB2010/small/p24_17_29:
-best improviment - solucao inicial: 14 - vizinhanca nao adjacente: 11
-CMPLIB2010/small/p40_18_32:
-best improviment - solucao inicial: 18 - vizinhanca nao adjacente: 15
-CMPLIB2010/small/p41_19_20:
-best improviment - solucao inicial: 10 - vizinhanca nao adjacente: 9
-CMPLIB2010/small/p42_19_24:
-best improviment - solucao inicial: 10 - vizinhanca nao adjacente: 8
-CMPLIB2010/small/p60_20_22:
-best improviment - solucao inicial: 12 - vizinhanca nao adjacente: 8
-CMPLIB2010/small/p61_21_22:
-best improviment - solucao inicial: 11 - vizinhanca nao adjacente: 8
-CMPLIB2010/small/p62_21_30:
-best improviment - solucao inicial: 15 - vizinhanca nao adjacente: 12
-CMPLIB2010/small/p63_21_42:
-best improviment - solucao inicial: 24 - vizinhanca nao adjacente: 20
-CMPLIB2010/small/p64_21_22:
-best improviment - solucao inicial: 12 - vizinhanca nao adjacente: 10
-CMPLIB2010/small/p70_21_25:
-best improviment - solucao inicial: 12 - vizinhanca nao adjacente: 10
-CMPLIB2010/small/p71_22_29:
-best improviment - solucao inicial: 12 - vizinhanca nao adjacente: 10
-CMPLIB2010/small/p72_22_49:
-best improviment - solucao inicial: 28 - vizinhanca nao adjacente: 23
-CMPLIB2010/small/p73_22_29:
-best improviment - solucao inicial: 11 - vizinhanca nao adjacente: 9
-CMPLIB2010/small/p74_22_30:
-best improviment - solucao inicial: 17 - vizinhanca nao adjacente: 14
-CMPLIB2010/small/p80_22_30:
-best improviment - solucao inicial: 15 - vizinhanca nao adjacente: 12
-best improviment - solucao inicial: 407 - vizinhanca nao adjacente: 399
-CMPLIB2010/harwellboeing/nos5.mtx.rnd:
-best improviment - solucao inicial: 1147 - vizinhanca nao adjacente: 1136
-CMPLIB2010/harwellboeing/nos6.mtx.rnd:
-best improviment - solucao inicial: 642 - vizinhanca nao adjacente: 635
-CMPLIB2010/harwellboeing/plat362.mtx.rnd:
-best improviment - solucao inicial: 1344 - vizinhanca nao adjacente: 1328
-CMPLIB2010/harwellboeing/plskz362.mtx.rnd:
-best improviment - solucao inicial: 463 - vizinhanca nao adjacente: 455
-CMPLIB2010/harwellboeing/shl__200.mtx.rnd:
-best improviment - solucao inicial: 886 - vizinhanca nao adjacente: 878
-CMPLIB2010/harwellboeing/shl__400.mtx.rnd:
-best improviment - solucao inicial: 883 - vizinhanca nao adjacente: 878
-CMPLIB2010/harwellboeing/str__200.mtx.rnd:
-best improviment - solucao inicial: 1651 - vizinhanca nao adjacente: 1626
-CMPLIB2010/harwellboeing/str__600.mtx.rnd:
-best improviment - solucao inicial: 1757 - vizinhanca nao adjacente: 1733
-CMPLIB2010/harwellboeing/will199.mtx.rnd:
-best improviment - solucao inicial: 355 - vizinhanca nao adjacente: 343
-CMPLIB2010/harwellboeing/will57.mtx.rnd:
-best improviment - solucao inicial: 68 - vizinhanca nao adjacente: 61
-CMPLIB2010/grids/Grid12x3:
-best improviment - solucao inicial: 13 - vizinhanca nao adjacente: 13
-CMPLIB2010/grids/Grid12x6:
-best improviment - solucao inicial: 13 - vizinhanca nao adjacente: 13
-CMPLIB2010/grids/Grid12x9:
-best improviment - solucao inicial: 13 - vizinhanca nao adjacente: 13
-CMPLIB2010/grids/Grid15x12:
-best improviment - solucao inicial: 16 - vizinhanca nao adjacente: 16
-CMPLIB2010/grids/Grid15x15:
-best improviment - solucao inicial: 16 - vizinhanca nao adjacente: 16
-CMPLIB2010/grids/Grid15x18:
-best improviment - solucao inicial: 16 - vizinhanca nao adjacente: 16
-CMPLIB2010/grids/Grid18x21:
-best improviment - solucao inicial: 19 - vizinhanca nao adjacente: 19
-CMPLIB2010/grids/Grid21x24:
-best improviment - solucao inicial: 22 - vizinhanca nao adjacente: 22
-CMPLIB2010/grids/Grid24x27:
-best improviment - solucao inicial: 25 - vizinhanca nao adjacente: 25
-CMPLIB2010/grids/Grid27x24:
-best improviment - solucao inicial: 28 - vizinhanca nao adjacente: 28
-CMPLIB2010/grids/Grid27x27:
-best improviment - solucao inicial: 28 - vizinhanca nao adjacente: 28
-CMPLIB2010/grids/Grid3x3:
-best improviment - solucao inicial: 4 - vizinhanca nao adjacente: 4
-CMPLIB2010/grids/Grid6x6:
-best improviment - solucao inicial: 7 - vizinhanca nao adjacente: 7
-CMPLIB2010/grids/Grid6x9:
-best improviment - solucao inicial: 7 - vizinhanca nao adjacente: 7
-CMPLIB2010/grids/Grid9x18:
-best improviment - solucao inicial: 10 - vizinhanca nao adjacente: 10
+CMPLIB2010/small/p17_16_24: 11
+CMPLIB2010/small/p18_16_21: 8 
+CMPLIB2010/small/p19_16_19: 8
+CMPLIB2010/small/p20_16_18: 9
+CMPLIB2010/small/p21_17_20: 7
+CMPLIB2010/small/p23_17_23: 11
+CMPLIB2010/small/p24_17_29: 11
+CMPLIB2010/small/p40_18_32: 15
+CMPLIB2010/small/p41_19_20: 9
+CMPLIB2010/small/p42_19_24: 8
+CMPLIB2010/small/p60_20_22: 8
+CMPLIB2010/small/p61_21_22: 8
+CMPLIB2010/small/p62_21_30: 12
+CMPLIB2010/small/p63_21_42: 20
+CMPLIB2010/small/p64_21_22: 10
+CMPLIB2010/small/p70_21_25: 10
+CMPLIB2010/small/p71_22_29: 10
+CMPLIB2010/small/p72_22_49: 23
+CMPLIB2010/small/p73_22_29: 9
+CMPLIB2010/small/p74_22_30: 14
+CMPLIB2010/small/p80_22_30: 12
+CMPLIB2010/harwellboeing/nos5.mtx.rnd: 1136
+CMPLIB2010/harwellboeing/nos6.mtx.rnd: 635
+CMPLIB2010/harwellboeing/plat362.mtx.rnd: 1328
+CMPLIB2010/harwellboeing/plskz362.mtx.rnd: 455
+CMPLIB2010/harwellboeing/shl__200.mtx.rnd: 878
+CMPLIB2010/harwellboeing/shl__400.mtx.rnd: 878
+CMPLIB2010/harwellboeing/str__200.mtx.rnd: 1626
+CMPLIB2010/harwellboeing/str__600.mtx.rnd: 1733
+CMPLIB2010/harwellboeing/will199.mtx.rnd: 343
+CMPLIB2010/harwellboeing/will57.mtx.rnd: 61
+CMPLIB2010/grids/Grid12x3: 13
+CMPLIB2010/grids/Grid12x6: 13
+CMPLIB2010/grids/Grid12x9: 13
+CMPLIB2010/grids/Grid15x12: 16
+CMPLIB2010/grids/Grid15x15: 16
+CMPLIB2010/grids/Grid15x18: 16
+CMPLIB2010/grids/Grid18x21: 19
+CMPLIB2010/grids/Grid21x24: 22
+CMPLIB2010/grids/Grid24x27: 25
+CMPLIB2010/grids/Grid27x24: 28
+CMPLIB2010/grids/Grid27x27: 28
+CMPLIB2010/grids/Grid3x3: 4
+CMPLIB2010/grids/Grid6x6: 7
+CMPLIB2010/grids/Grid6x9: 7
+CMPLIB2010/grids/Grid9x18: 10
