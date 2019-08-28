@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 #include "functions.h"
 
+unsigned seed;
+
 /**
  * Funcao de avaliacao
 **/ 
@@ -151,51 +153,31 @@ std::vector<std::vector<int>> genNeighbourhood(std::vector<int>& initial_solutio
  * Vizinho: grafo onde dois vertices quaisquer da solucao inicial
  * estao com posicoes trocadas
 **/
-std::vector<std::vector<int>> genNeighbourhood_noAdj(std::vector<int>& initial_solution, int limite)
+std::vector<std::vector<int>> genNeighbourhood_noAdj(std::vector<int>& initial_solution, int limite_vertices)
 {
+    // Caso o numero de vertices no problema seja maior que o limite passado, adquire somente
+    // o numero do limite de vizinhos
     std::vector<std::vector<int>> neighbours;
-    neighbours.reserve(initial_solution.size()*initial_solution.size()/2);
+
+    int cont = 0;
 
     for(int i = 0; i < initial_solution.size(); i++) //Vetor de vizinhos
     {
         for(int j = i+1; j < initial_solution.size(); j++) //Vetor auxiliar
         {
             std::vector<int> aux(initial_solution);
-
             int aux_swap = aux[i];
             aux[i] = aux[j];
             aux[j] = aux_swap;
 
             neighbours.push_back(aux);
+
+            if(cont > 5040) return neighbours;
+            cont++;
         }
     }
 
-    if(neighbours.size() > limite){
-        
-        std::vector<std::vector<int>> neighbours_filtered;
-        neighbours_filtered.reserve(limite);
-        std::vector<int> usados;
-
-        // Adquire uma semente a partir do horario do sistema
-        unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-        std::minstd_rand0 generator (seed); // Inicializa o gerador
-        int rand_int;
-        
-        for(int i=0; i<limite; i++){    
-            // Adquire vizinho aleatorio de acordo com o gerador de numeros aleatorios
-            rand_int = abs(generator() % neighbours.size());
-            auto pos = find(usados.begin(), usados.end(), rand_int);
-            if(pos == usados.end()){
-                neighbours_filtered.push_back(neighbours[rand_int]);
-                usados.push_back(rand_int);
-            }else{
-                i--;
-            }
-        }
-        
-        return neighbours_filtered;
-    }else
-        return neighbours;
+    return neighbours;
 }
 
 /**
@@ -208,7 +190,6 @@ std::pair<int, std::vector<int> > local_search_best_improvement(std::vector<std:
     int current_value, initial_value = best_value;
     for(int i = 0; i < neighbours.size(); i++)
     {
-        //std::cout<< i << '/' << neighbours.size() << " - num vertices: " << neighbours[i].size() << std::endl;
         current_value = evaluate(adj_matrix, neighbours[i]);
         if(current_value < best_value)
         {
@@ -229,9 +210,14 @@ std::pair<int, std::vector<int> > local_search_best_improvement(std::vector<std:
  * Retorna o primeiro vizinho que tem solucao melhor que a atual
  * Caso nenhum vizinho tenha solucao melhor que a atual, retorna -1
 **/
-std::pair<int, std::vector<int> > local_search_first_improvement(std::vector<std::vector<int> >& adj_matrix, std::vector<std::vector<int> >& neighbours, int best_value)
+std::pair<int, std::vector<int> > local_search_first_improvement(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, int best_value)
 {
-    int current_value;
+    // TODO: REFAZER CORRETAMENTE
+    // NAO FAZ SENTIDO ELE GERAR UMA SUBVIZINHANCA INTEIRA PARA PEGAR O PRIMEIRO
+    // CONFORME EH GERADA A VIZINHANCA ELE JA DEVE CALCULAR O VALOR DA MESMA
+    // E RETORNA-LA CASO SEJA MELHOR QUE A INICIAL
+
+    /*int current_value;
     for(int i = 0; i < neighbours.size(); i++)
     {                       
         current_value = evaluate(adj_matrix, neighbours[i]);
@@ -241,23 +227,33 @@ std::pair<int, std::vector<int> > local_search_first_improvement(std::vector<std
         }
     }
     std::vector<int> vazio;
-    return std::make_pair(-1, vazio);
+    return std::make_pair(-1, vazio);*/
 }
 
 /**
  * Retorna um vizinho aleatorio
 **/
-std::pair<int, std::vector<int> >  local_search_random_selection(std::vector<std::vector<int> >& adj_matrix, std::vector<std::vector<int> >& neighbours)
+std::pair<int, std::vector<int> >  local_search_random_selection(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution)
 {
-    // Adquire uma semente a partir do horario do sistema
-    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-    std::minstd_rand0 generator (seed); // Inicializa o gerador
+    // Inicializa variaveis
+    int init, end;
+
+    // Inicializa o gerador
+    std::minstd_rand0 generator (seed); 
+
+    // Adquire dois numeros aleatorios para representarem os vertices que trocarao de lugar
+    init = abs(generator() % initial_solution.size());
+    end = abs(generator() % initial_solution.size());
     
-    // Adquire vizinho aleatorio de acordo com o gerador de numeros aleatorios
-    int rand_int = abs(generator() % neighbours.size());
-    std::vector<int> rand_solution = neighbours[rand_int];
+    // Gera swap aleatorio
+    std::vector<int> rand_solution(initial_solution);
+    int rand_solution_swap = rand_solution[init];
+    rand_solution[init] = rand_solution[end];
+    rand_solution[end] = rand_solution_swap;
+
+    // Avalia a solucao adquirida
     int rand_value = evaluate(adj_matrix, rand_solution);
-    
+
     return make_pair(rand_value, rand_solution);
 }
 
@@ -298,6 +294,9 @@ int local_search_duda(std::vector<std::vector<int> >& adj_matrix, std::vector<in
 **/
 int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, std::string vizinhanca, std::string metodo, int iteration)
 {
+    // Gera semente para possiveis uso da funcao random
+    seed = std::chrono::system_clock::now().time_since_epoch().count();
+
     bool is_changing;
     std::vector<int> best_solution = initial_solution; 
     int it = 0, best_value = evaluate(adj_matrix, initial_solution);
@@ -317,9 +316,9 @@ int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& i
         if(metodo.compare("best") == 0)
             neighbour = local_search_best_improvement(adj_matrix, neighbours, best_value);
         else if(metodo.compare("first") == 0)
-            neighbour = local_search_first_improvement(adj_matrix, neighbours, best_value);
+            neighbour = local_search_first_improvement(adj_matrix, best_solution, best_value);
         else if(metodo.compare("random") == 0)
-            neighbour = local_search_random_selection(adj_matrix, neighbours);
+            neighbour = local_search_random_selection(adj_matrix, best_solution);
 
         if(neighbour.first != -1 && neighbour.first < best_value)
         {
@@ -328,7 +327,7 @@ int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& i
             is_changing = true;
         }
         it++;
-    }while(is_changing && it < iteration);
+    }while((metodo.compare("random") == 0 || is_changing) && it < iteration);
 
     return best_value;
 }
