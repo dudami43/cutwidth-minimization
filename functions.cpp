@@ -103,7 +103,7 @@ int n_max_cutwidth(std::vector<std::vector<int> >& adj_matrix, std::vector<int>&
         }
         cut = 0;
     }
-    return n_max_cut;
+    return n_max_cut*max_cut;
 }
 
 /**
@@ -202,7 +202,7 @@ std::vector<std::vector<int>> genNeighbourhood_noAdj(std::vector<int>& initial_s
  * Retorna o vizinho que tem a melhor solucao
  * Caso nenhum vizinho tenha solucao melhor que a atual, retorna -1
 **/
-std::pair<int, std::vector<int> > local_search_best_improvement(std::vector<std::vector<int> >& adj_matrix, std::vector<std::vector<int> >& neighbours, int best_value)
+std::pair<int, std::vector<int>> local_search_best_improvement(std::vector<std::vector<int> >& adj_matrix, std::vector<std::vector<int> >& neighbours, int best_value)
 {
     std::vector<int> best_solution; 
     int current_value, initial_value = best_value;
