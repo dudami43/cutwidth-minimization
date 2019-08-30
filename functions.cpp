@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 #include "functions.h"
 
-unsigned seed;
-
 /**
  * Funcao de avaliacao
 **/ 
@@ -158,13 +156,13 @@ std::vector<std::vector<int>> genNeighbourhood_noAdj(std::vector<int>& initial_s
     // Caso o numero de vertices no problema seja maior que o limite passado, adquire somente
     // o numero do limite de vizinhos
     std::vector<std::vector<int>> neighbours;
-    /*if(initial_solution.size() > limite_vertices)
+    if(initial_solution.size() > limite_vertices)
     {
         // Seta numero de vizinhos
-        int num_vizinhos = 5000;
+        int num_vizinhos = 500;
 
         // Inicializa variaveis
-        std::vector<std::pair<int, int> > usados;
+        std::vector<std::pair<int, int>> usados;
         int init, end;
         std::pair<int, int> trade, trade_inv;
 
@@ -172,23 +170,17 @@ std::vector<std::vector<int>> genNeighbourhood_noAdj(std::vector<int>& initial_s
         neighbours.reserve(num_vizinhos);
         neighbours.reserve(2*num_vizinhos);
 
-        // Inicializa o gerador
-        std::minstd_rand0 generator (seed);
-        int random_seed = generator();
-        std::minstd_rand0 generator_two (random_seed);
-
-        for(int i=0; i<num_vizinhos; i++)
+        int i=0;
+        while(i < num_vizinhos)
         {    
-            std::cout<< "gerando vizinho " << i << " de " << num_vizinhos << std::endl;
+            //std::cout << "Vizinho " << i << std::endl;
             // Adquire dois numeros aleatorios para representarem os vertices que trocarao de lugar
-            init = abs(generator() % initial_solution.size());
-            
-            //OBS.: Funcao random esta garrando em certo ponto, gerando um "loop infinito" de casos ja usados
-
+            init = abs(rand() % initial_solution.size());
+            end = abs(rand() % initial_solution.size());
+            std::cout << i << " " << init << " " << end << std::endl;
             // Cria par de troca e o inverso do mesmo
             trade = std::make_pair(init, end);
             trade_inv = std::make_pair(end, init);
-            
             auto pos = find(usados.begin(), usados.end(), trade);
             if(pos == usados.end())
             {
@@ -196,16 +188,14 @@ std::vector<std::vector<int>> genNeighbourhood_noAdj(std::vector<int>& initial_s
                 int aux_swap = aux[init];
                 aux[init] = aux[end];
                 aux[end] = aux_swap;
-
                 neighbours.push_back(aux); // Adiciona vizinho na vizinhanca
                 usados.push_back(trade); // Adiciona tupla de valores como ja utilizados
                 usados.push_back(trade_inv);
-            }else
-            {
-                i--;
+                i++;
             }
         }
-    }else
+    }
+    else
     {
         neighbours.reserve(5040);
 
@@ -221,26 +211,7 @@ std::vector<std::vector<int>> genNeighbourhood_noAdj(std::vector<int>& initial_s
                 neighbours.push_back(aux);
             }
         }
-    }*/
-
-    int cont = 0;
-
-    for(int i = 0; i < initial_solution.size(); i++) //Vetor de vizinhos
-    {
-        for(int j = i+1; j < initial_solution.size(); j++) //Vetor auxiliar
-        {
-            std::vector<int> aux(initial_solution);
-            int aux_swap = aux[i];
-            aux[i] = aux[j];
-            aux[j] = aux_swap;
-
-            neighbours.push_back(aux);
-
-            if(cont > 5040) return neighbours;
-            cont++;
-        }
     }
-
     return neighbours;
 }
 
@@ -261,7 +232,6 @@ std::pair<int, std::vector<int> > local_search_best_improvement(std::vector<std:
             best_value = current_value;
         }
     }
-
     if(best_value == initial_value)
     {
         std::vector<int> vazio;
@@ -302,12 +272,9 @@ std::pair<int, std::vector<int> >  local_search_random_selection(std::vector<std
     // Inicializa variaveis
     int init, end;
 
-    // Inicializa o gerador
-    std::minstd_rand0 generator (seed); 
-
     // Adquire dois numeros aleatorios para representarem os vertices que trocarao de lugar
-    init = abs(generator() % initial_solution.size());
-    end = abs(generator() % initial_solution.size());
+    init = abs(rand() % initial_solution.size());
+    end = abs(rand() % initial_solution.size());
     
     // Gera swap aleatorio
     std::vector<int> rand_solution(initial_solution);
@@ -322,45 +289,10 @@ std::pair<int, std::vector<int> >  local_search_random_selection(std::vector<std
 }
 
 /**
- * Implementacao da Duda
-**/
-int local_search_duda(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution)
-{
-    bool is_changing = false;
-    std::vector<int> best_solution = initial_solution; 
-    int best_value = evaluate(adj_matrix, initial_solution);
-    do
-    {
-        std::vector<std::vector<int>> neighbours = genNeighbourhood(best_solution);
-        int current_value;
-        is_changing = false;
-        for(int i = 0; i < neighbours.size(); i++)
-        {                       
-            current_value = evaluate(adj_matrix, neighbours[i]);
-            /*for(int j = 0; j < neighbours[i].size(); j++)
-            {
-                std::cout << neighbours[i][j] << " ";
-            }
-            std::cout << std::endl << "cur_val " << current_value << std::endl;*/
-            if(current_value < best_value)
-            {
-                best_solution = neighbours[i];
-                best_value = current_value;
-                is_changing = true;
-            }
-        }
-    }while(is_changing);
-    return best_value;
-}
-
-/**
  * Funcao base da busca local
 **/
 int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, std::string vizinhanca, std::string metodo, int iteration)
 {
-    // Gera semente para possiveis uso da funcao random
-    seed = std::chrono::system_clock::now().time_since_epoch().count();
-
     bool is_changing;
     std::vector<int> best_solution = initial_solution; 
     int it = 0, best_value = evaluate(adj_matrix, initial_solution);
@@ -372,7 +304,9 @@ int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& i
         if(vizinhanca.compare("adj") == 0)
             neighbours = genNeighbourhood(best_solution);
         else if(vizinhanca.compare("noAdj") == 0)
+        {
             neighbours = genNeighbourhood_noAdj(best_solution);
+        }
 
         int current_value;
 

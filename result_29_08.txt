@@ -1,0 +1,134 @@
+CMPLIB2010/small/p17_16_24: Numero de vertices: 16
+best improvement - solucao inicial: 13 - vizinhanca nao adjacente: 11
+CMPLIB2010/small/p18_16_21: Numero de vertices: 16
+best improvement - solucao inicial: 8 - vizinhanca nao adjacente: 8
+CMPLIB2010/small/p19_16_19: Numero de vertices: 16
+best improvement - solucao inicial: 10 - vizinhanca nao adjacente: 8
+CMPLIB2010/small/p20_16_18: Numero de vertices: 16
+best improvement - solucao inicial: 10 - vizinhanca nao adjacente: 9
+CMPLIB2010/small/p21_17_20: Numero de vertices: 17
+best improvement - solucao inicial: 10 - vizinhanca nao adjacente: 7
+CMPLIB2010/small/p23_17_23: Numero de vertices: 17
+best improvement - solucao inicial: 12 - vizinhanca nao adjacente: 11
+CMPLIB2010/small/p24_17_29: Numero de vertices: 17
+best improvement - solucao inicial: 14 - vizinhanca nao adjacente: 11
+CMPLIB2010/small/p40_18_32: Numero de vertices: 18
+best improvement - solucao inicial: 18 - vizinhanca nao adjacente: 15
+CMPLIB2010/small/p41_19_20: Numero de vertices: 19
+best improvement - solucao inicial: 10 - vizinhanca nao adjacente: 9
+CMPLIB2010/small/p42_19_24: Numero de vertices: 19
+best improvement - solucao inicial: 10 - vizinhanca nao adjacente: 8
+CMPLIB2010/small/p60_20_22: Numero de vertices: 20
+best improvement - solucao inicial: 12 - vizinhanca nao adjacente: 8
+CMPLIB2010/small/p61_21_22: Numero de vertices: 21
+best improvement - solucao inicial: 11 - vizinhanca nao adjacente: 8
+CMPLIB2010/small/p62_21_30: Numero de vertices: 21
+best improvement - solucao inicial: 15 - vizinhanca nao adjacente: 12
+CMPLIB2010/small/p63_21_42: Numero de vertices: 21
+best improvement - solucao inicial: 24 - vizinhanca nao adjacente: 20
+CMPLIB2010/small/p64_21_22: Numero de vertices: 21
+best improvement - solucao inicial: 12 - vizinhanca nao adjacente: 10
+CMPLIB2010/small/p70_21_25: Numero de vertices: 21
+best improvement - solucao inicial: 12 - vizinhanca nao adjacente: 10
+CMPLIB2010/small/p71_22_29: Numero de vertices: 22
+best improvement - solucao inicial: 12 - vizinhanca nao adjacente: 10
+CMPLIB2010/small/p72_22_49: Numero de vertices: 22
+best improvement - solucao inicial: 28 - vizinhanca nao adjacente: 23
+CMPLIB2010/small/p73_22_29: Numero de vertices: 22
+best improvement - solucao inicial: 11 - vizinhanca nao adjacente: 9
+CMPLIB2010/small/p74_22_30: Numero de vertices: 22
+best improvement - solucao inicial: 17 - vizinhanca nao adjacente: 14
+CMPLIB2010/small/p80_22_30: Numero de vertices: 22
+best improvement - solucao inicial: 15 - vizinhanca nao adjacente: 12
+CMPLIB2010/small/p81_23_46: Numero de vertices: 23
+best improvement - solucao inicial: 21 - vizinhanca nao adjacente: 18
+CMPLIB2010/small/p82_23_24: Numero de vertices: 23
+best improvement - solucao inicial: 13 - vizinhanca nao adjacente: 11
+CMPLIB2010/small/p99_24_27: Numero de vertices: 24
+best improvement - solucao inicial: 13 - vizinhanca nao adjacente: 11
+CMPLIB2010/small/p100_24_34: Numero de vertices: 24
+best improvement - solucao inicial: 19 - vizinhanca nao adjacente: 16
+CMPLIB2010/harwellboeing/494_bus.mtx.rnd: Numero de vertices: 494
+best improvement - solucao inicial: 290 - vizinhanca nao adjacente: 285
+CMPLIB2010/harwellboeing/662_bus.mtx.rnd: Numero de vertices: 662
+best improvement - solucao inicial: 479 - vizinhanca nao adjacente: 471
+CMPLIB2010/harwellboeing/arc130.mtx.rnd: Numero de vertices: 130
+best improvement - solucao inicial: 357 - vizinhanca nao adjacente: 347
+CMPLIB2010/harwellboeing/ash292.mtx.rnd: Numero de vertices: 292
+best improvement - solucao inicial: 471 - vizinhanca nao adjacente: 461
+CMPLIB2010/harwellboeing/bcspwr01.mtx.rnd: Numero de vertices: 39
+best improvement - solucao inicial: 27 - vizinhanca nao adjacente: 22
+CMPLIB2010/harwellboeing/bcspwr05.mtx.rnd: Numero de vertices: 443
+best improvement - solucao inicial: 288 - vizinhanca nao adjacente: 282
+CMPLIB2010/harwellboeing/bcsstk01.mtx.rnd: Numero de vertices: 48
+best improvement - solucao inicial: 79 - vizinhanca nao adjacente: 75
+CMPLIB2010/harwellboeing/bcsstk02.mtx.rnd: Numero de vertices: 66
+best improvement - solucao inicial: 1089 - vizinhanca nao adjacente: 1089
+CMPLIB2010/harwellboeing/bcsstk04.mtx.rnd: Numero de vertices: 132
+best improvement - solucao inicial: 884 - vizinhanca nao adjacente: 870
+CMPLIB2010/harwellboeing/bcsstk20.mtx.rnd: Numero de vertices: 467
+best improvement - solucao inicial: 606 - vizinhanca nao adjacente: 596
+CMPLIB2010/harwellboeing/bcsstk22.mtx.rnd: Numero de vertices: 110
+best improvement - solucao inicial: 121 - vizinhanca nao adjacente: 115
+CMPLIB2010/harwellboeing/can__144.mtx.rnd: Numero de vertices: 144
+best improvement - solucao inicial: 288 - vizinhanca nao adjacente: 280
+CMPLIB2010/harwellboeing/can__161.mtx.rnd: Numero de vertices: 161
+best improvement - solucao inicial: 299 - vizinhanca nao adjacente: 289
+CMPLIB2010/harwellboeing/curtis54.mtx.rnd: Numero de vertices: 54
+best improvement - solucao inicial: 67 - vizinhanca nao adjacente: 61
+CMPLIB2010/harwellboeing/lund_a.mtx.rnd: Numero de vertices: 147
+best improvement - solucao inicial: 561 - vizinhanca nao adjacente: 548
+CMPLIB2010/harwellboeing/mcca.mtx.rnd: Numero de vertices: 168
+best improvement - solucao inicial: 841 - vizinhanca nao adjacente: 824
+CMPLIB2010/harwellboeing/nnc261.mtx.rnd: Numero de vertices: 261
+best improvement - solucao inicial: 407 - vizinhanca nao adjacente: 397
+CMPLIB2010/harwellboeing/nos5.mtx.rnd: Numero de vertices: 468
+best improvement - solucao inicial: 1147 - vizinhanca nao adjacente: 1135
+CMPLIB2010/harwellboeing/nos6.mtx.rnd: Numero de vertices: 675
+best improvement - solucao inicial: 642 - vizinhanca nao adjacente: 636
+CMPLIB2010/harwellboeing/plat362.mtx.rnd: Numero de vertices: 362
+best improvement - solucao inicial: 1344 - vizinhanca nao adjacente: 1328
+CMPLIB2010/harwellboeing/plskz362.mtx.rnd: Numero de vertices: 362
+best improvement - solucao inicial: 463 - vizinhanca nao adjacente: 456
+CMPLIB2010/harwellboeing/shl__200.mtx.rnd: Numero de vertices: 663
+best improvement - solucao inicial: 886 - vizinhanca nao adjacente: 877
+CMPLIB2010/harwellboeing/shl__400.mtx.rnd: Numero de vertices: 663
+best improvement - solucao inicial: 883 - vizinhanca nao adjacente: 876
+CMPLIB2010/harwellboeing/str__200.mtx.rnd: Numero de vertices: 363
+best improvement - solucao inicial: 1651 - vizinhanca nao adjacente: 1623
+CMPLIB2010/harwellboeing/str__600.mtx.rnd: Numero de vertices: 363
+best improvement - solucao inicial: 1757 - vizinhanca nao adjacente: 1728
+CMPLIB2010/harwellboeing/will199.mtx.rnd: Numero de vertices: 199
+best improvement - solucao inicial: 355 - vizinhanca nao adjacente: 344
+CMPLIB2010/harwellboeing/will57.mtx.rnd: Numero de vertices: 57
+best improvement - solucao inicial: 68 - vizinhanca nao adjacente: 60
+CMPLIB2010/grids/Grid12x3: Numero de vertices: 36
+best improvement - solucao inicial: 13 - vizinhanca nao adjacente: 13
+CMPLIB2010/grids/Grid12x6: Numero de vertices: 72
+best improvement - solucao inicial: 13 - vizinhanca nao adjacente: 13
+CMPLIB2010/grids/Grid12x9: Numero de vertices: 108
+best improvement - solucao inicial: 13 - vizinhanca nao adjacente: 13
+CMPLIB2010/grids/Grid15x12: Numero de vertices: 180
+best improvement - solucao inicial: 16 - vizinhanca nao adjacente: 16
+CMPLIB2010/grids/Grid15x15: Numero de vertices: 225
+best improvement - solucao inicial: 16 - vizinhanca nao adjacente: 16
+CMPLIB2010/grids/Grid15x18: Numero de vertices: 270
+best improvement - solucao inicial: 16 - vizinhanca nao adjacente: 16
+CMPLIB2010/grids/Grid18x21: Numero de vertices: 378
+best improvement - solucao inicial: 19 - vizinhanca nao adjacente: 19
+CMPLIB2010/grids/Grid21x24: Numero de vertices: 504
+best improvement - solucao inicial: 22 - vizinhanca nao adjacente: 22
+CMPLIB2010/grids/Grid24x27: Numero de vertices: 648
+best improvement - solucao inicial: 25 - vizinhanca nao adjacente: 25
+CMPLIB2010/grids/Grid27x24: Numero de vertices: 648
+best improvement - solucao inicial: 28 - vizinhanca nao adjacente: 28
+CMPLIB2010/grids/Grid27x27: Numero de vertices: 729
+best improvement - solucao inicial: 28 - vizinhanca nao adjacente: 28
+CMPLIB2010/grids/Grid3x3: Numero de vertices: 9
+best improvement - solucao inicial: 4 - vizinhanca nao adjacente: 4
+CMPLIB2010/grids/Grid6x6: Numero de vertices: 36
+best improvement - solucao inicial: 7 - vizinhanca nao adjacente: 7
+CMPLIB2010/grids/Grid6x9: Numero de vertices: 54
+best improvement - solucao inicial: 7 - vizinhanca nao adjacente: 7
+CMPLIB2010/grids/Grid9x18: Numero de vertices: 162
+best improvement - solucao inicial: 10 - vizinhanca nao adjacente: 10

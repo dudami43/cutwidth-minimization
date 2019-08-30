@@ -2,9 +2,11 @@
 #include "functions.h"
 #include "parser.h"
 //g++ -std=c++11 main.cpp parser.cpp functions.cpp
-int main(int argc, char *argv[ ])
+int main(int argc, char *argv[])
 {
-    char *file_name;
+    srand (time(NULL));
+
+    char *file_name = new char[500];
     strcpy(file_name, "files/");
     if(argc == 1)
         strcat(file_name, "pvanet_files");
@@ -15,6 +17,7 @@ int main(int argc, char *argv[ ])
     std::string filename;
     file.open(file_name);
 
+    delete file_name;
     if (file.is_open())
     {
         while (getline(file, filename))
@@ -31,12 +34,10 @@ int main(int argc, char *argv[ ])
                 }
                 int init_value = evaluate(adj_matrix, initial_solution);
                 std::cout << " Numero de vertices: " << initial_solution.size() << std::endl;
-                std::cout << "best improviment - ";
+                std::cout << "best improvement - ";
                 std::cout << "solucao inicial: " << init_value << " - ";
                 //std::cout << "vizinhanca adjacente: " << local_search(adj_matrix, initial_solution, "a", "best") << " - ";
-                auto time_before = std::chrono::system_clock::now().time_since_epoch().count();
                 std::cout << "vizinhanca nao adjacente: " << local_search(adj_matrix, initial_solution, "noAdj", "best", 1) << std::endl;
-                auto time_after = std::chrono::system_clock::now().time_since_epoch().count();
                 //std::cout << "comeco: "<< time_before << " final: " << time_after << " tempo total: " << time_after - time_before << std::endl;
                 /*std::cout << "first improviment - ";
                 std::cout << "solucao inicial: " << init_value << " - ";

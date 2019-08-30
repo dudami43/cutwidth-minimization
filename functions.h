@@ -4,7 +4,7 @@ int mean_cutwidth(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& 
 int n_max_cutwidth(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& solution);
 
 std::vector<std::vector<int> > genNeighbourhood(std::vector<int>& initial_solution);
-std::vector<std::vector<int> > genNeighbourhood_noAdj(std::vector<int>& initial_solution, int limite_vertices = 7);
+std::vector<std::vector<int> > genNeighbourhood_noAdj(std::vector<int>& initial_solution, int limite_vertices = 25);
 
 std::pair<int, std::vector<int> > local_search_best_improvement(std::vector<std::vector<int>>& adj_matrix, std::vector<std::vector<int>>& neighbours, int best_value);
 std::pair<int, std::vector<int> > local_search_first_improvement(std::vector<std::vector<int>>& adj_matrix, std::vector<int>& initial_solution, int best_value);
