@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
                 std::cout << "best improvement - ";
                 std::cout << "solucao inicial: " << init_value << " - ";
                 //std::cout << "vizinhanca adjacente: " << local_search(adj_matrix, initial_solution, "a", "best") << " - ";
-                std::cout << "vizinhanca nao adjacente: " << local_search(adj_matrix, initial_solution, "noAdj", "best", 1) << std::endl;
+                std::cout << "vizinhanca nao adjacente: " << local_search(adj_matrix, initial_solution, "noAdj", "best") << std::endl;
                 //std::cout << "comeco: "<< time_before << " final: " << time_after << " tempo total: " << time_after - time_before << std::endl;
                 /*std::cout << "first improviment - ";
                 std::cout << "solucao inicial: " << init_value << " - ";

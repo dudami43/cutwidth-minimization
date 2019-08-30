@@ -291,7 +291,7 @@ std::pair<int, std::vector<int> >  local_search_random_selection(std::vector<std
 /**
  * Funcao base da busca local
 **/
-int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, std::string vizinhanca, std::string metodo, int iteration)
+int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, std::string vizinhanca, std::string metodo)
 {
     bool is_changing;
     std::vector<int> best_solution = initial_solution; 
@@ -325,7 +325,7 @@ int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& i
             is_changing = true;
         }
         it++;
-    }while((metodo.compare("random") == 0 || is_changing) && it < iteration);
+    }while((metodo.compare("random") == 0 || is_changing));
 
     return best_value;
 }
