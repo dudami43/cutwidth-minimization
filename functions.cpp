@@ -177,7 +177,7 @@ std::vector<std::vector<int>> genNeighbourhood_noAdj(std::vector<int>& initial_s
             // Adquire dois numeros aleatorios para representarem os vertices que trocarao de lugar
             init = abs(rand() % initial_solution.size());
             end = abs(rand() % initial_solution.size());
-            std::cout << i << " " << init << " " << end << std::endl;
+            //std::cout << i << " " << init << " " << end << std::endl;
             // Cria par de troca e o inverso do mesmo
             trade = std::make_pair(init, end);
             trade_inv = std::make_pair(end, init);
@@ -246,28 +246,31 @@ std::pair<int, std::vector<int> > local_search_best_improvement(std::vector<std:
 **/
 std::pair<int, std::vector<int> > local_search_first_improvement(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, int best_value)
 {
-    // TODO: REFAZER CORRETAMENTE
-    // NAO FAZ SENTIDO ELE GERAR UMA SUBVIZINHANCA INTEIRA PARA PEGAR O PRIMEIRO
-    // CONFORME EH GERADA A VIZINHANCA ELE JA DEVE CALCULAR O VALOR DA MESMA
-    // E RETORNA-LA CASO SEJA MELHOR QUE A INICIAL
-
-    /*int current_value;
+    std::vector<int> best_solution; 
+    int init = abs(rand() % initial_solution.size());
+    int end = abs(rand() % initial_solution.size());
+    int current_value, initial_value = best_value;
     for(int i = 0; i < neighbours.size(); i++)
-    {                       
+    {
         current_value = evaluate(adj_matrix, neighbours[i]);
         if(current_value < best_value)
         {
-            return std::make_pair(best_value, neighbours[i]);
+            best_solution = neighbours[i];
+            best_value = current_value;
         }
     }
-    std::vector<int> vazio;
-    return std::make_pair(-1, vazio);*/
+    if(best_value == initial_value)
+    {
+        std::vector<int> vazio;
+        return std::make_pair(-1, vazio);
+    }
+    return std::make_pair(best_value, best_solution);
 }
 
 /**
  * Retorna um vizinho aleatorio
 **/
-std::pair<int, std::vector<int> >  local_search_random_selection(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution)
+std::pair<int, std::vector<int> >  local_search_random_selection(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, int best_value)
 {
     // Inicializa variaveis
     int init, end;
@@ -285,6 +288,11 @@ std::pair<int, std::vector<int> >  local_search_random_selection(std::vector<std
     // Avalia a solucao adquirida
     int rand_value = evaluate(adj_matrix, rand_solution);
 
+    if(best_value == rand_value)
+    {
+        std::vector<int> vazio;
+        return std::make_pair(-1, vazio);
+    }
     return make_pair(rand_value, rand_solution);
 }
 
@@ -303,7 +311,7 @@ int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& i
         std::vector<std::vector<int>> neighbours;
         if(vizinhanca.compare("adj") == 0)
             neighbours = genNeighbourhood(best_solution);
-        else if(vizinhanca.compare("noAdj") == 0)
+        else if(vizinhanca.compare("noAdj") == 0 && metodo.compare("best") == 0)
         {
             neighbours = genNeighbourhood_noAdj(best_solution);
         }
@@ -316,7 +324,7 @@ int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& i
         else if(metodo.compare("first") == 0)
             neighbour = local_search_first_improvement(adj_matrix, best_solution, best_value);
         else if(metodo.compare("random") == 0)
-            neighbour = local_search_random_selection(adj_matrix, best_solution);
+            neighbour = local_search_random_selection(adj_matrix, best_solution, best_value);
 
         if(neighbour.first != -1 && neighbour.first < best_value)
         {
@@ -325,7 +333,7 @@ int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& i
             is_changing = true;
         }
         it++;
-    }while((metodo.compare("random") == 0 || is_changing));
+    }while(is_changing);
 
     return best_value;
 }

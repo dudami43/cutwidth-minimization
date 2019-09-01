@@ -8,7 +8,7 @@ std::vector<std::vector<int> > genNeighbourhood_noAdj(std::vector<int>& initial_
 
 std::pair<int, std::vector<int> > local_search_best_improvement(std::vector<std::vector<int>>& adj_matrix, std::vector<std::vector<int>>& neighbours, int best_value);
 std::pair<int, std::vector<int> > local_search_first_improvement(std::vector<std::vector<int>>& adj_matrix, std::vector<int>& initial_solution, int best_value);
-std::pair<int, std::vector<int> >  local_search_random_selection(std::vector<std::vector<int>>& adj_matrix, std::vector<int>& initial_solution);
+std::pair<int, std::vector<int> >  local_search_random_selection(std::vector<std::vector<int>>& adj_matrix, std::vector<int>& initial_solution, int best_value);
 
 int local_search_duda(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution);
 int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, std::string vizinhanca = "adj", std::string metodo = "first");
