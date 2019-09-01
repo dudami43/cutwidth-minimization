@@ -246,23 +246,30 @@ std::pair<int, std::vector<int> > local_search_best_improvement(std::vector<std:
 **/
 std::pair<int, std::vector<int> > local_search_first_improvement(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, int best_value)
 {
-    std::vector<int> best_solution; 
-    int init = abs(rand() % initial_solution.size());
-    int end = abs(rand() % initial_solution.size());
-    int current_value, initial_value = best_value;
-    for(int i = 0; i < neighbours.size(); i++)
+    std::vector<int> best_solution = initial_solution; 
+    int init;
+    int end;
+    int current_value = best_value;
+    bool improved = false; 
+    int iterations = 100;
+    int i = 0;
+    while(!improved && i < iterations)
     {
-        current_value = evaluate(adj_matrix, neighbours[i]);
+        init = abs(rand() % initial_solution.size());
+        end = abs(rand() % initial_solution.size());
+
+        int aux_swap = initial_solution[init];
+        initial_solution[init] = initial_solution[end];
+        initial_solution[end] = aux_swap;
+
+        current_value = evaluate(adj_matrix, initial_solution);
         if(current_value < best_value)
         {
-            best_solution = neighbours[i];
+            best_solution = initial_solution;
             best_value = current_value;
+            improved = true;
         }
-    }
-    if(best_value == initial_value)
-    {
-        std::vector<int> vazio;
-        return std::make_pair(-1, vazio);
+        i++;
     }
     return std::make_pair(best_value, best_solution);
 }
@@ -303,7 +310,7 @@ int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& i
 {
     bool is_changing;
     std::vector<int> best_solution = initial_solution; 
-    int it = 0, best_value = evaluate(adj_matrix, initial_solution);
+    int best_value = evaluate(adj_matrix, initial_solution);
     
     do
     {
@@ -332,7 +339,6 @@ int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& i
             best_solution = neighbour.second;
             is_changing = true;
         }
-        it++;
     }while(is_changing);
 
     return best_value;
