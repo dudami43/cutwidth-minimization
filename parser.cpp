@@ -87,3 +87,28 @@ std::vector<std::vector<int> > get_adj_matrix(std::string filename)
     return adj_matrix;
 }
 
+std::vector<std::vector<int> > get_adj_list(std::vector<std::vector<int> > adj_matrix){
+    std::vector<std::vector<int> > adj_list;
+    adj_list.reserve(adj_matrix.size());
+
+    std::vector<int> aux;
+    aux.reserve(adj_matrix.size());
+    for(int i=0; i<adj_matrix.size(); i++){
+        for(int j=0; j<adj_matrix[i].size(); j++){
+            if(adj_matrix[i][j] == 1 && i != j){
+                aux.push_back(j);
+            }
+        }
+        adj_list.push_back(aux);
+        aux.clear();
+    }
+    
+    /*std::cout << std::endl;
+    for(auto vertex: adj_list){
+        for(auto adj: vertex)
+            std::cout << adj << " ";
+        std::cout << std::endl;
+    }*/
+
+    return adj_list;
+}

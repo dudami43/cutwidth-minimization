@@ -246,22 +246,23 @@ std::pair<int, std::vector<int> > local_search_best_improvement(std::vector<std:
 **/
 std::pair<int, std::vector<int> > local_search_first_improvement(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, int best_value)
 {
-    // TODO: REFAZER CORRETAMENTE
-    // NAO FAZ SENTIDO ELE GERAR UMA SUBVIZINHANCA INTEIRA PARA PEGAR O PRIMEIRO
-    // CONFORME EH GERADA A VIZINHANCA ELE JA DEVE CALCULAR O VALOR DA MESMA
-    // E RETORNA-LA CASO SEJA MELHOR QUE A INICIAL
-
-    /*int current_value;
-    for(int i = 0; i < neighbours.size(); i++)
-    {                       
-        current_value = evaluate(adj_matrix, neighbours[i]);
-        if(current_value < best_value)
+    for(int i = 0; i < initial_solution.size(); i++) //Vetor de vizinhos
+    {
+        for(int j = i+1; j < initial_solution.size(); j++) //Vetor auxiliar
         {
-            return std::make_pair(best_value, neighbours[i]);
+            std::vector<int> aux(initial_solution);
+            int aux_swap = aux[i];
+            aux[i] = aux[j];
+            aux[j] = aux_swap;
+
+            int current_value = evaluate(adj_matrix, aux);
+            if(current_value < best_value){
+                return std::make_pair(current_value, aux);
+            }
         }
     }
-    std::vector<int> vazio;
-    return std::make_pair(-1, vazio);*/
+
+    return std::make_pair(-1, initial_solution);
 }
 
 /**
