@@ -22,16 +22,18 @@ int main(int argc, char *argv[])
     {
         while (getline(file, filename))
         {
-            std::vector<std::vector<int>> adj_matrix;
+            std::vector<std::vector<int>> adj_matrix, adj_list;
             std::cout << filename << ":";
             try
             {
                 adj_matrix = get_adj_matrix(filename);
-                std::vector<int> initial_solution;
-                for( int i = 0; i < adj_matrix.size(); i++ )
+                adj_list = get_adj_list(adj_matrix);
+
+                std::vector<int> initial_solution = first_solution(adj_list);
+                /*for( int i = 0; i < adj_matrix.size(); i++ )
                 {
                     initial_solution.push_back( i );
-                }
+                }*/
                 int init_value = evaluate(adj_matrix, initial_solution);
                 std::cout << "Numero de vertices: " << initial_solution.size() << std::endl;
                 std::cout << "Solucao inicial: " << init_value << " - ";

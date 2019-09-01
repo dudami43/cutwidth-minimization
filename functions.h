@@ -12,3 +12,5 @@ std::pair<int, std::vector<int> >  local_search_random_selection(std::vector<std
 
 int local_search_duda(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution);
 int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, std::string vizinhanca = "adj", std::string metodo = "first");
+
+std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list);

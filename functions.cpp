@@ -330,3 +330,22 @@ int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& i
 
     return best_value;
 }
+
+/**
+ * Funcao gulosa que adquire uma solucao inicial
+**/ 
+std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list){
+    
+    // Inicializa o vector que contera a solucao(initial_solution)
+    // e o vector com os indices de cada vertice
+    std::vector<int> initial_solution, index;
+    for(int i=0; i<adj_list.size(); i++)
+        index.push_back(i);
+    
+    // Ordena a lista de indices com base no numero de adjacencias
+    // em cada vertice da lista de adjacencia
+    sort(index.begin(), index.end(), [&](int i, int j) { return adj_list[i].size() < adj_list[j].size(); } );
+
+    
+
+}
