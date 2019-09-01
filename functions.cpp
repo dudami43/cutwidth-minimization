@@ -348,17 +348,108 @@ int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& i
  * Funcao gulosa que adquire uma solucao inicial
 **/ 
 std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list){
+
+    // Lanca excecao caso haja 1 ou menos vertices na lista de adjacencia
+    if(adj_list.size() < 2)
+        throw;
     
     // Inicializa o vector que contera a solucao(initial_solution)
-    // e o vector com os indices de cada vertice
-    std::vector<int> initial_solution, index;
+    // e o vector com os indices, de cada vertice, que serao
+    // ordenados por ordem de maior numero de adjacencias
+    std::vector<int> initial_solution, index_sort;
     for(int i=0; i<adj_list.size(); i++)
-        index.push_back(i);
+        index_sort.push_back(i);
     
     // Ordena a lista de indices com base no numero de adjacencias
     // em cada vertice da lista de adjacencia
-    sort(index.begin(), index.end(), [&](int i, int j) { return adj_list[i].size() < adj_list[j].size(); } );
+    std::sort(index_sort.begin(), index_sort.end(), [&](int i, int j) { return adj_list[i].size() < adj_list[j].size(); } );
 
-    
+    /**
+     * Ideia do algoritmo guloso:
+     * Colocar os dois vertices que mais tem grau de entrada/saida no meio
+     * Ir alocando os outros em uma das três posições: antes, entre e depois dos vertices
+     * que ja estao alocados de maneira a igualar os numeros de arestas que saem/entram
+     * do lado de esquero e do lado direito de cada vertice
+    **/
 
+    // Adiciona os dois elementos com maior grau de entrada/saida
+    initial_solution.push_back(index_sort[index_sort.size()-2]);
+    initial_solution.push_back(index_sort[index_sort.size()-1]);
+
+    // Remove os mesmos dos indices ordenados
+    index_sort.pop_back();
+    index_sort.pop_back();
+
+    // Enquanto ainda ha elemento no vector de indices
+    int i = 0;
+    while(index_sort.size() > 0){
+        std::vector<int> linked;
+        linked.reserve(initial_solution.size()); 
+        
+        // Adquire todos os vertices que estao interligados ao vertice atual
+        for(int j=0; j<initial_solution.size(); j++){
+            auto pos = std::find(adj_list[initial_solution[j]].begin(), adj_list[initial_solution[j]].end(), index_sort[i]);
+            if(pos != adj_list[initial_solution[j]].end()){
+                linked.push_back(initial_solution[j]);
+            }
+        }
+
+        /** 
+         * Coloca o vertice na posicao calculada da seguinte maneira:
+         * * Caso o mesmo tenha apenas um vertice interligado(que ja esta alocado)
+         *   entao o vertice sera alocado ao lado dele (no lado que tem menos vertices)
+         * * Caso tenha mais de um vertice interligado(ja alocados)
+         *   entao o vertice sera colocado entre eles
+         * * Caso nao tenha nenhum vertice interligado(alocado)
+         *   nada sera feito
+        **/
+        if(linked.size() > 1){
+            int sum = 0, pos_it;
+            for(auto x: linked){
+                auto it = std::find(initial_solution.begin(), initial_solution.end(), x);
+                pos_it = std::distance(initial_solution.begin(), it);
+                sum += pos_it;
+            }
+            sum /= linked.size();
+            initial_solution.insert(initial_solution.begin()+sum, index_sort[i]);
+        }else if(linked.size() == 1){
+            auto it = std::find(initial_solution.begin(), initial_solution.end(), linked[0]);
+            int pos_it = std::distance(initial_solution.begin(), it);
+            if(pos_it > initial_solution.size()/2){ 
+                if(linked[0] == *(initial_solution.rbegin())){
+                    // Caso o elemento seja o ultimo da solucao
+                    // insere no final
+                    initial_solution.insert(initial_solution.end(), index_sort[i]);
+                }else{
+                    // Caso ele esteja no final da solucao mas nao seja o ultimo
+                    // inserir apos o elemento
+                    initial_solution.insert(it+1, index_sort[i]);
+                }
+            }else {
+                // Caso ele esteja no inicio da solucao
+                // inserir antes do elemento
+                initial_solution.insert(it, index_sort[i]);
+            }
+        }else{
+            // Caso nao haja nenhum vertice, alocado, que se interligue
+            // no vertice atual, apenas passe para frente
+            i = (i+1) % index_sort.size();
+            continue;
+        }
+
+        // Retira o vertice do vector de indices
+        index_sort.erase(index_sort.begin() + i);
+
+        if(index_sort.size() > 0){
+            i = (i+1) % index_sort.size();
+        }
+    }
+
+    /*
+    for(auto x: initial_solution){
+        std::cout << x << " ";
+    }
+    std::cout << std::endl; */
+
+    return initial_solution;
 }

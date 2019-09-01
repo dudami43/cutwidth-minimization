@@ -23,34 +23,40 @@ int main(int argc, char *argv[])
         while (getline(file, filename))
         {
             std::vector<std::vector<int>> adj_matrix, adj_list;
-            std::cout << filename << ":";
+            std::cout << filename << ":" << "  ---  ";
             try
             {
                 adj_matrix = get_adj_matrix(filename);
                 adj_list = get_adj_list(adj_matrix);
 
                 std::vector<int> initial_solution = first_solution(adj_list);
-                /*for( int i = 0; i < adj_matrix.size(); i++ )
-                {
-                    initial_solution.push_back( i );
-                }*/
-                int init_value = evaluate(adj_matrix, initial_solution);
-                //std::cout << " Numero de vertices: " << initial_solution.size() << std::endl;
-                //std::cout << "best improvement - ";
-                //std::cout << "solucao inicial: " << init_value << " - ";
-                //std::cout << "vizinhanca adjacente: " << local_search(adj_matrix, initial_solution, "a", "best") << " - ";
-                //std::cout << "vizinhanca nao adjacente: " << local_search(adj_matrix, initial_solution, "noAdj", "best") << std::endl;
-                //std::cout << "comeco: "<< time_before << " final: " << time_after << " tempo total: " << time_after - time_before << std::endl;
-                std::cout << "first improvement - ";
-                std::cout << "solucao inicial: " << init_value << " - ";
-                /*std::cout << "vizinhanca adjacente: " << local_search(adj_matrix, initial_solution, "adj", "first") << " - ";*/
-                std::cout << "vizinhanca nao adjacente: " << local_search(adj_matrix, initial_solution, "noAdj", "first") << std::endl;
+                std::vector<int> past_initial_solution;
+                for(int i=0 ; i<adj_list.size(); i++){
+                    past_initial_solution.push_back(i);
+                }
 
-                /*std::cout << "random selection - ";
-                std::cout << "solucao inicial: " << init_value << " - ";
-                std::cout << "vizinhanca adjacente: " << local_search(adj_matrix, initial_solution, "adj", "random") << " - ";
-                std::cout << "vizinhanca nao adjacente: " << local_search(adj_matrix, initial_solution, "noAdj", "random") << std::endl;*/
+                int init_value = evaluate(adj_matrix, initial_solution);
+                int past_init_value = evaluate(adj_matrix, past_initial_solution);
+                //std::cout << "Numero de vertices: " << adj_list.size();
+                //std::cout << " Numero de vertices na solucao initial: " << initial_solution.size() << std::endl;
                 
+                std::cout << "solucao inicial antiga: " << past_init_value << " --- solucao inicial nova: "<< init_value << std::endl;
+                std::cout << "best improvement - ";
+                //std::cout << "vizinhanca adjacente: " << local_search(adj_matrix, initial_solution, "a", "best") << " - ";
+                std::cout << "vizinhanca nao adjacente: " << local_search(adj_matrix, initial_solution, "noAdj", "best") << std::endl;
+                std::cout << std::endl;
+                
+                //std::cout << "first improvement - ";
+                //std::cout << "solucao inicial: " << init_value << " - ";
+                //std::cout << "vizinhanca adjacente: " << local_search(adj_matrix, initial_solution, "adj", "first") << " - ";
+                //std::cout << "vizinhanca nao adjacente: " << local_search(adj_matrix, initial_solution, "noAdj", "first") << std::endl;
+                //std::cout << std::endl;
+
+                //std::cout << "random selection - ";
+                //std::cout << "solucao inicial: " << init_value << " - ";
+                //std::cout << "vizinhanca adjacente: " << local_search(adj_matrix, initial_solution, "adj", "random") << " - ";
+                //std::cout << "vizinhanca nao adjacente: " << local_search(adj_matrix, initial_solution, "noAdj", "random") << std::endl;
+                //std::cout << std::endl;
             }
             catch (char const *param)
             {
