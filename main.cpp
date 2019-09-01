@@ -35,10 +35,22 @@ int main(int argc, char *argv[])
                     initial_solution.push_back( i );
                 }*/
                 int init_value = evaluate(adj_matrix, initial_solution);
-                std::cout << "Numero de vertices: " << initial_solution.size() << std::endl;
-                std::cout << "Solucao inicial: " << init_value << " - ";
-                std::cout << "Vizinhanca nao adjacente: " << local_search(adj_matrix, initial_solution, "no_adj", "best") << std::endl;
-                std::cout << std::endl;
+                //std::cout << " Numero de vertices: " << initial_solution.size() << std::endl;
+                //std::cout << "best improvement - ";
+                //std::cout << "solucao inicial: " << init_value << " - ";
+                //std::cout << "vizinhanca adjacente: " << local_search(adj_matrix, initial_solution, "a", "best") << " - ";
+                //std::cout << "vizinhanca nao adjacente: " << local_search(adj_matrix, initial_solution, "noAdj", "best") << std::endl;
+                //std::cout << "comeco: "<< time_before << " final: " << time_after << " tempo total: " << time_after - time_before << std::endl;
+                std::cout << "first improvement - ";
+                std::cout << "solucao inicial: " << init_value << " - ";
+                /*std::cout << "vizinhanca adjacente: " << local_search(adj_matrix, initial_solution, "adj", "first") << " - ";*/
+                std::cout << "vizinhanca nao adjacente: " << local_search(adj_matrix, initial_solution, "noAdj", "first") << std::endl;
+
+                /*std::cout << "random selection - ";
+                std::cout << "solucao inicial: " << init_value << " - ";
+                std::cout << "vizinhanca adjacente: " << local_search(adj_matrix, initial_solution, "adj", "random") << " - ";
+                std::cout << "vizinhanca nao adjacente: " << local_search(adj_matrix, initial_solution, "noAdj", "random") << std::endl;*/
+                
             }
             catch (char const *param)
             {
