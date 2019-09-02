@@ -1,0 +1,95 @@
+CMPLIB2010/small/p17_16_24:  ---  8
+
+CMPLIB2010/small/p18_16_21:  ---  7
+
+CMPLIB2010/small/p19_16_19:  ---  6
+
+CMPLIB2010/small/p20_16_18:  ---  6
+
+CMPLIB2010/small/p21_17_20:  ---  5
+
+CMPLIB2010/small/p23_17_23:  ---  6
+
+CMPLIB2010/small/p24_17_29:  ---  10
+
+CMPLIB2010/small/p40_18_32:  ---  8
+
+CMPLIB2010/small/p41_19_20:  ---  4
+
+CMPLIB2010/small/p42_19_24:  ---  6
+
+CMPLIB2010/small/p60_20_22:  ---  5
+
+CMPLIB2010/small/p61_21_22:  ---  4
+
+CMPLIB2010/small/p62_21_30:  ---  9
+
+CMPLIB2010/small/p63_21_42:  ---  13
+
+CMPLIB2010/small/p64_21_22:  ---  6
+
+CMPLIB2010/small/p70_21_25:  ---  7
+
+CMPLIB2010/small/p71_22_29:  ---  6
+
+CMPLIB2010/small/p72_22_49:  ---  17
+
+CMPLIB2010/small/p73_22_29:  ---  6
+
+CMPLIB2010/small/p74_22_30:  ---  8
+
+CMPLIB2010/small/p80_22_30:  ---  8
+
+CMPLIB2010/small/p81_23_46:  ---  15
+
+CMPLIB2010/small/p82_23_24:  ---  5
+
+CMPLIB2010/small/p99_24_27:  ---  6
+
+CMPLIB2010/small/p100_24_34:  ---  10
+
+CMPLIB2010/harwellboeing/494_bus.mtx.rnd:  ---  39
+
+CMPLIB2010/harwellboeing/662_bus.mtx.rnd:  ---  67
+
+CMPLIB2010/harwellboeing/arc130.mtx.rnd:  ---  221
+
+CMPLIB2010/harwellboeing/ash292.mtx.rnd:  ---  147
+
+CMPLIB2010/harwellboeing/bcspwr01.mtx.rnd:  ---  9
+
+CMPLIB2010/harwellboeing/bcspwr05.mtx.rnd:  ---  40
+
+CMPLIB2010/harwellboeing/bcsstk01.mtx.rnd:  ---  48
+
+CMPLIB2010/harwellboeing/bcsstk02.mtx.rnd:  ---  1089
+
+CMPLIB2010/harwellboeing/bcsstk04.mtx.rnd:  ---  472
+
+CMPLIB2010/harwellboeing/bcsstk20.mtx.rnd:  ---  105
+
+CMPLIB2010/harwellboeing/bcsstk22.mtx.rnd:  ---  34
+
+CMPLIB2010/harwellboeing/can__144.mtx.rnd:  ---  85
+
+CMPLIB2010/harwellboeing/can__161.mtx.rnd:  ---  94
+
+CMPLIB2010/harwellboeing/curtis54.mtx.rnd:  ---  24
+
+CMPLIB2010/harwellboeing/lund_a.mtx.rnd:  ---  195
+
+CMPLIB2010/harwellboeing/mcca.mtx.rnd:  ---  556
+
+CMPLIB2010/harwellboeing/nnc261.mtx.rnd:  ---  133
+
+CMPLIB2010/harwellboeing/nos5.mtx.rnd:  ---  358
+
+CMPLIB2010/harwellboeing/nos6.mtx.rnd:  ---  91
+
+CMPLIB2010/harwellboeing/plat362.mtx.rnd:  ---  305
+
+CMPLIB2010/harwellboeing/plskz362.mtx.rnd:  ---  94
+
+CMPLIB2010/harwellboeing/shl__200.mtx.rnd:  ---  529
+
+CMPLIB2010/harwellboeing/shl__400.mtx.rnd:  ---  

@@ -40,10 +40,11 @@ int main(int argc, char *argv[])
                 //std::cout << "Numero de vertices: " << adj_list.size();
                 //std::cout << " Numero de vertices na solucao initial: " << initial_solution.size() << std::endl;
                 
-                std::cout << "solucao inicial antiga: " << past_init_value << " --- solucao inicial nova: "<< init_value << std::endl;
-                std::cout << "best improvement - ";
+                //std::cout << "solucao inicial antiga: " << past_init_value << " --- solucao inicial nova: "<< init_value << std::endl;
+                //std::cout << "best improvement - ";
                 //std::cout << "vizinhanca adjacente: " << local_search(adj_matrix, initial_solution, "a", "best") << " - ";
-                std::cout << "vizinhanca nao adjacente: " << local_search(adj_matrix, initial_solution, "noAdj", "best") << std::endl;
+                //std::cout << "vizinhanca nao adjacente: " << local_search(adj_matrix, initial_solution, "noAdj", "best") << std::endl;
+                std::cout << local_search(adj_matrix, initial_solution, "noAdj", "best") << std::endl;
                 std::cout << std::endl;
                 
                 //std::cout << "first improvement - ";

@@ -1,0 +1,40 @@
+CMPLIB2010/harwellboeing/shl__400.mtx.rnd:  ---  523
+
+CMPLIB2010/harwellboeing/str__200.mtx.rnd:  ---  771
+
+CMPLIB2010/harwellboeing/str__600.mtx.rnd:  ---  741
+
+CMPLIB2010/harwellboeing/will199.mtx.rnd:  ---  193
+
+CMPLIB2010/harwellboeing/will57.mtx.rnd:  ---  21
+
+CMPLIB2010/grids/Grid12x3:  ---  12
+
+CMPLIB2010/grids/Grid12x6:  ---  24
+
+CMPLIB2010/grids/Grid12x9:  ---  26
+
+CMPLIB2010/grids/Grid15x12:  ---  32
+
+CMPLIB2010/grids/Grid15x15:  ---  55
+
+CMPLIB2010/grids/Grid15x18:  ---  50
+
+CMPLIB2010/grids/Grid18x21:  ---  59
+
+CMPLIB2010/grids/Grid21x24:  ---  80
+
+CMPLIB2010/grids/Grid24x27:  ---  100
+
+CMPLIB2010/grids/Grid27x24:  ---  109
+
+CMPLIB2010/grids/Grid27x27:  ---  98
+
+CMPLIB2010/grids/Grid3x3:  ---  5
+
+CMPLIB2010/grids/Grid6x6:  ---  14
+
+CMPLIB2010/grids/Grid6x9:  ---  16
+
+CMPLIB2010/grids/Grid9x18:  ---  29
+
