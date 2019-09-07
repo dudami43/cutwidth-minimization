@@ -44,8 +44,8 @@ int main(int argc, char *argv[])
                 //std::cout << "best improvement - ";
                 //std::cout << "vizinhanca adjacente: " << local_search(adj_matrix, initial_solution, "a", "best") << " - ";
                 //std::cout << "vizinhanca nao adjacente: " << local_search(adj_matrix, initial_solution, "noAdj", "best") << std::endl;
-                std::cout << local_search(adj_matrix, initial_solution, "noAdj", "best") << std::endl;
-                std::cout << std::endl;
+                //std::cout << local_search(adj_matrix, initial_solution, "noAdj", "best") << std::endl;
+                //std::cout << std::endl;
                 
                 //std::cout << "first improvement - ";
                 //std::cout << "solucao inicial: " << init_value << " - ";
@@ -58,6 +58,11 @@ int main(int argc, char *argv[])
                 //std::cout << "vizinhanca adjacente: " << local_search(adj_matrix, initial_solution, "adj", "random") << " - ";
                 //std::cout << "vizinhanca nao adjacente: " << local_search(adj_matrix, initial_solution, "noAdj", "random") << std::endl;
                 //std::cout << std::endl;
+
+                std::cout << "solucao inicial: " << init_value << " - ";
+                std::cout << simulated_annealing(adj_matrix, initial_solution, 1000000000, 1, 0.95) << std::endl;
+                std::cout << std::endl;
+
             }
             catch (char const *param)
             {

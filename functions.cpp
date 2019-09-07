@@ -453,3 +453,44 @@ std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list){
 
     return initial_solution;
 }
+
+int simulated_annealing(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, double temp_init, double temp_min, double cooling)
+{
+    std::vector<int> current_solution = initial_solution; 
+    std::vector<int> best_solution = initial_solution; 
+    std::vector<int> iter_solution = initial_solution; 
+    int current_value = evaluate(adj_matrix, initial_solution); 
+    int best_value = current_value;
+    double temp = temp_init;
+    while (temp > temp_min)
+    {
+        int init = abs(rand() % initial_solution.size());
+        int end = abs(rand() % initial_solution.size());
+        
+        std::vector<int> iter_solution(initial_solution);
+        int aux_swap = iter_solution[init];
+        iter_solution[init] = iter_solution[end];
+        iter_solution[end] = aux_swap;
+
+        temp = temp * cooling;
+        double p = ((double) rand() / (RAND_MAX));
+
+        int iter_val = evaluate(adj_matrix, iter_solution);
+        if(iter_val <= current_value)
+        {
+            current_solution = iter_solution;
+            current_value = iter_val;
+            if(iter_val <= best_value)
+            {
+                best_solution = iter_solution;
+                best_value = iter_val;
+            }
+        }
+        else if(exp((current_value - iter_val)/temp) >= p)
+        {
+            current_solution = iter_solution;
+            current_value = iter_val;
+        }
+    }
+    return best_value;
+}

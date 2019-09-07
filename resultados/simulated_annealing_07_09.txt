@@ -1,0 +1,134 @@
+CMPLIB2010/small/p17_16_24:  ---  solucao inicial: 9 - 8
+
+CMPLIB2010/small/p18_16_21:  ---  solucao inicial: 7 - 7
+
+CMPLIB2010/small/p19_16_19:  ---  solucao inicial: 7 - 6
+
+CMPLIB2010/small/p20_16_18:  ---  solucao inicial: 7 - 6
+
+CMPLIB2010/small/p21_17_20:  ---  solucao inicial: 8 - 6
+
+CMPLIB2010/small/p23_17_23:  ---  solucao inicial: 8 - 6
+
+CMPLIB2010/small/p24_17_29:  ---  solucao inicial: 10 - 10
+
+CMPLIB2010/small/p40_18_32:  ---  solucao inicial: 9 - 8
+
+CMPLIB2010/small/p41_19_20:  ---  solucao inicial: 4 - 4
+
+CMPLIB2010/small/p42_19_24:  ---  solucao inicial: 8 - 6
+
+CMPLIB2010/small/p60_20_22:  ---  solucao inicial: 6 - 5
+
+CMPLIB2010/small/p61_21_22:  ---  solucao inicial: 6 - 5
+
+CMPLIB2010/small/p62_21_30:  ---  solucao inicial: 12 - 9
+
+CMPLIB2010/small/p63_21_42:  ---  solucao inicial: 16 - 13
+
+CMPLIB2010/small/p64_21_22:  ---  solucao inicial: 9 - 6
+
+CMPLIB2010/small/p70_21_25:  ---  solucao inicial: 7 - 7
+
+CMPLIB2010/small/p71_22_29:  ---  solucao inicial: 6 - 6
+
+CMPLIB2010/small/p72_22_49:  ---  solucao inicial: 19 - 17
+
+CMPLIB2010/small/p73_22_29:  ---  solucao inicial: 10 - 7
+
+CMPLIB2010/small/p74_22_30:  ---  solucao inicial: 10 - 8
+
+CMPLIB2010/small/p80_22_30:  ---  solucao inicial: 8 - 8
+
+CMPLIB2010/small/p81_23_46:  ---  solucao inicial: 19 - 18
+
+CMPLIB2010/small/p82_23_24:  ---  solucao inicial: 6 - 5
+
+CMPLIB2010/small/p99_24_27:  ---  solucao inicial: 7 - 6
+
+CMPLIB2010/small/p100_24_34:  ---  solucao inicial: 14 - 12
+
+CMPLIB2010/harwellboeing/494_bus.mtx.rnd:  ---  solucao inicial: 39 - 39
+
+CMPLIB2010/harwellboeing/662_bus.mtx.rnd:  ---  solucao inicial: 67 - 67
+
+CMPLIB2010/harwellboeing/arc130.mtx.rnd:  ---  solucao inicial: 325 - 321
+
+CMPLIB2010/harwellboeing/ash292.mtx.rnd:  ---  solucao inicial: 178 - 176
+
+CMPLIB2010/harwellboeing/bcspwr01.mtx.rnd:  ---  solucao inicial: 9 - 9
+
+CMPLIB2010/harwellboeing/bcspwr05.mtx.rnd:  ---  solucao inicial: 40 - 40
+
+CMPLIB2010/harwellboeing/bcsstk01.mtx.rnd:  ---  solucao inicial: 54 - 49
+
+CMPLIB2010/harwellboeing/bcsstk02.mtx.rnd:  ---  solucao inicial: 1089 - 1089
+
+CMPLIB2010/harwellboeing/bcsstk04.mtx.rnd:  ---  solucao inicial: 614 - 603
+
+CMPLIB2010/harwellboeing/bcsstk20.mtx.rnd:  ---  solucao inicial: 130 - 123
+
+CMPLIB2010/harwellboeing/bcsstk22.mtx.rnd:  ---  solucao inicial: 38 - 35
+
+CMPLIB2010/harwellboeing/can__144.mtx.rnd:  ---  solucao inicial: 134 - 129
+
+CMPLIB2010/harwellboeing/can__161.mtx.rnd:  ---  solucao inicial: 101 - 99
+
+CMPLIB2010/harwellboeing/curtis54.mtx.rnd:  ---  solucao inicial: 27 - 26
+
+CMPLIB2010/harwellboeing/lund_a.mtx.rnd:  ---  solucao inicial: 203 - 203
+
+CMPLIB2010/harwellboeing/mcca.mtx.rnd:  ---  solucao inicial: 640 - 632
+
+CMPLIB2010/harwellboeing/nnc261.mtx.rnd:  ---  solucao inicial: 139 - 138
+
+CMPLIB2010/harwellboeing/nos5.mtx.rnd:  ---  solucao inicial: 386 - 381
+
+CMPLIB2010/harwellboeing/nos6.mtx.rnd:  ---  solucao inicial: 91 - 91
+
+CMPLIB2010/harwellboeing/plat362.mtx.rnd:  ---  solucao inicial: 308 - 308
+
+CMPLIB2010/harwellboeing/plskz362.mtx.rnd:  ---  solucao inicial: 96 - 92
+
+CMPLIB2010/harwellboeing/shl__200.mtx.rnd:  ---  solucao inicial: 570 - 567
+
+CMPLIB2010/harwellboeing/shl__400.mtx.rnd:  ---  solucao inicial: 555 - 552
+
+CMPLIB2010/harwellboeing/str__200.mtx.rnd:  ---  solucao inicial: 823 - 791
+
+CMPLIB2010/harwellboeing/str__600.mtx.rnd:  ---  solucao inicial: 780 - 776
+
+CMPLIB2010/harwellboeing/will199.mtx.rnd:  ---  solucao inicial: 199 - 196
+
+CMPLIB2010/harwellboeing/will57.mtx.rnd:  ---  solucao inicial: 27 - 22
+
+CMPLIB2010/grids/Grid12x3:  ---  solucao inicial: 14 - 12
+
+CMPLIB2010/grids/Grid12x6:  ---  solucao inicial: 29 - 26
+
+CMPLIB2010/grids/Grid12x9:  ---  solucao inicial: 29 - 27
+
+CMPLIB2010/grids/Grid15x12:  ---  solucao inicial: 46 - 46
+
+CMPLIB2010/grids/Grid15x15:  ---  solucao inicial: 65 - 61
+
+CMPLIB2010/grids/Grid15x18:  ---  solucao inicial: 57 - 55
+
+CMPLIB2010/grids/Grid18x21:  ---  solucao inicial: 60 - 60
+
+CMPLIB2010/grids/Grid21x24:  ---  solucao inicial: 80 - 79
+
+CMPLIB2010/grids/Grid24x27:  ---  solucao inicial: 106 - 106
+
+CMPLIB2010/grids/Grid27x24:  ---  solucao inicial: 109 - 108
+
+CMPLIB2010/grids/Grid27x27:  ---  solucao inicial: 99 - 98
+
+CMPLIB2010/grids/Grid3x3:  ---  solucao inicial: 5 - 5
+
+CMPLIB2010/grids/Grid6x6:  ---  solucao inicial: 17 - 15
+
+CMPLIB2010/grids/Grid6x9:  ---  solucao inicial: 17 - 17
+
+CMPLIB2010/grids/Grid9x18:  ---  solucao inicial: 36 - 35
+

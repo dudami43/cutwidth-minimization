@@ -14,3 +14,5 @@ int local_search_duda(std::vector<std::vector<int> >& adj_matrix, std::vector<in
 int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, std::string vizinhanca = "adj", std::string metodo = "first");
 
 std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list);
+
+int simulated_annealing(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, double temp_init, double temp_min, double cooling);
