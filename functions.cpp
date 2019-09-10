@@ -153,7 +153,7 @@ std::vector<std::vector<int>> genNeighbourhood(std::vector<int>& initial_solutio
 **/
 std::vector<std::vector<int>> genNeighbourhood_noAdj(std::vector<int>& initial_solution, int limite_vertices)
 {
-    // Caso o numero de vertices no problema seja maior que o limite passado, adquire somente
+     // Caso o numero de vertices no problema seja maior que o limite passado, adquire somente
     // o numero do limite de vizinhos
     std::vector<std::vector<int>> neighbours;
     if(initial_solution.size() > limite_vertices)
@@ -211,6 +211,74 @@ std::vector<std::vector<int>> genNeighbourhood_noAdj(std::vector<int>& initial_s
                 neighbours.push_back(aux);
             }
         }
+    }
+    return neighbours;
+}
+
+/**
+ * Retorna todos os vizinhos de uma dada solucao
+ * Vizinho: move e swap com probabilidade p
+**/
+std::vector<std::vector<int>> genNeighbourhood_ms(std::vector<int>& initial_solution, int limite_vertices)
+{
+    // Caso o numero de vertices no problema seja maior que o limite passado, adquire somente
+    // o numero do limite de vizinhos
+    std::vector<std::vector<int>> neighbours;
+    int num_vizinhos;
+    if(initial_solution.size() > limite_vertices)
+    {
+        // Seta numero de vizinhos
+        num_vizinhos = 500;
+    }
+    else
+    {
+        num_vizinhos = initial_solution.size();
+    }
+    
+    // Inicializa variaveis
+    std::vector<std::pair<int, int>> usados;
+    int init, end; int move, new_pos, val_move;
+    std::pair<int, int> trade, trade_inv;
+
+    // Reserva espaco para o vector de vizinhos
+    neighbours.reserve(num_vizinhos);
+    neighbours.reserve(2*num_vizinhos);
+
+    int i=0;
+    while(i < num_vizinhos)
+    { 
+        std::vector<int> aux(initial_solution);
+
+        //------------------------move----------------------------------------------
+        move = abs(rand() % initial_solution.size());
+        new_pos = abs(rand() % initial_solution.size());
+        val_move = aux[move];
+        aux.erase(aux.begin()+move);
+        aux.insert(aux.begin()+new_pos, val_move);
+
+        //-----------------------swap-----------------------------------------------
+        double p = ((double) rand() / (RAND_MAX));
+        if(p >= 0.5)
+        {
+            // Adquire dois numeros aleatorios para representarem os vertices que trocarao de lugar
+            init = abs(rand() % initial_solution.size());
+            end = abs(rand() % initial_solution.size());
+            //std::cout << i << " " << init << " " << end << std::endl;
+            // Cria par de troca e o inverso do mesmo
+            trade = std::make_pair(init, end);
+            trade_inv = std::make_pair(end, init);
+            auto pos = find(usados.begin(), usados.end(), trade);
+            if(pos == usados.end())
+            {
+                int aux_swap = aux[init];
+                aux[init] = aux[end];
+                aux[end] = aux_swap;
+                usados.push_back(trade); // Adiciona tupla de valores como ja utilizados
+                usados.push_back(trade_inv);
+                i++;
+            }
+        }
+        neighbours.push_back(aux); // Adiciona vizinho na vizinhanca
     }
     return neighbours;
 }
@@ -321,6 +389,10 @@ int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& i
         else if(vizinhanca.compare("noAdj") == 0 && metodo.compare("best") == 0)
         {
             neighbours = genNeighbourhood_noAdj(best_solution);
+        }
+        else if(vizinhanca.compare("ms") == 0 && metodo.compare("best") == 0)
+        {
+            neighbours = genNeighbourhood_ms(best_solution);
         }
 
         int current_value;
@@ -454,7 +526,7 @@ std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list){
     return initial_solution;
 }
 
-int simulated_annealing(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, double temp_init, double temp_min, double cooling)
+int simulated_annealing(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, double temp_init, double temp_min, double cooling, bool move_and_swap)
 {
     std::vector<int> current_solution = initial_solution; 
     std::vector<int> best_solution = initial_solution; 
@@ -468,9 +540,36 @@ int simulated_annealing(std::vector<std::vector<int> >& adj_matrix, std::vector<
         int end = abs(rand() % initial_solution.size());
         
         std::vector<int> iter_solution(initial_solution);
-        int aux_swap = iter_solution[init];
-        iter_solution[init] = iter_solution[end];
-        iter_solution[end] = aux_swap;
+
+        if(!move_and_swap)
+        {
+            int aux_swap = iter_solution[init];
+            iter_solution[init] = iter_solution[end];
+            iter_solution[end] = aux_swap;
+        }
+        else
+        {
+
+            //------------------------move----------------------------------------------
+            int move = abs(rand() % initial_solution.size());
+            int new_pos = abs(rand() % initial_solution.size());
+            int val_move = iter_solution[move];
+            iter_solution.erase(iter_solution.begin()+move);
+            iter_solution.insert(iter_solution.begin()+new_pos, val_move);
+
+            //-----------------------swap-----------------------------------------------
+            double p = ((double) rand() / (RAND_MAX));
+            if(p >= 0.5)
+            {
+                // Adquire dois numeros aleatorios para representarem os vertices que trocarao de lugar
+                init = abs(rand() % initial_solution.size());
+                end = abs(rand() % initial_solution.size());
+                //std::cout << i << " " << init << " " << end << std::endl;           
+                int aux_swap = iter_solution[init];
+                iter_solution[init] = iter_solution[end];
+                iter_solution[end] = aux_swap;
+            }
+        }       
 
         temp = temp * cooling;
         double p = ((double) rand() / (RAND_MAX));
