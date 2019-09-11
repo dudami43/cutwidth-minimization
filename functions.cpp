@@ -534,62 +534,73 @@ int simulated_annealing(std::vector<std::vector<int> >& adj_matrix, std::vector<
     int current_value = evaluate(adj_matrix, initial_solution); 
     int best_value = current_value;
     double temp = temp_init;
+    int iterations_without_improve = 0;
     while (temp > temp_min)
     {
-        int init = abs(rand() % initial_solution.size());
-        int end = abs(rand() % initial_solution.size());
-        
-        std::vector<int> iter_solution(current_solution);
-
-        if(!move_and_swap)
+        while(iterations_without_improve < 10)
         {
-            int aux_swap = iter_solution[init];
-            iter_solution[init] = iter_solution[end];
-            iter_solution[end] = aux_swap;
-        }
-        else
-        {
+            int init = abs(rand() % initial_solution.size());
+            int end = abs(rand() % initial_solution.size());
+            
+            std::vector<int> iter_solution(current_solution);
 
-            //------------------------move----------------------------------------------
-            int move = abs(rand() % initial_solution.size());
-            int new_pos = abs(rand() % initial_solution.size());
-            int val_move = iter_solution[move];
-            iter_solution.erase(iter_solution.begin()+move);
-            iter_solution.insert(iter_solution.begin()+new_pos, val_move);
-
-            //-----------------------swap-----------------------------------------------
-            double p = ((double) rand() / (RAND_MAX));
-            if(p >= 0.5)
+            if(!move_and_swap)
             {
-                // Adquire dois numeros aleatorios para representarem os vertices que trocarao de lugar
-                init = abs(rand() % initial_solution.size());
-                end = abs(rand() % initial_solution.size());
-                //std::cout << i << " " << init << " " << end << std::endl;           
                 int aux_swap = iter_solution[init];
                 iter_solution[init] = iter_solution[end];
                 iter_solution[end] = aux_swap;
             }
-        }       
-
-        temp = temp * cooling;
-        double p = ((double) rand() / (RAND_MAX));
-
-        int iter_val = evaluate(adj_matrix, iter_solution);
-        if(iter_val < current_value)
-        {
-            current_solution = iter_solution;
-            current_value = iter_val;
-            if(iter_val < best_value)
+            else
             {
-                best_solution = iter_solution;
-                best_value = iter_val;
+
+                //------------------------move----------------------------------------------
+                int move = abs(rand() % initial_solution.size());
+                int new_pos = abs(rand() % initial_solution.size());
+                int val_move = iter_solution[move];
+                iter_solution.erase(iter_solution.begin()+move);
+                iter_solution.insert(iter_solution.begin()+new_pos, val_move);
+
+                //-----------------------swap-----------------------------------------------
+                double p = ((double) rand() / (RAND_MAX));
+                if(p >= 0.5)
+                {
+                    // Adquire dois numeros aleatorios para representarem os vertices que trocarao de lugar
+                    init = abs(rand() % initial_solution.size());
+                    end = abs(rand() % initial_solution.size());
+                    //std::cout << i << " " << init << " " << end << std::endl;           
+                    int aux_swap = iter_solution[init];
+                    iter_solution[init] = iter_solution[end];
+                    iter_solution[end] = aux_swap;
+                }
+            }       
+
+            double p = ((double) rand() / (RAND_MAX));
+
+            int iter_val = evaluate(adj_matrix, iter_solution);
+
+            if(iter_val < current_value)
+            {
+                current_solution = iter_solution;
+                current_value = iter_val;
+                if(iter_val < best_value)
+                {
+                    best_solution = iter_solution;
+                    best_value = iter_val;
+                }
+                iterations_without_improve = 0;
             }
+            else{
+                if(exp((current_value - iter_val)/temp) >= p)
+                {
+                    current_solution = iter_solution;
+                    current_value = iter_val;
+                }
+                iterations_without_improve++;
+            }
+            
         }
-        else if(exp((current_value - iter_val)/temp) >= p)
-        {
-            current_solution = iter_solution;
-            current_value = iter_val;
-        }
+        temp = temp * cooling;
+        iterations_without_improve = 0;
     }
     return best_value;
 }
