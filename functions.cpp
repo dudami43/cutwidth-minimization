@@ -604,3 +604,78 @@ int simulated_annealing(std::vector<std::vector<int> >& adj_matrix, std::vector<
     }
     return best_value;
 }
+
+std::vector<int> local_search_aux(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, std::string vizinhanca)
+{
+    bool is_changing;
+    std::vector<int> best_solution = initial_solution; 
+    int best_value = evaluate(adj_matrix, initial_solution);
+    
+    do
+    {
+        is_changing = false;
+        /*std::vector<std::vector<int>> neighbours;
+        if(vizinhanca.compare("adj") == 0)
+            neighbours = genNeighbourhood(best_solution);
+        else if(vizinhanca.compare("noAdj") == 0)
+        {
+            neighbours = genNeighbourhood_noAdj(best_solution);
+        }
+        else if(vizinhanca.compare("ms") == 0)
+        {
+            neighbours = genNeighbourhood_ms(best_solution);
+        }
+        */
+        int current_value;
+
+        std::pair<int, std::vector<int> > neighbour;
+        neighbour = local_search_first_improvement(adj_matrix, best_solution, best_value);
+        //neighbour = local_search_best_improvement(adj_matrix, neighbours, best_value);
+        
+        if(neighbour.first != -1 && neighbour.first < best_value)
+        {
+            best_value = neighbour.first;
+            best_solution = neighbour.second;
+            is_changing = true;
+        }
+    }while(is_changing);
+
+    return best_solution;
+}
+
+std::vector<int> pertubation(std::vector<int> solution)
+{
+    int number_xchanges = abs(rand() % 3);
+    int init, end;
+    for(int i = 0; i < number_xchanges; i++)
+    {
+        init = abs(rand() % solution.size());
+        end = abs(rand() % solution.size());
+        int aux_swap = solution[init];
+        solution[init] = solution[end];
+        solution[end] = aux_swap;
+    }
+    return solution;
+}
+
+int iterated_local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, std::string vizinhanca)
+{
+    std::vector<int> best_solution = local_search_aux(adj_matrix, initial_solution, vizinhanca); 
+    std::vector<int> pert_solution, iter_solution;
+    int best_value = evaluate(adj_matrix, best_solution); int iter_value;
+    int i = 0, imax = 100;
+    while(i < imax)
+    {
+        i++;
+        pert_solution = pertubation(best_solution);
+        iter_solution = local_search_aux(adj_matrix, pert_solution, vizinhanca);
+        iter_value = evaluate(adj_matrix, iter_solution);
+        std::cout << iter_value << std::endl;
+        if(iter_value < best_value)
+        {
+            best_solution = iter_solution;
+            best_value = iter_value;
+        }
+    }
+    return best_value;   
+}

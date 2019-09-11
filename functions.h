@@ -17,3 +17,7 @@ int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& i
 std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list);
 
 int simulated_annealing(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, double temp_init, double temp_min, double cooling, bool move_and_swap);
+
+std::vector<int> local_search_aux(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, std::string vizinhanca);
+std::vector<int> pertubation(std::vector<int> solution);
+int iterated_local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, std::string vizinhanca);
