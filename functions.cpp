@@ -539,7 +539,7 @@ int simulated_annealing(std::vector<std::vector<int> >& adj_matrix, std::vector<
         int init = abs(rand() % initial_solution.size());
         int end = abs(rand() % initial_solution.size());
         
-        std::vector<int> iter_solution(initial_solution);
+        std::vector<int> iter_solution(current_solution);
 
         if(!move_and_swap)
         {
@@ -575,11 +575,11 @@ int simulated_annealing(std::vector<std::vector<int> >& adj_matrix, std::vector<
         double p = ((double) rand() / (RAND_MAX));
 
         int iter_val = evaluate(adj_matrix, iter_solution);
-        if(iter_val <= current_value)
+        if(iter_val < current_value)
         {
             current_solution = iter_solution;
             current_value = iter_val;
-            if(iter_val <= best_value)
+            if(iter_val < best_value)
             {
                 best_solution = iter_solution;
                 best_value = iter_val;
