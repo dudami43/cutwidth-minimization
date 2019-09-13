@@ -534,10 +534,11 @@ int simulated_annealing(std::vector<std::vector<int> >& adj_matrix, std::vector<
     int current_value = evaluate(adj_matrix, initial_solution); 
     int best_value = current_value;
     double temp = temp_init;
-    int iterations_without_improve = 0;
+    int iterations_without_improve = 0, it = 0;
     while (temp > temp_min)
     {
-        while(iterations_without_improve < 10)
+        it = 0;
+        while(iterations_without_improve < 10 && it < 100)
         {
             int init = abs(rand() % initial_solution.size());
             int end = abs(rand() % initial_solution.size());
@@ -597,7 +598,7 @@ int simulated_annealing(std::vector<std::vector<int> >& adj_matrix, std::vector<
                 }
                 iterations_without_improve++;
             }
-            
+            it++;
         }
         temp = temp * cooling;
         iterations_without_improve = 0;

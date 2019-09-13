@@ -47,9 +47,9 @@ int main(int argc, char *argv[])
                 // std::cout << "move and swap: " << local_search(adj_matrix, initial_solution, "ms", "best") << std::endl;
                 // std::cout << "simulated annealing\n";
                 // std::cout << "vizinhanca nao adjacente: " << simulated_annealing(adj_matrix, initial_solution, 10, 1, 0.95, false) << std::endl;
-                // std::cout << "move and swap: " << simulated_annealing(adj_matrix, initial_solution, 5, 1, 0.7, true) << std::endl;
-                std::cout << "noAdj: " << iterated_local_search(adj_matrix, initial_solution, "noAdj") << std::endl;
-                std::cout << "ms: " << iterated_local_search(adj_matrix, initial_solution, "ms") << std::endl;
+                std::cout << "move and swap: " << simulated_annealing(adj_matrix, initial_solution, 5, 1, 0.7, true) << std::endl;
+                //std::cout << "noAdj: " << iterated_local_search(adj_matrix, initial_solution, "noAdj") << std::endl;
+                //std::cout << "ms: " << iterated_local_search(adj_matrix, initial_solution, "ms") << std::endl;
                 std::cout << std::endl;
 
             }
