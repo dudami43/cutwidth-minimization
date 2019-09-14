@@ -3,6 +3,10 @@ int max_cutwidth(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& s
 int mean_cutwidth(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& solution);
 int n_max_cutwidth(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& solution);
 
+std::pair<int, std::vector<int>> max_cutwidth_list(std::vector<std::vector<int> >& adj_list, std::vector<int>& solution);
+std::pair<int, std::vector<int>> reevaluate(std::vector<std::vector<int> >& adj_list, std::vector<int>& solution, std::vector<int>& evaluate, bool swap, int val_1, int val_2);
+bool testa_reevaluate(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution);
+
 std::vector<std::vector<int> > genNeighbourhood(std::vector<int>& initial_solution);
 std::vector<std::vector<int> > genNeighbourhood_noAdj(std::vector<int>& initial_solution, int limite_vertices = 25);
 std::vector<std::vector<int>> genNeighbourhood_ms(std::vector<int>& initial_solution, int limite_vertices = 25);
@@ -21,3 +25,5 @@ int simulated_annealing(std::vector<std::vector<int> >& adj_matrix, std::vector<
 std::vector<int> local_search_aux(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, std::string vizinhanca);
 std::vector<int> pertubation(std::vector<int> solution);
 int iterated_local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, std::string vizinhanca);
+
+int grasp(std::vector<std::vector<int> >& adj_matrix, std::string vizinhanca);

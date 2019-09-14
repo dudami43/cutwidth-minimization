@@ -37,8 +37,17 @@ int main(int argc, char *argv[])
 
                 int init_value = evaluate(adj_matrix, initial_solution);
                 int past_init_value = evaluate(adj_matrix, past_initial_solution);
-    
+
+                std::pair<int, std::vector<int> > init_value_list = max_cutwidth_list(adj_list, initial_solution);
+                std::pair<int, std::vector<int> > past_init_value_list = max_cutwidth_list(adj_list, past_initial_solution);
                 
+                bool result = testa_reevaluate(adj_list, initial_solution);
+                if(result){
+                    std::cout << "OK!" << std::endl;
+                }else{
+                    std::cout << "Nao OK :(" << std::endl; 
+                }
+
                 // std::cout << "solucao inicial antiga: " << past_init_value << std::endl;
                 std::cout << "solucao inicial nova: " << init_value << "\n";
                 // std::cout << "best improvement \n";

@@ -43,6 +43,179 @@ int max_cutwidth(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& s
     return max_cut;
 }
 
+/*
+*/
+std::pair<int, std::vector<int>> max_cutwidth_list(std::vector<std::vector<int> >& adj_list, std::vector<int>& solution)
+{
+    // Inicializa o vetor com os cortes entre os vertices
+    std::vector<int> cuts;
+    cuts.assign(solution.size() - 1, 0);
+
+    // Calcula os cortes
+    for(int i=0; i<solution.size(); i++){
+        for(auto vertex_2: adj_list[solution[i]]){
+            auto pos_vertex_2 = find(solution.begin()+i, solution.end(), vertex_2);
+            if(pos_vertex_2 != solution.end()){
+                for(int j=i; solution[j] != vertex_2; j++){
+                    cuts[j]++;
+                }
+            }
+        }
+    }
+
+    auto max_cut = std::max_element(cuts.begin(), cuts.end());
+    return make_pair(*max_cut, cuts);
+}
+
+/*
+*/
+std::pair<int, std::vector<int>> reevaluate(std::vector<std::vector<int> >& adj_list, std::vector<int>& solution, std::vector<int>& evaluate, bool swap, int val_1, int val_2){
+    /*  
+        Caso o movimento seja de swap, val1 = vertice 1 e val2 = vertice2
+        Caso contratio, val1 = vertice 1 e val2 = nova localizacao do mesmo
+    */
+
+    // Decrementa 1 para cada corte que as arestas do vertice em
+    // questao intercepta
+    bool init_edge = false, end_edge = false;
+    for(auto x: adj_list[solution[val_1]]){
+        for(int i=0; i<solution.size(); i++){
+            if(solution[i] == x || solution[i] == solution[val_1]){
+                init_edge = true;
+                evaluate[i]--;
+                continue;
+            }
+            if(init_edge){
+                if(solution[i] == x || solution[i] == solution[val_1]){
+                    break;
+                }
+                evaluate[i]--;  
+            }
+        }
+    }
+
+    if(swap){
+        // Decrementa 1 para cada corte que as arestas do segundo vertice
+        // interceptam
+        bool init_edge = false, end_edge = false;
+        for(auto x: adj_list[solution[val_1]]){
+            for(int i=0; i<solution.size(); i++){
+                if(solution[i] == x || solution[i] == solution[val_1]){
+                    init_edge = true;
+                    evaluate[i]--;
+                    continue;
+                }
+                if(init_edge){
+                    if(solution[i] == x || solution[i] == solution[val_1]){
+                        break;
+                    }
+                    evaluate[i]--;  
+                }
+            }
+        }
+
+        // Troca os elementos de lugar
+        int value = solution[val_1];
+        solution[val_1] = solution[val_2];
+        solution[val_2] = solution[val_1];
+
+        // Incrementa 1 para cada corte que as arestas do primeiro vertice,
+        // na nova posicao, intercepta
+        init_edge = false, end_edge = false;
+        for(auto x: adj_list[solution[val_2]]){
+            for(int i=0; i<solution.size(); i++){
+                if(solution[i] == x || solution[i] == solution[val_2]){
+                    init_edge = true;
+                    evaluate[i]++;
+                    continue;
+                }
+                if(init_edge){
+                    if(solution[i] == x || solution[i] == solution[val_2]){
+                        break;
+                    }
+                    evaluate[i]++;  
+                }
+            }
+        }
+
+    }else{
+
+        // Troca o elemento para o novo lugar
+        int value = solution[val_1];
+        if(val_1 < val_2){
+            // Caso o elemento se movimente pra frente, entao insira-o
+            // na posicao desejada - 1
+            auto pos = find(solution.begin(), solution.end(), solution[val_1]);
+            solution.erase(pos);
+            solution.insert(solution.begin()+(val_2 - 1), value);
+        }else{
+            // Caso o elemento se movimente pra tras, entao insira-o
+            // na posicao desejada
+            auto pos = find(solution.begin(), solution.end(), solution[val_1]);
+            solution.erase(pos);
+            solution.insert(solution.begin()+val_2, value);
+        }
+    }
+
+    // Incrementa 1 para cada corte que as arestas do vertice,
+    // na nova posicao, intercepta
+    init_edge = false, end_edge = false;
+    for(auto x: adj_list[solution[val_2]]){
+        for(int i=0; i<solution.size(); i++){
+            if(solution[i] == x || solution[i] == solution[val_2]){
+                init_edge = true;
+                evaluate[i]++;
+                continue;
+            }
+            if(init_edge){
+                if(solution[i] == x || solution[i] == solution[val_2]){
+                    break;
+                }
+                evaluate[i]++;  
+            }
+        }
+    }
+
+    auto max_cut = std::max_element(evaluate.begin(), evaluate.end());
+    return make_pair(*max_cut, evaluate);
+}
+
+/*
+*/
+bool testa_reevaluate(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution){
+    // Inicializa variaveis
+    int init, end;
+    std::pair<int,std::vector<int>> result_evaluate_init = max_cutwidth_list(adj_list, initial_solution);
+
+    // Adquire dois numeros aleatorios para representarem os vertices que trocarao de lugar
+    init = abs(rand() % initial_solution.size());
+    end = abs(rand() % initial_solution.size());
+    
+    // Gera swap aleatorio
+    std::vector<int> rand_solution(initial_solution);
+    int rand_solution_swap = rand_solution[init];
+    rand_solution[init] = rand_solution[end];
+    rand_solution[end] = rand_solution_swap;
+
+    // Avalia a solucao adquirida
+    std::pair<int,std::vector<int>> result_evaluate = max_cutwidth_list(adj_list, rand_solution);
+    std::pair<int,std::vector<int>> result_reevaluate = reevaluate(adj_list, initial_solution, result_evaluate_init.second, true, init, end);
+
+    std::cout << std::endl;
+    std::cout << "Evaluate: " << result_evaluate.first << std::endl;
+    /* for(auto x: result_evaluate.second){
+        std::cout << x << " ";
+    }std::cout << std::endl; */
+    std::cout << "Reevaluate: " << result_reevaluate.first << std::endl;
+    /* for(auto x: result_reevaluate.second){
+        std::cout << x << " ";
+    }std::cout << std::endl; */
+
+    if(result_evaluate.first == result_reevaluate.first)
+        return true;
+    else return false;
+}
+
 /**
  * Metrica para avaliar uma dada solucao
  * Avaliacao: eh retornado a media de todos os cortes
@@ -678,4 +851,8 @@ int iterated_local_search(std::vector<std::vector<int> >& adj_matrix, std::vecto
         }
     }
     return best_value;   
+}
+
+int grasp(std::vector<std::vector<int> >& adj_matrix, std::string vizinhanca){
+    return 0;
 }
