@@ -35,30 +35,31 @@ int main(int argc, char *argv[])
                     past_initial_solution.push_back(i);
                 }
 
-                int init_value = evaluate(adj_matrix, initial_solution);
-                int past_init_value = evaluate(adj_matrix, past_initial_solution);
+                int init_value = evaluate(adj_list, initial_solution);
+                int past_init_value = evaluate(adj_list, past_initial_solution);
 
                 std::pair<int, std::vector<int> > init_value_list = max_cutwidth_list(adj_list, initial_solution);
                 std::pair<int, std::vector<int> > past_init_value_list = max_cutwidth_list(adj_list, past_initial_solution);
                 
-                bool result = testa_reevaluate(adj_list, initial_solution);
+                /* bool result = testa_reevaluate(adj_list, initial_solution);
                 if(result){
                     std::cout << "OK!" << std::endl;
                 }else{
                     std::cout << "Nao OK :(" << std::endl; 
-                }
+                    break;
+                } */
 
                 // std::cout << "solucao inicial antiga: " << past_init_value << std::endl;
                 std::cout << "solucao inicial nova: " << init_value << "\n";
                 // std::cout << "best improvement \n";
-                // std::cout << "vizinhanca adjacente: " << local_search(adj_matrix, initial_solution, "a", "best") << "\n";
-                // std::cout << "vizinhanca nao adjacente: " << local_search(adj_matrix, initial_solution, "noAdj", "best") << std::endl;
-                // std::cout << "move and swap: " << local_search(adj_matrix, initial_solution, "ms", "best") << std::endl;
+                // std::cout << "vizinhanca adjacente: " << local_search(adj_list, initial_solution, "a", "best") << "\n";
+                // std::cout << "vizinhanca nao adjacente: " << local_search(adj_list, initial_solution, "noAdj", "best") << std::endl;
+                std::cout << "move and swap: " << local_search(adj_list, initial_solution, "ms", "best") << std::endl;
                 // std::cout << "simulated annealing\n";
-                // std::cout << "vizinhanca nao adjacente: " << simulated_annealing(adj_matrix, initial_solution, 10, 1, 0.95, false) << std::endl;
-                std::cout << "move and swap: " << simulated_annealing(adj_matrix, initial_solution, 5, 1, 0.7, true) << std::endl;
-                //std::cout << "noAdj: " << iterated_local_search(adj_matrix, initial_solution, "noAdj") << std::endl;
-                //std::cout << "ms: " << iterated_local_search(adj_matrix, initial_solution, "ms") << std::endl;
+                // std::cout << "vizinhanca nao adjacente: " << simulated_annealing(adj_list, initial_solution, 10, 1, 0.95, false) << std::endl;
+                //std::cout << "move and swap: " << simulated_annealing(adj_list, initial_solution, 5, 1, 0.7, true) << std::endl;
+                //std::cout << "noAdj: " << iterated_local_search(adj_list, initial_solution, "noAdj") << std::endl;
+                //std::cout << "ms: " << iterated_local_search(adj_list, initial_solution, "ms") << std::endl;
                 std::cout << std::endl;
 
             }
