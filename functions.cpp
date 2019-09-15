@@ -4,14 +4,12 @@
 /**
  * Funcao de avaliacao
 **/ 
-int evaluate(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& solution, std::string metodo)
+int evaluate(std::vector<std::vector<int> >& adj_list, std::vector<int>& solution, std::string metodo)
 {
     if(metodo.compare("max") == 0) // Retorna o corte que afeta o maior numero de arestas (max_cutwidth)
-        return max_cutwidth(adj_matrix, solution);
+        return max_cutwidth_list(adj_list, solution).first;
     else if(metodo.compare("n_max") == 0) // Retorna o corte maximo multiplicado pela sua ocorrencia (n_max_cutwidth)
-        return n_max_cutwidth(adj_matrix, solution);
-    else if(metodo.compare("mean") == 0) // Retorna a media dos cortes (mean_cutwidth)
-        return mean_cutwidth(adj_matrix, solution);
+        return n_max_cutwidth_list(adj_list, solution).first;
 }
 
 /**
@@ -43,8 +41,46 @@ int max_cutwidth(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& s
     return max_cut;
 }
 
-/*
-*/
+/**
+ * Metrica para avaliar uma dada solucao
+ * Avaliacao: eh retornado o corte com maior numero de arestas, multiplicado pelo
+ * numero de vezes que ele acontece
+**/
+int n_max_cutwidth(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& solution)
+{
+    int max_cut = 0;
+    int cut = 0;
+    int n_max_cut = 0;
+    for (int i = 0; i < solution.size(); i++)
+    {
+        for (int j = 0; j < i; j++)
+        {
+            for (int k = i; k < solution.size(); k++)
+            {
+                if (adj_matrix[solution[j]][solution[k]] == 1 and j != k)
+                {
+                    cut += 1;
+                }
+            }
+        }
+        if (cut > max_cut)
+        {
+            max_cut = cut;
+            n_max_cut = 1;
+        }
+        else if(cut == max_cut)
+        {
+            n_max_cut++;
+        }
+        cut = 0;
+    }
+    return n_max_cut*max_cut;
+}
+
+/**
+ * Metrica para avaliar uma dada solucao
+ * Avaliacao: eh retornado o corte com maior numero de arestas
+**/
 std::pair<int, std::vector<int>> max_cutwidth_list(std::vector<std::vector<int> >& adj_list, std::vector<int>& solution)
 {
     // Inicializa o vetor com os cortes entre os vertices
@@ -67,8 +103,37 @@ std::pair<int, std::vector<int>> max_cutwidth_list(std::vector<std::vector<int> 
     return make_pair(*max_cut, cuts);
 }
 
-/*
-*/
+/**
+ * Metrica para avaliar uma dada solucao
+ * Avaliacao: eh retornado o corte com maior numero de arestas, multiplicado pelo
+ * numero de vezes que ele acontece
+**/
+std::pair<int, std::vector<int>> n_max_cutwidth_list(std::vector<std::vector<int> >& adj_list, std::vector<int>& solution)
+{
+    // Inicializa o vetor com os cortes entre os vertices
+    std::vector<int> cuts;
+    cuts.assign(solution.size() - 1, 0);
+
+    // Calcula os cortes
+    for(int i=0; i<solution.size(); i++){
+        for(auto vertex_2: adj_list[solution[i]]){
+            auto pos_vertex_2 = find(solution.begin()+i, solution.end(), vertex_2);
+            if(pos_vertex_2 != solution.end()){
+                for(int j=i; solution[j] != vertex_2; j++){
+                    cuts[j]++;
+                }
+            }
+        }
+    }
+
+    auto max_cut = std::max_element(cuts.begin(), cuts.end());
+    int n_max_cut = std::count (cuts.begin(), cuts.end(), *max_cut);
+    return make_pair(n_max_cut, cuts);
+}
+
+/**
+ * Recalcula todos os cortes do grafo dado que ouve um MOVE ou um SWAP
+**/
 std::pair<int, std::vector<int>> reevaluate(std::vector<std::vector<int> >& adj_list, std::vector<int>& solution, std::vector<int>& evaluate, bool swap, int val_1, int val_2){
     /*  
         Caso o movimento seja de swap, val1 = vertice 1 e val2 = vertice2
@@ -139,7 +204,6 @@ std::pair<int, std::vector<int>> reevaluate(std::vector<std::vector<int> >& adj_
         }
 
     }else{
-
         // Troca o elemento para o novo lugar
         int value = solution[val_1];
         if(val_1 < val_2){
@@ -178,105 +242,6 @@ std::pair<int, std::vector<int>> reevaluate(std::vector<std::vector<int> >& adj_
 
     auto max_cut = std::max_element(evaluate.begin(), evaluate.end());
     return make_pair(*max_cut, evaluate);
-}
-
-/*
-*/
-bool testa_reevaluate(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution){
-    // Inicializa variaveis
-    int init, end;
-    std::pair<int,std::vector<int>> result_evaluate_init = max_cutwidth_list(adj_list, initial_solution);
-
-    // Adquire dois numeros aleatorios para representarem os vertices que trocarao de lugar
-    init = abs(rand() % initial_solution.size());
-    end = abs(rand() % initial_solution.size());
-    
-    // Gera swap aleatorio
-    std::vector<int> rand_solution(initial_solution);
-    int rand_solution_swap = rand_solution[init];
-    rand_solution[init] = rand_solution[end];
-    rand_solution[end] = rand_solution_swap;
-
-    // Avalia a solucao adquirida
-    std::pair<int,std::vector<int>> result_evaluate = max_cutwidth_list(adj_list, rand_solution);
-    std::pair<int,std::vector<int>> result_reevaluate = reevaluate(adj_list, initial_solution, result_evaluate_init.second, true, init, end);
-
-    std::cout << std::endl;
-    std::cout << "Evaluate: " << result_evaluate.first << std::endl;
-    /* for(auto x: result_evaluate.second){
-        std::cout << x << " ";
-    }std::cout << std::endl; */
-    std::cout << "Reevaluate: " << result_reevaluate.first << std::endl;
-    /* for(auto x: result_reevaluate.second){
-        std::cout << x << " ";
-    }std::cout << std::endl; */
-
-    if(result_evaluate.first == result_reevaluate.first)
-        return true;
-    else return false;
-}
-
-/**
- * Metrica para avaliar uma dada solucao
- * Avaliacao: eh retornado a media de todos os cortes
-**/
-int mean_cutwidth(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& solution)
-{
-    int max_cut = 0;
-    int cut = 0;
-    int cut_sum = 0;
-    for (int i = 0; i < solution.size(); i++)
-    {
-        for (int j = 0; j < i; j++)
-        {
-            for (int k = i; k < solution.size(); k++)
-            {
-                if (adj_matrix[solution[j]][solution[k]] == 1 and j != k)
-                {
-                    cut += 1;
-                }
-            }
-        }
-        cut_sum += cut;
-        cut = 0;
-    }
-    return cut_sum/solution.size();
-}
-
-/**
- * Metrica para avaliar uma dada solucao
- * Avaliacao: eh retornado o corte com maior numero de arestas, multiplicado pelo
- * numero de vezes que ele acontece
-**/
-int n_max_cutwidth(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& solution)
-{
-    int max_cut = 0;
-    int cut = 0;
-    int n_max_cut = 0;
-    for (int i = 0; i < solution.size(); i++)
-    {
-        for (int j = 0; j < i; j++)
-        {
-            for (int k = i; k < solution.size(); k++)
-            {
-                if (adj_matrix[solution[j]][solution[k]] == 1 and j != k)
-                {
-                    cut += 1;
-                }
-            }
-        }
-        if (cut > max_cut)
-        {
-            max_cut = cut;
-            n_max_cut = 1;
-        }
-        else if(cut == max_cut)
-        {
-            n_max_cut++;
-        }
-        cut = 0;
-    }
-    return n_max_cut*max_cut;
 }
 
 /**
@@ -460,13 +425,13 @@ std::vector<std::vector<int>> genNeighbourhood_ms(std::vector<int>& initial_solu
  * Retorna o vizinho que tem a melhor solucao
  * Caso nenhum vizinho tenha solucao melhor que a atual, retorna -1
 **/
-std::pair<int, std::vector<int> > local_search_best_improvement(std::vector<std::vector<int> >& adj_matrix, std::vector<std::vector<int> >& neighbours, int best_value)
+std::pair<int, std::vector<int> > local_search_best_improvement(std::vector<std::vector<int> >& adj_list, std::vector<std::vector<int> >& neighbours, int best_value)
 {
     std::vector<int> best_solution; 
     int current_value, initial_value = best_value;
     for(int i = 0; i < neighbours.size(); i++)
     {
-        current_value = evaluate(adj_matrix, neighbours[i]);
+        current_value = evaluate(adj_list, neighbours[i]);
         if(current_value < best_value)
         {
             best_solution = neighbours[i];
@@ -485,7 +450,7 @@ std::pair<int, std::vector<int> > local_search_best_improvement(std::vector<std:
  * Retorna o primeiro vizinho que tem solucao melhor que a atual
  * Caso nenhum vizinho tenha solucao melhor que a atual, retorna -1
 **/
-std::pair<int, std::vector<int> > local_search_first_improvement(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, int best_value)
+std::pair<int, std::vector<int> > local_search_first_improvement(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, int best_value)
 {
     std::vector<int> best_solution = initial_solution; 
     int init;
@@ -503,7 +468,7 @@ std::pair<int, std::vector<int> > local_search_first_improvement(std::vector<std
         initial_solution[init] = initial_solution[end];
         initial_solution[end] = aux_swap;
 
-        current_value = evaluate(adj_matrix, initial_solution);
+        current_value = evaluate(adj_list, initial_solution);
         if(current_value < best_value)
         {
             best_solution = initial_solution;
@@ -518,7 +483,7 @@ std::pair<int, std::vector<int> > local_search_first_improvement(std::vector<std
 /**
  * Retorna um vizinho aleatorio
 **/
-std::pair<int, std::vector<int> >  local_search_random_selection(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, int best_value)
+std::pair<int, std::vector<int> >  local_search_random_selection(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, int best_value)
 {
     // Inicializa variaveis
     int init, end;
@@ -534,7 +499,7 @@ std::pair<int, std::vector<int> >  local_search_random_selection(std::vector<std
     rand_solution[end] = rand_solution_swap;
 
     // Avalia a solucao adquirida
-    int rand_value = evaluate(adj_matrix, rand_solution);
+    int rand_value = evaluate(adj_list, rand_solution);
 
     if(best_value == rand_value)
     {
@@ -547,18 +512,20 @@ std::pair<int, std::vector<int> >  local_search_random_selection(std::vector<std
 /**
  * Funcao base da busca local
 **/
-int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, std::string vizinhanca, std::string metodo)
+int local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca, std::string metodo)
 {
     bool is_changing;
     std::vector<int> best_solution = initial_solution; 
-    int best_value = evaluate(adj_matrix, initial_solution);
+    int best_value = evaluate(adj_list, initial_solution);
     
     do
     {
         is_changing = false;
         std::vector<std::vector<int>> neighbours;
         if(vizinhanca.compare("adj") == 0)
+        {
             neighbours = genNeighbourhood(best_solution);
+        }
         else if(vizinhanca.compare("noAdj") == 0 && metodo.compare("best") == 0)
         {
             neighbours = genNeighbourhood_noAdj(best_solution);
@@ -572,11 +539,11 @@ int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& i
 
         std::pair<int, std::vector<int> > neighbour;
         if(metodo.compare("best") == 0)
-            neighbour = local_search_best_improvement(adj_matrix, neighbours, best_value);
+            neighbour = local_search_best_improvement(adj_list, neighbours, best_value);
         else if(metodo.compare("first") == 0)
-            neighbour = local_search_first_improvement(adj_matrix, best_solution, best_value);
+            neighbour = local_search_first_improvement(adj_list, best_solution, best_value);
         else if(metodo.compare("random") == 0)
-            neighbour = local_search_random_selection(adj_matrix, best_solution, best_value);
+            neighbour = local_search_random_selection(adj_list, best_solution, best_value);
 
         if(neighbour.first != -1 && neighbour.first < best_value)
         {
@@ -592,7 +559,7 @@ int local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& i
 /**
  * Funcao gulosa que adquire uma solucao inicial
 **/ 
-std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list){
+std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list, bool random){
 
     // Lanca excecao caso haja 1 ou menos vertices na lista de adjacencia
     if(adj_list.size() < 2)
@@ -605,9 +572,17 @@ std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list){
     for(int i=0; i<adj_list.size(); i++)
         index_sort.push_back(i);
     
-    // Ordena a lista de indices com base no numero de adjacencias
-    // em cada vertice da lista de adjacencia
-    std::sort(index_sort.begin(), index_sort.end(), [&](int i, int j) { return adj_list[i].size() < adj_list[j].size(); } );
+    
+    if(random){
+        // Embaralha n(=5) vezes os indices dos vertices para gerar uma ordem aleatoria
+        // de aquisicao do mesmo para adicao na solucao
+        for(int i=0; i<5; i++)
+            std::random_shuffle ( index_sort.begin(), index_sort.end() );
+    }else{
+        // Ordena a lista de indices com base no numero de adjacencias
+        // em cada vertice da lista de adjacencia
+        std::sort(index_sort.begin(), index_sort.end(), [&](int i, int j) { return adj_list[i].size() < adj_list[j].size(); } );
+    }
 
     /**
      * Ideia do algoritmo guloso:
@@ -699,12 +674,12 @@ std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list){
     return initial_solution;
 }
 
-int simulated_annealing(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, double temp_init, double temp_min, double cooling, bool move_and_swap)
+int simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, double temp_init, double temp_min, double cooling, bool move_and_swap)
 {
     std::vector<int> current_solution = initial_solution; 
     std::vector<int> best_solution = initial_solution; 
     std::vector<int> iter_solution = initial_solution; 
-    int current_value = evaluate(adj_matrix, initial_solution); 
+    int current_value = evaluate(adj_list, initial_solution); 
     int best_value = current_value;
     double temp = temp_init;
     int iterations_without_improve = 0, it = 0;
@@ -750,7 +725,7 @@ int simulated_annealing(std::vector<std::vector<int> >& adj_matrix, std::vector<
 
             double p = ((double) rand() / (RAND_MAX));
 
-            int iter_val = evaluate(adj_matrix, iter_solution);
+            int iter_val = evaluate(adj_list, iter_solution);
 
             if(iter_val < current_value)
             {
@@ -779,11 +754,11 @@ int simulated_annealing(std::vector<std::vector<int> >& adj_matrix, std::vector<
     return best_value;
 }
 
-std::vector<int> local_search_aux(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, std::string vizinhanca)
+std::vector<int> local_search_aux(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca)
 {
     bool is_changing;
     std::vector<int> best_solution = initial_solution; 
-    int best_value = evaluate(adj_matrix, initial_solution);
+    int best_value = evaluate(adj_list, initial_solution);
     
     do
     {
@@ -803,8 +778,8 @@ std::vector<int> local_search_aux(std::vector<std::vector<int> >& adj_matrix, st
         int current_value;
 
         std::pair<int, std::vector<int> > neighbour;
-        neighbour = local_search_first_improvement(adj_matrix, best_solution, best_value);
-        //neighbour = local_search_best_improvement(adj_matrix, neighbours, best_value);
+        neighbour = local_search_first_improvement(adj_list, best_solution, best_value);
+        //neighbour = local_search_best_improvement(adj_list, neighbours, best_value);
         
         if(neighbour.first != -1 && neighbour.first < best_value)
         {
@@ -832,18 +807,18 @@ std::vector<int> pertubation(std::vector<int> solution)
     return solution;
 }
 
-int iterated_local_search(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& initial_solution, std::string vizinhanca)
+int iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca)
 {
-    std::vector<int> best_solution = local_search_aux(adj_matrix, initial_solution, vizinhanca); 
+    std::vector<int> best_solution = local_search_aux(adj_list, initial_solution, vizinhanca); 
     std::vector<int> pert_solution, iter_solution;
-    int best_value = evaluate(adj_matrix, best_solution); int iter_value;
+    int best_value = evaluate(adj_list, best_solution); int iter_value;
     int i = 0, imax = 100;
     while(i < imax)
     {
         i++;
         pert_solution = pertubation(best_solution);
-        iter_solution = local_search_aux(adj_matrix, pert_solution, vizinhanca);
-        iter_value = evaluate(adj_matrix, iter_solution);
+        iter_solution = local_search_aux(adj_list, pert_solution, vizinhanca);
+        iter_value = evaluate(adj_list, iter_solution);
         std::cout << iter_value << std::endl;
         if(iter_value < best_value)
         {
@@ -854,6 +829,86 @@ int iterated_local_search(std::vector<std::vector<int> >& adj_matrix, std::vecto
     return best_value;   
 }
 
-int grasp(std::vector<std::vector<int> >& adj_matrix, std::string vizinhanca){
-    return 0;
+int grasp(std::vector<std::vector<int> >& adj_list, std::string neighbourhood, std::string method, int n_iterations, int path_relinking_size){
+    /*
+        Enquanto (condição de parada não for satisfeita), faça
+            solução = crie aleatoriamente uma solução de forma construtiva();
+            solução = busca local(solução);
+            se solução é a melhor solução até então conhecida então
+                grave(solução);
+            fim se
+        Fim Enquanto
+    */
+
+   for(int i=0; i < n_iterations; i++){
+       std::vector<int> initial_solution;
+   }
+}
+
+/**
+ * Funcao que testa se a funcao de avaliacao esta correta 
+**/
+bool testa_evaluate(std::vector<std::vector<int> >& adj_matrix, std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution){
+    // Inicializa variaveis
+    int init, end;
+    std::pair<int,std::vector<int>> result_evaluate_init = max_cutwidth_list(adj_list, initial_solution);
+
+    // Adquire dois numeros aleatorios para representarem os vertices que trocarao de lugar
+    init = abs(rand() % initial_solution.size());
+    end = abs(rand() % initial_solution.size());
+    
+    // Gera swap aleatorio
+    std::vector<int> rand_solution(initial_solution);
+    int rand_solution_swap = rand_solution[init];
+    rand_solution[init] = rand_solution[end];
+    rand_solution[end] = rand_solution_swap;
+
+    // Avalia a solucao adquirida
+    int result_evaluate = max_cutwidth(adj_matrix, rand_solution);
+    std::pair<int,std::vector<int>> result_evaluate_list = max_cutwidth_list(adj_list, rand_solution);
+
+    std::cout << std::endl;
+    std::cout << "Evaluate: " << result_evaluate<< std::endl;
+    std::cout << "Reevaluate: " << result_evaluate_list.first << std::endl;
+
+    if(result_evaluate == result_evaluate_list.first)
+        return true;
+    else return false;
+}
+
+/**
+ * Funcao que testa se a funcao de reavaliacao esta correta 
+**/
+bool testa_reevaluate(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution){
+    // Inicializa variaveis
+    int init, end;
+    std::pair<int,std::vector<int>> result_evaluate_init = max_cutwidth_list(adj_list, initial_solution);
+
+    // Adquire dois numeros aleatorios para representarem os vertices que trocarao de lugar
+    init = abs(rand() % initial_solution.size());
+    end = abs(rand() % initial_solution.size());
+    
+    // Gera swap aleatorio
+    std::vector<int> rand_solution(initial_solution);
+    int rand_solution_swap = rand_solution[init];
+    rand_solution[init] = rand_solution[end];
+    rand_solution[end] = rand_solution_swap;
+
+    // Avalia a solucao adquirida
+    std::pair<int,std::vector<int>> result_evaluate = max_cutwidth_list(adj_list, rand_solution);
+    std::pair<int,std::vector<int>> result_reevaluate = reevaluate(adj_list, initial_solution, result_evaluate_init.second, false, init, end);
+
+    std::cout << std::endl;
+    std::cout << "Evaluate: " << result_evaluate.first << std::endl;
+    for(auto x: result_evaluate.second){
+        std::cout << x << " ";
+    }std::cout << std::endl;
+    std::cout << "Reevaluate: " << result_reevaluate.first << std::endl;
+    for(auto x: result_reevaluate.second){
+        std::cout << x << " ";
+    }std::cout << std::endl;
+
+    if(result_evaluate.first == result_reevaluate.first)
+        return true;
+    else return false;
 }
