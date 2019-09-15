@@ -40,13 +40,13 @@ int main(int argc, char *argv[])
 
                 std::pair<int, std::vector<int> > init_value_list = max_cutwidth_list(adj_list, initial_solution);
                 std::pair<int, std::vector<int> > past_init_value_list = max_cutwidth_list(adj_list, past_initial_solution);
-                
+                /*
                 bool result = testa_reevaluate(adj_list, initial_solution);
                 if(result){
                     std::cout << "OK!" << std::endl;
                 }else{
                     std::cout << "Nao OK :(" << std::endl; 
-                }
+                }*/
 
                 // std::cout << "solucao inicial antiga: " << past_init_value << std::endl;
                 std::cout << "solucao inicial nova: " << init_value << "\n";
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
                 // std::cout << "move and swap: " << local_search(adj_matrix, initial_solution, "ms", "best") << std::endl;
                 // std::cout << "simulated annealing\n";
                 // std::cout << "vizinhanca nao adjacente: " << simulated_annealing(adj_matrix, initial_solution, 10, 1, 0.95, false) << std::endl;
-                std::cout << "move and swap: " << simulated_annealing(adj_matrix, initial_solution, 5, 1, 0.7, true) << std::endl;
+                std::cout << "move and swap: " << simulated_annealing(adj_matrix, initial_solution, 20, 1, 0.9, true) << std::endl;
                 //std::cout << "noAdj: " << iterated_local_search(adj_matrix, initial_solution, "noAdj") << std::endl;
                 //std::cout << "ms: " << iterated_local_search(adj_matrix, initial_solution, "ms") << std::endl;
                 std::cout << std::endl;
