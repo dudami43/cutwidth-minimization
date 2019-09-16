@@ -574,10 +574,10 @@ std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list, bool r
     
     
     if(random){
-        // Embaralha n(=5) vezes os indices dos vertices para gerar uma ordem aleatoria
-        // de aquisicao do mesmo para adicao na solucao
+        // Embaralha a lista de indices e depois os ordena(com excessao dos dois ultimos)
         for(int i=0; i<5; i++)
-            std::random_shuffle ( index_sort.begin(), index_sort.end() );
+            std::random_shuffle( index_sort.begin(), index_sort.end());
+        std::sort(index_sort.begin(), index_sort.end() - 2, [&](int i, int j) { return adj_list[i].size() < adj_list[j].size(); } );
     }else{
         // Ordena a lista de indices com base no numero de adjacencias
         // em cada vertice da lista de adjacencia
@@ -840,9 +840,14 @@ int grasp(std::vector<std::vector<int> >& adj_list, std::string neighbourhood, s
         Fim Enquanto
     */
 
-   for(int i=0; i < n_iterations; i++){
-       std::vector<int> initial_solution;
-   }
+    std::vector<int> initial_solution = first_solution(adj_list, true);
+    int value = local_search(adj_list, initial_solution, "noAdj", "best");
+    int best_value = value;
+    for(int i=1; i < n_iterations; i++){
+            std::vector<int> initial_solution = first_solution(adj_list, true);
+            int value = local_search(adj_list, initial_solution, "noAdj", "best");
+    }
+    return best_value;
 }
 
 /**
