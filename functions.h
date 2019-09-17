@@ -14,7 +14,7 @@ std::pair<int, std::vector<int> > local_search_best_improvement(std::vector<std:
 std::pair<int, std::vector<int> > local_search_first_improvement(std::vector<std::vector<int>>& adj_list, std::vector<int>& initial_solution, int best_value);
 std::pair<int, std::vector<int> >  local_search_random_selection(std::vector<std::vector<int>>& adj_list, std::vector<int>& initial_solution, int best_value);
 
-int local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca = "adj", std::string metodo = "first");
+std::pair<int, std::vector<int> > local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca = "adj", std::string metodo = "first");
 
 std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list, bool random = false);
 

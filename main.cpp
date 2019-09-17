@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
                 //std::cout << "move and swap: " << simulated_annealing(adj_list, initial_solution, 5, 1, 0.7, true) << std::endl;
                 //std::cout << "noAdj: " << iterated_local_search(adj_list, initial_solution, "noAdj") << std::endl;
                 //std::cout << "ms: " << iterated_local_search(adj_list, initial_solution, "ms") << std::endl;
-                std::cout << "GRASP: " << grasp(adj_list, "noAdj", "best", 100, 1) << std::endl;
+                std::cout << "GRASP: " << grasp(adj_list, "noAdj", "best", 100, 10) << std::endl;
                 std::cout << std::endl;
             }
             catch (char const *param)
