@@ -1,0 +1,372 @@
+CMPLIB2010/small/p17_16_24:
+solucao inicial nova: 9
+50 8
+60 8
+70 8
+80 8
+90 8
+100 7
+
+CMPLIB2010/small/p18_16_21:
+solucao inicial nova: 7
+50 6
+60 6
+70 6
+80 6
+90 6
+100 6
+
+CMPLIB2010/small/p19_16_19:
+solucao inicial nova: 7
+50 6
+60 5
+70 5
+80 6
+90 5
+100 5
+
+CMPLIB2010/small/p20_16_18:
+solucao inicial nova: 7
+50 5
+60 5
+70 5
+80 5
+90 4
+100 5
+
+CMPLIB2010/small/p21_17_20:
+solucao inicial nova: 8
+50 6
+60 6
+70 6
+80 6
+90 6
+100 6
+
+CMPLIB2010/small/p23_17_23:
+solucao inicial nova: 8
+50 7
+60 7
+70 7
+80 6
+90 7
+100 7
+
+CMPLIB2010/small/p24_17_29:
+solucao inicial nova: 10
+50 10
+60 9
+70 9
+80 9
+90 9
+100 9
+
+CMPLIB2010/small/p40_18_32:
+solucao inicial nova: 9
+50 9
+60 9
+70 9
+80 9
+90 9
+100 9
+
+CMPLIB2010/small/p41_19_20:
+solucao inicial nova: 4
+50 4
+60 4
+70 4
+80 4
+90 4
+100 4
+
+CMPLIB2010/small/p42_19_24:
+solucao inicial nova: 8
+50 7
+60 7
+70 7
+80 7
+90 7
+100 7
+
+CMPLIB2010/small/p60_20_22:
+solucao inicial nova: 6
+50 6
+60 6
+70 6
+80 6
+90 5
+100 6
+
+CMPLIB2010/small/p61_21_22:
+solucao inicial nova: 6
+50 6
+60 6
+70 6
+80 6
+90 6
+100 6
+
+CMPLIB2010/small/p62_21_30:
+solucao inicial nova: 12
+50 9
+60 9
+70 8
+80 9
+90 9
+100 9
+
+CMPLIB2010/small/p63_21_42:
+solucao inicial nova: 16
+50 15
+60 14
+70 14
+80 14
+90 14
+100 13
+
+CMPLIB2010/small/p64_21_22:
+solucao inicial nova: 9
+50 6
+60 6
+70 6
+80 6
+90 6
+100 6
+
+CMPLIB2010/small/p70_21_25:
+solucao inicial nova: 7
+50 7
+60 7
+70 7
+80 7
+90 7
+100 7
+
+CMPLIB2010/small/p71_22_29:
+solucao inicial nova: 6
+50 6
+60 6
+70 6
+80 6
+90 6
+100 6
+
+CMPLIB2010/small/p72_22_49:
+solucao inicial nova: 19
+50 17
+60 18
+70 16
+80 18
+90 17
+100 17
+
+CMPLIB2010/small/p73_22_29:
+solucao inicial nova: 10
+50 8
+60 9
+70 9
+80 8
+90 8
+100 8
+
+CMPLIB2010/small/p74_22_30:
+solucao inicial nova: 10
+50 9
+60 9
+70 9
+80 8
+90 9
+100 8
+
+CMPLIB2010/small/p80_22_30:
+solucao inicial nova: 8
+50 8
+60 8
+70 8
+80 7
+90 8
+100 8
+
+CMPLIB2010/small/p81_23_46:
+solucao inicial nova: 19
+50 16
+60 15
+70 15
+80 15
+90 15
+100 15
+
+CMPLIB2010/small/p82_23_24:
+solucao inicial nova: 6
+50 6
+60 6
+70 6
+80 6
+90 6
+100 6
+
+CMPLIB2010/small/p99_24_27:
+solucao inicial nova: 7
+50 7
+60 7
+70 7
+80 7
+90 7
+100 7
+
+CMPLIB2010/small/p100_24_34:
+solucao inicial nova: 14
+50 10
+60 10
+70 10
+80 11
+90 10
+100 10
+
+CMPLIB2010/harwellboeing/494_bus.mtx.rnd:
+solucao inicial nova: 39
+50 39
+60 39
+70 39
+80 39
+90 39
+100 39
+
+CMPLIB2010/harwellboeing/662_bus.mtx.rnd:
+solucao inicial nova: 67
+50 67
+60 67
+70 67
+80 67
+90 67
+100 67
+
+CMPLIB2010/harwellboeing/arc130.mtx.rnd:
+solucao inicial nova: 325
+50 227
+60 221
+70 228
+80 245
+90 223
+100 220
+
+CMPLIB2010/harwellboeing/ash292.mtx.rnd:
+solucao inicial nova: 178
+50 178
+60 177
+70 178
+80 178
+90 178
+100 178
+
+CMPLIB2010/harwellboeing/bcspwr01.mtx.rnd:
+solucao inicial nova: 9
+50 9
+60 9
+70 9
+80 9
+90 9
+100 9
+
+CMPLIB2010/harwellboeing/bcspwr05.mtx.rnd:
+solucao inicial nova: 40
+50 40
+60 40
+70 40
+80 40
+90 40
+100 40
+
+CMPLIB2010/harwellboeing/bcsstk01.mtx.rnd:
+solucao inicial nova: 54
+50 50
+60 50
+70 53
+80 49
+90 48
+100 50
+
+CMPLIB2010/harwellboeing/bcsstk02.mtx.rnd:
+solucao inicial nova: 1089
+50 1089
+60 1089
+70 1089
+80 1089
+90 1089
+100 1089
+
+CMPLIB2010/harwellboeing/bcsstk04.mtx.rnd:
+solucao inicial nova: 614
+50 368
+60 363
+70 373
+80 370
+90 370
+100 361
+
+CMPLIB2010/harwellboeing/bcsstk20.mtx.rnd:
+solucao inicial nova: 130
+50 130
+60 130
+70 130
+80 130
+90 130
+100 130
+
+CMPLIB2010/harwellboeing/bcsstk22.mtx.rnd:
+solucao inicial nova: 38
+50 38
+60 38
+70 38
+80 38
+90 38
+100 38
+
+CMPLIB2010/harwellboeing/can__144.mtx.rnd:
+solucao inicial nova: 134
+50 128
+60 134
+70 130
+80 130
+90 128
+100 133
+
+CMPLIB2010/harwellboeing/can__161.mtx.rnd:
+solucao inicial nova: 101
+50 101
+60 101
+70 101
+80 101
+90 101
+100 101
+
+CMPLIB2010/harwellboeing/curtis54.mtx.rnd:
+solucao inicial nova: 27
+50 27
+60 27
+70 27
+80 27
+90 27
+100 27
+
+CMPLIB2010/harwellboeing/lund_a.mtx.rnd:
+solucao inicial nova: 203
+50 203
+60 203
+70 203
+80 203
+90 197
+100 202
+
+CMPLIB2010/harwellboeing/mcca.mtx.rnd:
+solucao inicial nova: 640
+50 439
+60 418
+70 485
+80 488
+90 472
+100 411
+
+CMPLIB2010/harwellboeing/nnc261.mtx.rnd:
+solucao inicial nova: 139
+50 139

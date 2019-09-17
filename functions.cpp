@@ -674,7 +674,12 @@ std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list, bool r
     return initial_solution;
 }
 
-int simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, double temp_init, double temp_min, double cooling, bool move_and_swap)
+/**
+ * Simulated annealing padrão: parâmetros são passados na chamada
+ * valores default:
+ * temp_init = 120, temp_min = 1, cooling = 0.99, itermax = 
+ */
+int simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, double temp_init, double temp_min, double cooling, int itermax, bool move_and_swap)
 {
     std::vector<int> current_solution = initial_solution; 
     std::vector<int> best_solution = initial_solution; 
@@ -686,7 +691,7 @@ int simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<in
     while (temp > temp_min)
     {
         it = 0;
-        while(iterations_without_improve < 10 && it < 100)
+        while(iterations_without_improve < 10 || it < itermax)
         {
             int init = abs(rand() % initial_solution.size());
             int end = abs(rand() % initial_solution.size());
@@ -754,6 +759,29 @@ int simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<in
     return best_value;
 }
 
+/*
+* Executar o simulated annealing várias vezes para encontrar a melhor solução
+*/
+int best_simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution)
+{
+    int best_value = evaluate(adj_list, initial_solution); 
+    int iter_value;
+    int i = 0, imax = 100;
+    while(i < imax)
+    {
+        iter_value = simulated_annealing(adj_list, initial_solution);
+        if(iter_value < best_value)
+        {
+            best_value = iter_value;
+        }
+        i++;
+    }
+    return best_value;   
+}
+
+/**
+ * Busca local que retorna a solução ao invés de somente seu valor, utilizada em outras funções como ILS e GRASP
+**/ 
 std::vector<int> local_search_aux(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca)
 {
     bool is_changing;
@@ -792,11 +820,14 @@ std::vector<int> local_search_aux(std::vector<std::vector<int> >& adj_list, std:
     return best_solution;
 }
 
-std::vector<int> pertubation(std::vector<int> solution)
+/**
+ * Pertubação usada no ILS
+**/ 
+std::vector<int> pertubation(std::vector<int> solution, int level)
 {
-    int number_xchanges = abs(rand() % 3);
+    int number_xchanges = level;
     int init, end;
-    for(int i = 0; i < number_xchanges; i++)
+    for(int i = 1; i < number_xchanges; i++)
     {
         init = abs(rand() % solution.size());
         end = abs(rand() % solution.size());
@@ -807,23 +838,76 @@ std::vector<int> pertubation(std::vector<int> solution)
     return solution;
 }
 
+/**
+ * ILS padrão
+**/ 
 int iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca)
 {
     std::vector<int> best_solution = local_search_aux(adj_list, initial_solution, vizinhanca); 
     std::vector<int> pert_solution, iter_solution;
     int best_value = evaluate(adj_list, best_solution); int iter_value;
-    int i = 0, imax = 100;
-    while(i < imax)
+    int itermax = 0, imax = 100;
+    int melhor_iter = iter;
+    int level = 1;
+    while(iter - melhor_iter < imax)
     {
-        i++;
-        pert_solution = pertubation(best_solution);
+        iter++;
+        pert_solution = pertubation(best_solution, level);
         iter_solution = local_search_aux(adj_list, pert_solution, vizinhanca);
         iter_value = evaluate(adj_list, iter_solution);
-        std::cout << iter_value << std::endl;
+
         if(iter_value < best_value)
         {
             best_solution = iter_solution;
             best_value = iter_value;
+            melhor_iter = iter;
+            level = 1;
+        }
+        else
+        {
+            level++;
+        }
+    }
+    return best_value;   
+}
+
+/**
+ * Smart ILS
+**/ 
+int smart_iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca)
+{
+    std::vector<int> best_solution = local_search_aux(adj_list, initial_solution, vizinhanca); 
+    std::vector<int> pert_solution, iter_solution;
+    int best_value = evaluate(adj_list, best_solution); int iter_value;
+    int iter = 0;
+    int imax = 100, vmax = 10;
+    int melhor_iter = iter;
+    int level = 1, nvezes = 1;
+    while(iter - melhor_iter < imax)
+    {
+        iter++;
+        pert_solution = pertubation(best_solution, level);
+        iter_solution = local_search_aux(adj_list, pert_solution, vizinhanca);
+        iter_value = evaluate(adj_list, iter_solution);
+
+        if(iter_value < best_value)
+        {
+            best_solution = iter_solution;
+            best_value = iter_value;
+            melhor_iter = iter;
+            level = 1;
+            nvezes = 1;
+        }
+        else
+        {
+            if(nvezes >= vmax) // só aumenta o nível de pertubação após algumas tentativas sem sucesso, para o caso da região não ter sido explorada adequadamente
+            {
+                level++;
+                nvezes = 1;
+            }
+            else{
+                nvezes++;
+            }
         }
     }
     return best_value;   
