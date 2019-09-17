@@ -370,3 +370,5 @@ solucao inicial nova: 640
 CMPLIB2010/harwellboeing/nnc261.mtx.rnd:
 solucao inicial nova: 139
 50 139
+60 139
+70 139

@@ -1345,3 +1345,5 @@ solucao inicial nova: 325
 CMPLIB2010/harwellboeing/ash292.mtx.rnd:
 solucao inicial nova: 178
 50 178
+60 178
+70 178
