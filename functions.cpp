@@ -766,7 +766,7 @@ int best_simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vect
 {
     int best_value = evaluate(adj_list, initial_solution); 
     int iter_value;
-    int i = 0, imax = 100;
+    int i = 0, imax = 15;
     while(i < imax)
     {
         iter_value = simulated_annealing(adj_list, initial_solution);
@@ -787,22 +787,9 @@ std::vector<int> local_search_aux(std::vector<std::vector<int> >& adj_list, std:
     bool is_changing;
     std::vector<int> best_solution = initial_solution; 
     int best_value = evaluate(adj_list, initial_solution);
-    
     do
     {
         is_changing = false;
-        /*std::vector<std::vector<int>> neighbours;
-        if(vizinhanca.compare("adj") == 0)
-            neighbours = genNeighbourhood(best_solution);
-        else if(vizinhanca.compare("noAdj") == 0)
-        {
-            neighbours = genNeighbourhood_noAdj(best_solution);
-        }
-        else if(vizinhanca.compare("ms") == 0)
-        {
-            neighbours = genNeighbourhood_ms(best_solution);
-        }
-        */
         int current_value;
 
         std::pair<int, std::vector<int> > neighbour;
@@ -816,7 +803,7 @@ std::vector<int> local_search_aux(std::vector<std::vector<int> >& adj_list, std:
             is_changing = true;
         }
     }while(is_changing);
-
+    std::cout << best_value << " " << evaluate(adj_list, best_solution);
     return best_solution;
 }
 
@@ -841,15 +828,20 @@ std::vector<int> pertubation(std::vector<int> solution, int level)
 /**
  * ILS padrão
 **/ 
-int iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca)
+int iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca, int imax)
 {
     std::vector<int> best_solution = local_search_aux(adj_list, initial_solution, vizinhanca); 
     std::vector<int> pert_solution, iter_solution;
-    int best_value = evaluate(adj_list, best_solution); int iter_value;
+    
+    int best_value = evaluate(adj_list, best_solution); 
+    std::cout << "pbest " << best_value;
+    int iter_value;
+
     int iter = 0;
-    int itermax = 0, imax = 100;
+    int itermax = 0;
     int melhor_iter = iter;
     int level = 1;
+
     while(iter - melhor_iter < imax)
     {
         iter++;
@@ -861,6 +853,7 @@ int iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<
         {
             best_solution = iter_solution;
             best_value = iter_value;
+            std::cout << "ils best " << best_value << std::endl;
             melhor_iter = iter;
             level = 1;
         }
@@ -875,15 +868,18 @@ int iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<
 /**
  * Smart ILS
 **/ 
-int smart_iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca)
+int smart_iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca, int imax, int vmax)
 {
     std::vector<int> best_solution = local_search_aux(adj_list, initial_solution, vizinhanca); 
     std::vector<int> pert_solution, iter_solution;
-    int best_value = evaluate(adj_list, best_solution); int iter_value;
+    
+    int best_value = evaluate(adj_list, best_solution);
+    int iter_value;
+    
     int iter = 0;
-    int imax = 100, vmax = 10;
     int melhor_iter = iter;
     int level = 1, nvezes = 1;
+    
     while(iter - melhor_iter < imax)
     {
         iter++;
