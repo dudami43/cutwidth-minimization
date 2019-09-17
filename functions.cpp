@@ -846,6 +846,7 @@ int iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<
     std::vector<int> best_solution = local_search_aux(adj_list, initial_solution, vizinhanca); 
     std::vector<int> pert_solution, iter_solution;
     int best_value = evaluate(adj_list, best_solution); int iter_value;
+    int iter = 0;
     int itermax = 0, imax = 100;
     int melhor_iter = iter;
     int level = 1;
