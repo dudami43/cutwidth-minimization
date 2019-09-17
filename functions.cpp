@@ -686,7 +686,7 @@ int simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<in
     while (temp > temp_min)
     {
         it = 0;
-        while(iterations_without_improve < 10 && it < 100)
+        while(it < 200)
         {
             int init = abs(rand() % initial_solution.size());
             int end = abs(rand() % initial_solution.size());
