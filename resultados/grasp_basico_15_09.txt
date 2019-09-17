@@ -1,0 +1,140 @@
+CMPLIB2010/small/p17_16_24:
+solucao inicial nova: 9 -- GRASP: 7
+
+CMPLIB2010/small/p18_16_21:
+solucao inicial nova: 7 -- GRASP: 6
+
+CMPLIB2010/small/p19_16_19:
+solucao inicial nova: 7 -- GRASP: 6
+
+CMPLIB2010/small/p20_16_18:
+solucao inicial nova: 7 -- GRASP: 5
+
+CMPLIB2010/small/p21_17_20:
+solucao inicial nova: 8 -- GRASP: 5
+
+CMPLIB2010/small/p23_17_23:
+solucao inicial nova: 8 -- GRASP: 6
+
+CMPLIB2010/small/p24_17_29:
+solucao inicial nova: 10 -- GRASP: 11
+
+CMPLIB2010/small/p40_18_32:
+solucao inicial nova: 9 -- GRASP: 10
+
+CMPLIB2010/small/p41_19_20:
+solucao inicial nova: 4 -- GRASP: 4
+
+CMPLIB2010/small/p42_19_24:
+solucao inicial nova: 8 -- GRASP: 7
+
+CMPLIB2010/small/p60_20_22:
+solucao inicial nova: 6 -- GRASP: 5
+
+CMPLIB2010/small/p61_21_22:
+solucao inicial nova: 6 -- GRASP: 5
+
+CMPLIB2010/small/p62_21_30:
+solucao inicial nova: 12 -- GRASP: 8
+
+CMPLIB2010/small/p63_21_42:
+solucao inicial nova: 16 -- GRASP: 15
+
+CMPLIB2010/small/p64_21_22:
+solucao inicial nova: 9 -- GRASP: 4
+
+CMPLIB2010/small/p70_21_25:
+solucao inicial nova: 7 -- GRASP: 7
+
+CMPLIB2010/small/p71_22_29:
+solucao inicial nova: 6 -- GRASP: 6
+
+CMPLIB2010/small/p72_22_49:
+solucao inicial nova: 19 -- GRASP: 16
+
+CMPLIB2010/small/p73_22_29:
+solucao inicial nova: 10 -- GRASP: 6
+
+CMPLIB2010/small/p74_22_30:
+solucao inicial nova: 10 -- GRASP: 8
+
+CMPLIB2010/small/p80_22_30:
+solucao inicial nova: 8 -- GRASP: 10
+
+CMPLIB2010/small/p81_23_46:
+solucao inicial nova: 19 -- GRASP: 16
+
+CMPLIB2010/small/p82_23_24:
+solucao inicial nova: 6 -- GRASP: 6
+
+CMPLIB2010/small/p99_24_27:
+solucao inicial nova: 7 -- GRASP: 6
+
+CMPLIB2010/small/p100_24_34:
+solucao inicial nova: 14 -- GRASP: 9
+
+CMPLIB2010/harwellboeing/494_bus.mtx.rnd:
+solucao inicial nova: 39 -- GRASP: 43
+
+CMPLIB2010/harwellboeing/662_bus.mtx.rnd:
+solucao inicial nova: 67 -- GRASP: 62
+
+CMPLIB2010/harwellboeing/arc130.mtx.rnd:
+solucao inicial nova: 325 -- GRASP: 243
+
+CMPLIB2010/harwellboeing/ash292.mtx.rnd:
+solucao inicial nova: 178 -- GRASP: 73
+
+CMPLIB2010/harwellboeing/bcspwr01.mtx.rnd:
+solucao inicial nova: 9 -- GRASP: 8
+
+CMPLIB2010/harwellboeing/bcspwr05.mtx.rnd:
+solucao inicial nova: 40 -- GRASP: 36
+
+CMPLIB2010/harwellboeing/bcsstk01.mtx.rnd:
+solucao inicial nova: 54 -- GRASP: 52
+
+CMPLIB2010/harwellboeing/bcsstk02.mtx.rnd:
+solucao inicial nova: 1089 -- GRASP: 1089
+
+CMPLIB2010/harwellboeing/bcsstk04.mtx.rnd:
+solucao inicial nova: 614 -- GRASP: 597
+
+CMPLIB2010/harwellboeing/bcsstk20.mtx.rnd:
+solucao inicial nova: 130 -- GRASP: 90
+
+CMPLIB2010/harwellboeing/bcsstk22.mtx.rnd:
+solucao inicial nova: 38 -- GRASP: 30
+
+CMPLIB2010/harwellboeing/can__144.mtx.rnd:
+solucao inicial nova: 134 -- GRASP: 77
+
+CMPLIB2010/harwellboeing/can__161.mtx.rnd:
+solucao inicial nova: 101 -- GRASP: 104
+
+CMPLIB2010/harwellboeing/curtis54.mtx.rnd:
+solucao inicial nova: 27 -- GRASP: 27
+
+CMPLIB2010/harwellboeing/lund_a.mtx.rnd:
+solucao inicial nova: 203 -- GRASP: 215
+
+CMPLIB2010/harwellboeing/mcca.mtx.rnd:
+solucao inicial nova: 640 -- GRASP: 469
+
+CMPLIB2010/harwellboeing/nnc261.mtx.rnd:
+solucao inicial nova: 139 -- GRASP: 120
+
+CMPLIB2010/harwellboeing/nos5.mtx.rnd:
+solucao inicial nova: 386 -- GRASP: 510
+
+CMPLIB2010/harwellboeing/nos6.mtx.rnd:
+solucao inicial nova: 91 -- GRASP: 120
+
+CMPLIB2010/harwellboeing/plat362.mtx.rnd:
+solucao inicial nova: 308 -- GRASP: 405
+
+CMPLIB2010/harwellboeing/plskz362.mtx.rnd:
+solucao inicial nova: 96 -- GRASP: 64
+
+CMPLIB2010/harwellboeing/shl__200.mtx.rnd:
+solucao inicial nova: 570 -- 

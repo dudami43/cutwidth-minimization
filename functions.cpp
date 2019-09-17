@@ -512,7 +512,7 @@ std::pair<int, std::vector<int> >  local_search_random_selection(std::vector<std
 /**
  * Funcao base da busca local
 **/
-int local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca, std::string metodo)
+std::pair<int, std::vector<int> > local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca, std::string metodo)
 {
     bool is_changing;
     std::vector<int> best_solution = initial_solution; 
@@ -553,7 +553,7 @@ int local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& ini
         }
     }while(is_changing);
 
-    return best_value;
+    return make_pair(best_value, best_solution);
 }
 
 /**
@@ -574,10 +574,10 @@ std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list, bool r
     
     
     if(random){
-        // Embaralha n(=5) vezes os indices dos vertices para gerar uma ordem aleatoria
-        // de aquisicao do mesmo para adicao na solucao
+        // Embaralha a lista de indices e depois os ordena(com excessao dos dois ultimos)
         for(int i=0; i<5; i++)
-            std::random_shuffle ( index_sort.begin(), index_sort.end() );
+            std::random_shuffle( index_sort.begin(), index_sort.end());
+        std::sort(index_sort.begin(), index_sort.end() - 2, [&](int i, int j) { return adj_list[i].size() < adj_list[j].size(); } );
     }else{
         // Ordena a lista de indices com base no numero de adjacencias
         // em cada vertice da lista de adjacencia
@@ -674,7 +674,12 @@ std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list, bool r
     return initial_solution;
 }
 
-int simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, double temp_init, double temp_min, double cooling, bool move_and_swap)
+/**
+ * Simulated annealing padrão: parâmetros são passados na chamada
+ * valores default:
+ * temp_init = 120, temp_min = 1, cooling = 0.99, itermax = 
+ */
+int simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, double temp_init, double temp_min, double cooling, int itermax, bool move_and_swap)
 {
     std::vector<int> current_solution = initial_solution; 
     std::vector<int> best_solution = initial_solution; 
@@ -686,7 +691,7 @@ int simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<in
     while (temp > temp_min)
     {
         it = 0;
-        while(it < 200)
+        while(iterations_without_improve < 10 || it < itermax)
         {
             int init = abs(rand() % initial_solution.size());
             int end = abs(rand() % initial_solution.size());
@@ -754,27 +759,37 @@ int simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<in
     return best_value;
 }
 
+/*
+* Executar o simulated annealing várias vezes para encontrar a melhor solução
+*/
+int best_simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution)
+{
+    int best_value = evaluate(adj_list, initial_solution); 
+    int iter_value;
+    int i = 0, imax = 15;
+    while(i < imax)
+    {
+        iter_value = simulated_annealing(adj_list, initial_solution);
+        if(iter_value < best_value)
+        {
+            best_value = iter_value;
+        }
+        i++;
+    }
+    return best_value;   
+}
+
+/**
+ * Busca local que retorna a solução ao invés de somente seu valor, utilizada em outras funções como ILS e GRASP
+**/ 
 std::vector<int> local_search_aux(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca)
 {
     bool is_changing;
     std::vector<int> best_solution = initial_solution; 
     int best_value = evaluate(adj_list, initial_solution);
-    
     do
     {
         is_changing = false;
-        /*std::vector<std::vector<int>> neighbours;
-        if(vizinhanca.compare("adj") == 0)
-            neighbours = genNeighbourhood(best_solution);
-        else if(vizinhanca.compare("noAdj") == 0)
-        {
-            neighbours = genNeighbourhood_noAdj(best_solution);
-        }
-        else if(vizinhanca.compare("ms") == 0)
-        {
-            neighbours = genNeighbourhood_ms(best_solution);
-        }
-        */
         int current_value;
 
         std::pair<int, std::vector<int> > neighbour;
@@ -788,15 +803,18 @@ std::vector<int> local_search_aux(std::vector<std::vector<int> >& adj_list, std:
             is_changing = true;
         }
     }while(is_changing);
-
+    std::cout << best_value << " " << evaluate(adj_list, best_solution);
     return best_solution;
 }
 
-std::vector<int> pertubation(std::vector<int> solution)
+/**
+ * Pertubação usada no ILS
+**/ 
+std::vector<int> pertubation(std::vector<int> solution, int level)
 {
-    int number_xchanges = abs(rand() % 3);
+    int number_xchanges = level;
     int init, end;
-    for(int i = 0; i < number_xchanges; i++)
+    for(int i = 1; i < number_xchanges; i++)
     {
         init = abs(rand() % solution.size());
         end = abs(rand() % solution.size());
@@ -807,42 +825,219 @@ std::vector<int> pertubation(std::vector<int> solution)
     return solution;
 }
 
-int iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca)
+/**
+ * ILS padrão
+**/ 
+int iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca, int imax)
 {
     std::vector<int> best_solution = local_search_aux(adj_list, initial_solution, vizinhanca); 
     std::vector<int> pert_solution, iter_solution;
-    int best_value = evaluate(adj_list, best_solution); int iter_value;
-    int i = 0, imax = 100;
-    while(i < imax)
+    
+    int best_value = evaluate(adj_list, best_solution); 
+    std::cout << "pbest " << best_value;
+    int iter_value;
+
+    int iter = 0;
+    int itermax = 0;
+    int melhor_iter = iter;
+    int level = 1;
+
+    while(iter - melhor_iter < imax)
     {
-        i++;
-        pert_solution = pertubation(best_solution);
+        iter++;
+        pert_solution = pertubation(best_solution, level);
         iter_solution = local_search_aux(adj_list, pert_solution, vizinhanca);
         iter_value = evaluate(adj_list, iter_solution);
-        std::cout << iter_value << std::endl;
+
         if(iter_value < best_value)
         {
             best_solution = iter_solution;
             best_value = iter_value;
+            std::cout << "ils best " << best_value << std::endl;
+            melhor_iter = iter;
+            level = 1;
+        }
+        else
+        {
+            level++;
         }
     }
     return best_value;   
 }
 
-int grasp(std::vector<std::vector<int> >& adj_list, std::string neighbourhood, std::string method, int n_iterations, int path_relinking_size){
-    /*
-        Enquanto (condição de parada não for satisfeita), faça
-            solução = crie aleatoriamente uma solução de forma construtiva();
-            solução = busca local(solução);
-            se solução é a melhor solução até então conhecida então
-                grave(solução);
-            fim se
-        Fim Enquanto
-    */
+/**
+ * Smart ILS
+**/ 
+int smart_iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca, int imax, int vmax)
+{
+    std::vector<int> best_solution = local_search_aux(adj_list, initial_solution, vizinhanca); 
+    std::vector<int> pert_solution, iter_solution;
+    
+    int best_value = evaluate(adj_list, best_solution);
+    int iter_value;
+    
+    int iter = 0;
+    int melhor_iter = iter;
+    int level = 1, nvezes = 1;
+    
+    while(iter - melhor_iter < imax)
+    {
+        iter++;
+        pert_solution = pertubation(best_solution, level);
+        iter_solution = local_search_aux(adj_list, pert_solution, vizinhanca);
+        iter_value = evaluate(adj_list, iter_solution);
 
-   for(int i=0; i < n_iterations; i++){
-       std::vector<int> initial_solution;
-   }
+        if(iter_value < best_value)
+        {
+            best_solution = iter_solution;
+            best_value = iter_value;
+            melhor_iter = iter;
+            level = 1;
+            nvezes = 1;
+        }
+        else
+        {
+            if(nvezes >= vmax) // só aumenta o nível de pertubação após algumas tentativas sem sucesso, para o caso da região não ter sido explorada adequadamente
+            {
+                level++;
+                nvezes = 1;
+            }
+            else{
+                nvezes++;
+            }
+        }
+    }
+    return best_value;   
+}
+
+/**
+ * Calcula o proximo passo da solucao atual ate a solucao elite em questao
+**/ 
+std::vector<int> next_step(std::vector<int>& elite_solution, std::vector<int>& current_solution){
+    std::vector<int> step(current_solution);
+    for(int i=0; i<elite_solution.size(); i++){
+        // Procura uma posicao que contem vertices diferentes
+        // nas solucoes
+        if(elite_solution[i] != step[i]){
+            int aux = elite_solution[i];
+            // Procura posicao do vertice que difere no passo step
+            auto pos = find(step.begin(), step.end(), aux);
+            // Troca a ordem dos mesmos no step
+            *pos = step[i];
+            step[i] = aux;
+            break;
+        }
+    }
+    return step;
+}
+
+/**
+ * Compara duas solucoes
+**/ 
+bool compare_solution(std::vector<int>& solution_1, std::vector<int>& solution_2){
+    if(solution_1.size() != solution_2.size()) return false;
+    else{
+        for(int i=0; i<solution_1.size(); i++){
+            if(solution_1[i] != solution_2[i]) return false;
+        }
+    }
+    return true;
+}
+
+int grasp(std::vector<std::vector<int> >& adj_list, std::string neighbourhood, std::string method, int n_iterations, int path_relinking_size){
+
+    std::vector<std::pair<int, std::vector<int> > > elite_solutions;
+    elite_solutions.reserve(path_relinking_size);
+
+    // Adquire a primeira solucao inicial
+    std::vector<int> initial_solution = first_solution(adj_list, true);
+    std::pair<int, std::vector<int> > value = local_search(adj_list, initial_solution, "noAdj", "best");
+    
+    // Seta os valores da solucao inicial como os melhores ate agora
+    int best_value = value.first;
+    std::vector<int> best_solution = value.second;
+    
+    // Adiciona a solucao inicial ao path relink
+    elite_solutions.push_back(make_pair(best_value, best_solution));
+
+    // Comeca o GRASP
+    for(int i=1; i < n_iterations; i++){
+        // Adquire uma solucao e melhora a mesma com busca local
+        std::vector<int> initial_solution = first_solution(adj_list, true);
+        value = local_search(adj_list, initial_solution, "noAdj", "best");
+        
+        // Caso a solucao encontrada seja a melhor ate o momento
+        // seta a mesma como a melhor
+        if(value.first < best_value){
+            best_value = value.first;
+            best_solution = value.second;
+        }
+
+        // Se ainda esta na fase de construcao do path_relink
+        if(i < path_relinking_size){
+            // Adiciona a solucao encontrada ao path
+            elite_solutions.push_back(make_pair(value.first, value.second));
+        }else{
+            // Seleciona uma solucao aleatoria
+            int rand_index = abs(rand() % elite_solutions.size());
+            std::vector<int> rand_elite_solution = elite_solutions[rand_index].second;
+            std::vector<int> aux_solution = value.second;
+
+            // Ordena as solucoes elite em ordem crescente de avaliacao
+            std::sort(elite_solutions.begin(), elite_solutions.end());
+
+            int best_aux_value = (*elite_solutions.rbegin()).first;
+            std::vector<int> best_aux_solution = (*elite_solutions.rbegin()).second;
+
+            // Enquanto nao chegou na solucao elite, adquire mais um passo
+            while(!compare_solution(rand_elite_solution, aux_solution)){
+                
+                // Adquire o proximo passo ate a solucao elite
+                aux_solution = next_step(rand_elite_solution, aux_solution);
+                int aux_value = evaluate(adj_list, aux_solution);
+
+                /* for(auto x: rand_elite_solution){
+                    std::cout << x << " ";
+                }std::cout << " -elite" << std::endl;
+                for(auto x: aux_solution){
+                    std::cout << x << " ";
+                }std::cout << " -aux" << std::endl; */
+                
+                // Se esse passo for melhor que a solucao elite
+                if(aux_value < best_aux_value){
+                    best_aux_value = aux_value;
+                    best_aux_solution = aux_solution;
+                }
+
+            }
+
+            // Se o passo de melhor valor for melhor que a melhor solucao encontrada
+            // seta o melhor passo como a melhor solucao e substitui a pior solucao elite
+            if(best_aux_value < best_value){
+                
+                best_value = best_aux_value;
+                best_solution = aux_solution;
+
+                // Remove pior solucao elite
+                elite_solutions.pop_back();
+                // Adiciona o melhor passo a solucao elite
+                elite_solutions.push_back(make_pair(best_aux_value, aux_solution));
+                // Reordena as solucoes elite em ordem crescente de avaliacao
+                std::sort(elite_solutions.begin(), elite_solutions.end());
+
+            // Se o melhor passo for pior que a melhor solucao, porem melhor que 
+            // alguma solucao elite, entao substitui a pior solucao elite
+            }else if(best_aux_value < (*elite_solutions.rbegin()).first){
+                // Remove pior solucao elite
+                elite_solutions.pop_back();
+                // Adiciona o melhor passo a solucao elite
+                elite_solutions.push_back(make_pair(best_aux_value, aux_solution));
+                // Reordena as solucoes elite em ordem crescente de avaliacao
+                std::sort(elite_solutions.begin(), elite_solutions.end());
+            }
+        }
+    }
+    return best_value;
 }
 
 /**
