@@ -50,18 +50,18 @@ int main(int argc, char *argv[])
                 std::pair<int, std::vector<int> > past_init_value_list = max_cutwidth_list(adj_list, past_initial_solution);
                 
                 std::cout << "solucao inicial nova: " << init_value << "\n";
-                /* teste simulated annealing
+                //teste simulated annealing
                 int i = 0;
                 
-                for(int itermax = 50; itermax <= 100; itermax+=10)
+                for(int itermax = 110; itermax <= 130; itermax+=10)
                 {
                     int new_val = simulated_annealing(adj_list, initial_solution, 120, 1, 0.99, itermax, true);
                     std::cout <<  itermax << " " << new_val  << std::endl;
                     improvements[i] += init_value - new_val;
                     i++;
-                }*/
+                }
 
-                std::cout << iterated_local_search( adj_list, initial_solution, "ms", 100);
+                //std::cout << iterated_local_search( adj_list, initial_solution, "ms", 100);
                 std::cout << std::endl;
             }
             catch (char const *param)
@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
     }
 
     int i = 0;
-    for(int itermax = 50; itermax <= 100; itermax+=10)
+    for(int itermax = 110; itermax <= 130; itermax+=10)
     {
         std::cout <<  itermax << " " << improvements[i]  << std::endl;
         i++;
