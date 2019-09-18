@@ -452,7 +452,8 @@ std::pair<int, std::vector<int> > local_search_best_improvement(std::vector<std:
 **/
 std::pair<int, std::vector<int> > local_search_first_improvement(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, int best_value)
 {
-    std::vector<int> best_solution = initial_solution; 
+    std::vector<int> best_solution(initial_solution);
+    std::vector<int> aux_solution(initial_solution);
     int init;
     int end;
     int current_value = best_value;
@@ -461,17 +462,17 @@ std::pair<int, std::vector<int> > local_search_first_improvement(std::vector<std
     int i = 0;
     while(!improved && i < iterations)
     {
-        init = abs(rand() % initial_solution.size());
-        end = abs(rand() % initial_solution.size());
+        init = abs(rand() % aux_solution.size());
+        end = abs(rand() % aux_solution.size());
 
-        int aux_swap = initial_solution[init];
-        initial_solution[init] = initial_solution[end];
-        initial_solution[end] = aux_swap;
+        int aux_swap = aux_solution[init];
+        aux_solution[init] = aux_solution[end];
+        aux_solution[end] = aux_swap;
 
-        current_value = evaluate(adj_list, initial_solution);
+        current_value = evaluate(adj_list, aux_solution);
         if(current_value < best_value)
         {
-            best_solution = initial_solution;
+            best_solution = aux_solution;
             best_value = current_value;
             improved = true;
         }
