@@ -51,7 +51,9 @@ int main(int argc, char *argv[])
                 std::pair<int, std::vector<int> > past_init_value_list = max_cutwidth_list(adj_list, past_initial_solution);
                 
                 std::cout << "solucao inicial nova: " << init_value << "\n";
-                // /* teste simulated annealing
+                std::cout << smart_iterated_local_search(adj_list, initial_solution, "ms");
+
+                /* teste simulated annealing
                 int i = 0;
                 for(double temperatura = 20; temperatura < 150; temperatura+=10)
                 {
@@ -64,7 +66,7 @@ int main(int argc, char *argv[])
                         j++;
                     }
                     i++;
-                }
+                }*/
                 std::cout << std::endl;
             }
             catch (char const *param)
@@ -81,7 +83,7 @@ int main(int argc, char *argv[])
         throw "Unable to open the file";
     }
 
-    int i = 0;
+    /*int i = 0;
     for(double temperatura = 20; temperatura < 150; temperatura+=10)
     {
         int j = 0;
@@ -92,7 +94,7 @@ int main(int argc, char *argv[])
         }
         i++;
     }
-    std::cout << std::endl;
+    std::cout << std::endl;*/
    
     return 0;
 }
