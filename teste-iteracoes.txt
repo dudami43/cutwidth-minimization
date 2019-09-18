@@ -2113,3 +2113,15 @@ solucao inicial nova: 91
 CMPLIB2010/harwellboeing/plat362.mtx.rnd:
 solucao inicial nova: 308
 50 308
+60 308
+70 308
+80 308
+90 308
+100 308
+110 308
+120 308
+130 308
+140 308
+150 308
+160 308
+170 308

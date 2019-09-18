@@ -157,3 +157,51 @@ solucao inicial nova: 39
 CMPLIB2010/harwellboeing/662_bus.mtx.rnd:
 solucao inicial nova: 67
 110 67
+120 67
+130 67
+
+CMPLIB2010/harwellboeing/arc130.mtx.rnd:
+solucao inicial nova: 325
+110 228
+120 226
+130 230
+
+CMPLIB2010/harwellboeing/ash292.mtx.rnd:
+solucao inicial nova: 178
+110 178
+120 178
+130 178
+
+CMPLIB2010/harwellboeing/bcspwr01.mtx.rnd:
+solucao inicial nova: 9
+110 9
+120 9
+130 9
+
+CMPLIB2010/harwellboeing/bcspwr05.mtx.rnd:
+solucao inicial nova: 40
+110 40
+120 40
+130 40
+
+CMPLIB2010/harwellboeing/bcsstk01.mtx.rnd:
+solucao inicial nova: 54
+110 45
+120 47
+130 45
+
+CMPLIB2010/harwellboeing/bcsstk02.mtx.rnd:
+solucao inicial nova: 1089
+110 1089
+120 1089
+130 1089
+
+CMPLIB2010/harwellboeing/bcsstk04.mtx.rnd:
+solucao inicial nova: 614
+110 367
+120 360
+130 359
+
+CMPLIB2010/harwellboeing/bcsstk20.mtx.rnd:
+solucao inicial nova: 130
+110 128
