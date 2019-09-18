@@ -154,3 +154,6 @@ solucao inicial nova: 39
 120 39
 130 39
 
+CMPLIB2010/harwellboeing/662_bus.mtx.rnd:
+solucao inicial nova: 67
+110 67

@@ -17,12 +17,13 @@ int main(int argc, char *argv[])
     std::string filename;
     file.open(file_name);
 
-    int improvements[100];
-    for(int a = 0; a < 100; a++)
+    int improvements[15][10];
+    for(int a = 0; a < 15; a++)
     {
-       
-        improvements[a] = 0;
-     
+        for(int b = 0; b < 10; b++)
+        {
+            improvements[a][b] = 0;
+        }   
     }
 
     delete file_name;
@@ -55,9 +56,14 @@ int main(int argc, char *argv[])
                 
                 for(int itermax = 110; itermax <= 130; itermax+=10)
                 {
-                    int new_val = simulated_annealing(adj_list, initial_solution, 120, 1, 0.99, itermax, true);
-                    std::cout <<  itermax << " " << new_val  << std::endl;
-                    improvements[i] += init_value - new_val;
+                    int j = 0;
+                    for(double cooling = 0.9; cooling > 0.1; cooling-=0.1)
+                    {
+                        int new_val = simulated_annealing(adj_list, initial_solution, temperatura, 1, cooling, true);
+                        std::cout <<  temperatura << " " << cooling << " " << new_val  << std::endl;
+                        improvements[i][j] += init_value - new_val;
+                        j++;
+                    }
                     i++;
                 }
 
@@ -81,10 +87,15 @@ int main(int argc, char *argv[])
     int i = 0;
     for(int itermax = 110; itermax <= 130; itermax+=10)
     {
-        std::cout <<  itermax << " " << improvements[i]  << std::endl;
+        int j = 0;
+        for(double cooling = 0.9; cooling > 0.1; cooling-=0.1)
+        {
+            std::cout <<  temperatura << " " << cooling << " " << improvements[i][j]  << std::endl;
+            j++;
+        }
         i++;
     }
-    std::cout << std::endl;
+    std::cout << std::endl;*/
    
     return 0;
 }

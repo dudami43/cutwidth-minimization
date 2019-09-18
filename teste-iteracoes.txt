@@ -2110,3 +2110,6 @@ solucao inicial nova: 91
 480 91
 490 91
 
+CMPLIB2010/harwellboeing/plat362.mtx.rnd:
+solucao inicial nova: 308
+50 308
