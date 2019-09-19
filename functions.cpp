@@ -452,8 +452,8 @@ std::pair<int, std::vector<int> > local_search_best_improvement(std::vector<std:
 **/
 std::pair<int, std::vector<int> > local_search_first_improvement(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, int best_value)
 {
-    std::vector<int> best_solution(initial_solution); 
-    std::vector<int> aux_solution(initial_solution); 
+    std::vector<int> best_solution(initial_solution);
+    std::vector<int> aux_solution(initial_solution);
     int init;
     int end;
     int current_value = best_value;
@@ -553,6 +553,12 @@ std::pair<int, std::vector<int> > local_search(std::vector<std::vector<int> >& a
             is_changing = true;
         }
     }while(is_changing);
+
+    for(int i = 0; i < best_solution.size(); i++)
+    {
+        std::cout << best_solution[i] << " ";
+    }
+    std::cout << std::endl << "fim ls \n";
 
     return make_pair(best_value, best_solution);
 }
@@ -792,34 +798,6 @@ int best_simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vect
 }
 
 /**
- * Busca local que retorna a solução ao invés de somente seu valor, utilizada em outras funções como ILS e GRASP
-**/ 
-std::vector<int> local_search_aux(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca)
-{
-    bool is_changing;
-    std::vector<int> best_solution = initial_solution; 
-    int best_value = evaluate(adj_list, initial_solution);
-    do
-    {
-        is_changing = false;
-        int current_value;
-
-        std::pair<int, std::vector<int> > neighbour;
-        neighbour = local_search_first_improvement(adj_list, best_solution, best_value);
-        //neighbour = local_search_best_improvement(adj_list, neighbours, best_value);
-        
-        if(neighbour.first != -1 && neighbour.first < best_value)
-        {
-            best_value = neighbour.first;
-            best_solution = neighbour.second;
-            is_changing = true;
-        }
-    }while(is_changing);
-    std::cout << best_value << " " << evaluate(adj_list, best_solution);
-    return best_solution;
-}
-
-/**
  * Pertubação usada no ILS
 **/ 
 std::vector<int> pertubation(std::vector<int> solution, int level)
@@ -842,11 +820,14 @@ std::vector<int> pertubation(std::vector<int> solution, int level)
 **/ 
 int iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca, int imax)
 {
-    std::vector<int> best_solution = local_search_aux(adj_list, initial_solution, vizinhanca); 
+     
+    std::pair<int, std::vector<int> > result = local_search(adj_list, initial_solution, vizinhanca); 
+    std::pair<int, std::vector<int> > iter_result;
+
+    std::vector<int> best_solution = result.second;
     std::vector<int> pert_solution, iter_solution;
     
-    int best_value = evaluate(adj_list, best_solution); 
-    std::cout << "pbest " << best_value;
+    int best_value = result.first; 
     int iter_value;
 
     int iter = 0;
@@ -858,14 +839,14 @@ int iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<
     {
         iter++;
         pert_solution = pertubation(best_solution, level);
-        iter_solution = local_search_aux(adj_list, pert_solution, vizinhanca);
-        iter_value = evaluate(adj_list, iter_solution);
+        iter_result = local_search(adj_list, pert_solution, vizinhanca);
+        iter_solution = iter_result.second;
+        iter_value = iter_result.first;
 
         if(iter_value < best_value)
         {
             best_solution = iter_solution;
             best_value = iter_value;
-            std::cout << "ils best " << best_value << std::endl;
             melhor_iter = iter;
             level = 1;
         }
@@ -874,6 +855,12 @@ int iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<
             level++;
         }
     }
+    std::cout << std::endl << "ils \n";
+    for(int i = 0; i < best_solution.size(); i++)
+    {
+        std::cout << best_solution[i] << " ";
+    }
+    std::cout << std::endl;
     return best_value;   
 }
 
@@ -882,13 +869,17 @@ int iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<
 **/ 
 int smart_iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca, int imax, int vmax)
 {
-    std::vector<int> best_solution = local_search_aux(adj_list, initial_solution, vizinhanca); 
+    std::pair<int, std::vector<int> > result = local_search(adj_list, initial_solution, vizinhanca); 
+    std::pair<int, std::vector<int> > iter_result;
+
+    std::vector<int> best_solution = result.second;
     std::vector<int> pert_solution, iter_solution;
     
-    int best_value = evaluate(adj_list, best_solution);
+    int best_value = result.first; 
     int iter_value;
-    
+
     int iter = 0;
+    int itermax = 0;
     int melhor_iter = iter;
     int level = 1, nvezes = 1;
     
@@ -896,8 +887,9 @@ int smart_iterated_local_search(std::vector<std::vector<int> >& adj_list, std::v
     {
         iter++;
         pert_solution = pertubation(best_solution, level);
-        iter_solution = local_search_aux(adj_list, pert_solution, vizinhanca);
-        iter_value = evaluate(adj_list, iter_solution);
+        iter_result = local_search(adj_list, pert_solution, vizinhanca);
+        iter_solution = iter_result.second;
+        iter_value = iter_result.first;
 
         if(iter_value < best_value)
         {

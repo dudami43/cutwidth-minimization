@@ -20,7 +20,6 @@ std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list, bool r
 
 int simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, double temp_init = 120, double temp_min = 1, double cooling = 0.99, int itermax = 100, bool move_and_swap = true);
 
-std::vector<int> local_search_aux(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca);
 std::vector<int> pertubation(std::vector<int> solution, int level);
 int iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca, int imax = 100);
 int smart_iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca, int imax = 100, int vmax = 10);

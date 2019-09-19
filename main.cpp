@@ -18,6 +18,15 @@ int main(int argc, char *argv[])
     std::string filename;
     file.open(file_name);
 
+    int improvements[15][10];
+    for(int a = 0; a < 15; a++)
+    {
+        for(int b = 0; b < 10; b++)
+        {
+            improvements[a][b] = 0;
+        }   
+    }
+
     delete file_name;
     if (file.is_open())
     {
@@ -47,27 +56,25 @@ int main(int argc, char *argv[])
                 std::pair<int, std::vector<int> > init_value_list = max_cutwidth_list(adj_list, initial_solution);
                 std::pair<int, std::vector<int> > past_init_value_list = max_cutwidth_list(adj_list, past_initial_solution);
                 
-                /* bool result = testa_reevaluate(adj_list, initial_solution);
-                if(result){
-                    std::cout << "OK!" << std::endl;
-                }else{
-                    std::cout << "Nao OK :(" << std::endl; 
-                    break;
-                } */
-
-                //std::cout << "solucao inicial antiga: " << past_init_value << std::endl;
-                std::cout << "solucao inicial nova: " << init_value << " -- ";
-                //std::cout << "best improvement \n";
-                //std::cout << "vizinhanca adjacente: " << local_search(adj_list, initial_solution, "adj", "best") << "\n";
-                //std::cout << "vizinhanca nao adjacente: " << local_search(adj_list, initial_solution, "noAdj", "best") << std::endl;
-                //std::cout << "move and swap: " << local_search(adj_list, initial_solution, "ms", "best") << std::endl;
-                //std::cout << "simulated annealing\n";
-                //std::cout << "vizinhanca nao adjacente: " << simulated_annealing(adj_list, initial_solution, 10, 1, 0.95, false) << std::endl;
-                //std::cout << "move and swap: " << simulated_annealing(adj_list, initial_solution, 5, 1, 0.7, true) << std::endl;
-                //std::cout << "noAdj: " << iterated_local_search(adj_list, initial_solution, "noAdj") << std::endl;
-                //std::cout << "ms: " << iterated_local_search(adj_list, initial_solution, "ms") << std::endl;
-                std::cout << "GRASP: " << grasp(adj_list, "noAdj", "best", 60, 15) << std::endl;
-                //std::cout << std::endl;
+                std::cout << "solucao inicial nova: " << init_value << "\n";
+                /*teste simulated annealing
+                int i = 0;
+                
+                for(int itermax = 110; itermax <= 130; itermax+=10)
+                {
+                    int j = 0;
+                    for(double cooling = 0.9; cooling > 0.1; cooling-=0.1)
+                    {
+                        int new_val = simulated_annealing(adj_list, initial_solution, temperatura, 1, cooling, true);
+                        std::cout <<  temperatura << " " << cooling << " " << new_val  << std::endl;
+                        improvements[i][j] += init_value - new_val;
+                        j++;
+                    }
+                    i++;
+                }*/
+                //std::cout << local_search(adj_list, initial_solution, "ms", "best").first;
+                std::cout << iterated_local_search( adj_list, initial_solution, "ms", 100);
+                std::cout << std::endl;
             }
             catch (char const *param)
             {
@@ -92,6 +99,19 @@ int main(int argc, char *argv[])
     {
         throw "Unable to open the file";
     }
-    
+
+    int i = 0;
+    /*for(int itermax = 110; itermax <= 130; itermax+=10)
+    {
+        int j = 0;
+        for(double cooling = 0.9; cooling > 0.1; cooling-=0.1)
+        {
+            std::cout <<  temperatura << " " << cooling << " " << improvements[i][j]  << std::endl;
+            j++;
+        }
+        i++;
+    }
+    std::cout << std::endl;*/
+   
     return 0;
 }
