@@ -1,0 +1,188 @@
+CMPLIB2010/small/p17_16_24:
+solucao inicial nova: 9 -- GRASP: 7
+Time taken by program is : 0.110252 sec
+
+CMPLIB2010/small/p18_16_21:
+solucao inicial nova: 7 -- GRASP: 5
+Time taken by program is : 0.093723000 sec
+
+CMPLIB2010/small/p19_16_19:
+solucao inicial nova: 7 -- GRASP: 5
+Time taken by program is : 0.078106000 sec
+
+CMPLIB2010/small/p20_16_18:
+solucao inicial nova: 7 -- GRASP: 4
+Time taken by program is : 0.093728000 sec
+
+CMPLIB2010/small/p21_17_20:
+solucao inicial nova: 8 -- GRASP: 4
+Time taken by program is : 0.110156000 sec
+
+CMPLIB2010/small/p23_17_23:
+solucao inicial nova: 8 -- GRASP: 5
+Time taken by program is : 0.143788000 sec
+
+CMPLIB2010/small/p24_17_29:
+solucao inicial nova: 10 -- GRASP: 8
+Time taken by program is : 0.174564000 sec
+
+CMPLIB2010/small/p40_18_32:
+solucao inicial nova: 9 -- GRASP: 8
+Time taken by program is : 0.214969000 sec
+
+CMPLIB2010/small/p41_19_20:
+solucao inicial nova: 4 -- GRASP: 3
+Time taken by program is : 0.143614000 sec
+
+CMPLIB2010/small/p42_19_24:
+solucao inicial nova: 8 -- GRASP: 5
+Time taken by program is : 0.162565000 sec
+
+CMPLIB2010/small/p60_20_22:
+solucao inicial nova: 6 -- GRASP: 4
+Time taken by program is : 0.172545000 sec
+
+CMPLIB2010/small/p61_21_22:
+solucao inicial nova: 6 -- GRASP: 4
+Time taken by program is : 0.188490000 sec
+
+CMPLIB2010/small/p62_21_30:
+solucao inicial nova: 12 -- GRASP: 7
+Time taken by program is : 0.277261000 sec
+
+CMPLIB2010/small/p63_21_42:
+solucao inicial nova: 16 -- GRASP: 12
+Time taken by program is : 0.421870000 sec
+
+CMPLIB2010/small/p64_21_22:
+solucao inicial nova: 9 -- GRASP: 4
+Time taken by program is : 0.193646000 sec
+
+CMPLIB2010/small/p70_21_25:
+solucao inicial nova: 7 -- GRASP: 5
+Time taken by program is : 0.162757000 sec
+
+CMPLIB2010/small/p71_22_29:
+solucao inicial nova: 6 -- GRASP: 6
+Time taken by program is : 0.294757000 sec
+
+CMPLIB2010/small/p72_22_49:
+solucao inicial nova: 19 -- GRASP: 15
+Time taken by program is : 0.489464000 sec
+
+CMPLIB2010/small/p73_22_29:
+solucao inicial nova: 10 -- GRASP: 5
+Time taken by program is : 0.266292000 sec
+
+CMPLIB2010/small/p74_22_30:
+solucao inicial nova: 10 -- GRASP: 6
+Time taken by program is : 0.300193000 sec
+
+CMPLIB2010/small/p80_22_30:
+solucao inicial nova: 8 -- GRASP: 6
+Time taken by program is : 0.270025000 sec
+
+CMPLIB2010/small/p81_23_46:
+solucao inicial nova: 19 -- GRASP: 13
+Time taken by program is : 0.551307000 sec
+
+CMPLIB2010/small/p82_23_24:
+solucao inicial nova: 6 -- GRASP: 5
+Time taken by program is : 0.239135000 sec
+
+CMPLIB2010/small/p99_24_27:
+solucao inicial nova: 7 -- GRASP: 5
+Time taken by program is : 0.295467000 sec
+
+CMPLIB2010/small/p100_24_34:
+solucao inicial nova: 14 -- GRASP: 7
+Time taken by program is : 0.415518000 sec
+
+CMPLIB2010/harwellboeing/494_bus.mtx.rnd:
+solucao inicial nova: 39 -- GRASP: 32
+Time taken by program is : 96.346238000 sec
+
+CMPLIB2010/harwellboeing/662_bus.mtx.rnd:
+solucao inicial nova: 67 -- GRASP: 48
+Time taken by program is : 245.064640000 sec
+
+CMPLIB2010/harwellboeing/arc130.mtx.rnd:
+solucao inicial nova: 325 -- GRASP: 210
+Time taken by program is : 187.163697000 sec
+
+CMPLIB2010/harwellboeing/ash292.mtx.rnd:
+solucao inicial nova: 178 -- GRASP: 72
+Time taken by program is : 213.380851000 sec
+
+CMPLIB2010/harwellboeing/bcspwr01.mtx.rnd:
+solucao inicial nova: 9 -- GRASP: 6
+Time taken by program is : 1.379227000 sec
+
+CMPLIB2010/harwellboeing/bcspwr05.mtx.rnd:
+solucao inicial nova: 40 -- GRASP: 33
+Time taken by program is : 95.400375000 sec
+
+CMPLIB2010/harwellboeing/bcsstk01.mtx.rnd:
+solucao inicial nova: 54 -- GRASP: 37
+Time taken by program is : 8.240422000 sec
+
+CMPLIB2010/harwellboeing/bcsstk02.mtx.rnd:
+solucao inicial nova: 1089 -- GRASP: 1089
+Time taken by program is : 35.981754000 sec
+
+CMPLIB2010/harwellboeing/bcsstk04.mtx.rnd:
+solucao inicial nova: 614 -- GRASP: 334
+Time taken by program is : 466.826063000 sec
+
+CMPLIB2010/harwellboeing/bcsstk20.mtx.rnd:
+solucao inicial nova: 130 -- GRASP: 67
+Time taken by program is : 633.621596000 sec
+
+CMPLIB2010/harwellboeing/bcsstk22.mtx.rnd:
+solucao inicial nova: 38 -- GRASP: 22
+Time taken by program is : 19.471154000 sec
+
+CMPLIB2010/harwellboeing/can__144.mtx.rnd:
+solucao inicial nova: 134 -- GRASP: 62
+Time taken by program is : 87.276901000 sec
+
+CMPLIB2010/harwellboeing/can__161.mtx.rnd:
+solucao inicial nova: 101 -- GRASP: 74
+Time taken by program is : 64.355166000 sec
+
+CMPLIB2010/harwellboeing/curtis54.mtx.rnd:
+solucao inicial nova: 27 -- GRASP: 20
+Time taken by program is : 6.143777000 sec
+
+CMPLIB2010/harwellboeing/lund_a.mtx.rnd:
+solucao inicial nova: 203 -- GRASP: 139
+Time taken by program is : 173.831815000 sec
+
+CMPLIB2010/harwellboeing/mcca.mtx.rnd:
+solucao inicial nova: 640 -- GRASP: 398
+Time taken by program is : 566.284482000 sec
+
+CMPLIB2010/harwellboeing/nnc261.mtx.rnd:
+solucao inicial nova: 139 -- GRASP: 80
+Time taken by program is : 181.436312000 sec
+
+CMPLIB2010/harwellboeing/nos5.mtx.rnd:
+solucao inicial nova: 386 -- GRASP: 309
+Time taken by program is : 1570.186925000 sec
+
+CMPLIB2010/harwellboeing/nos6.mtx.rnd:
+solucao inicial nova: 91 -- GRASP: 73
+Time taken by program is : 309.660481000 sec
+
+CMPLIB2010/harwellboeing/plat362.mtx.rnd:
+solucao inicial nova: 308 -- GRASP: 226
+Time taken by program is : 638.681416000 sec
+
+CMPLIB2010/harwellboeing/plskz362.mtx.rnd:
+solucao inicial nova: 96 -- GRASP: 50
+Time taken by program is : 132.094532000 sec
+
+CMPLIB2010/harwellboeing/shl__200.mtx.rnd:
+solucao inicial nova: 570 -- GRASP: 452
+Time taken by program is : 3650.202519000 sec
+

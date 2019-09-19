@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <chrono> 
 #include "functions.h"
 #include "parser.h"
 //g++ -std=c++11 main.cpp parser.cpp functions.cpp
@@ -22,6 +23,10 @@ int main(int argc, char *argv[])
     {
         while (getline(file, filename))
         {
+            //https://www.geeksforgeeks.org/measure-execution-time-with-high-precision-in-c-c/
+            // TIME START
+            auto start = std::chrono::high_resolution_clock::now(); 
+
             std::vector<std::vector<int>> adj_matrix, adj_list;
             std::cout << filename << ":\n";
             try
@@ -30,6 +35,7 @@ int main(int argc, char *argv[])
                 adj_list = get_adj_list(adj_matrix);
 
                 std::vector<int> initial_solution = first_solution(adj_list);
+                //std::cout << "tamanho da lista de adjacencia: " << adj_list.size() << " tamanho da solucao inicial: " << initial_solution.size() << std::endl;
                 std::vector<int> past_initial_solution;
                 for(int i=0 ; i<adj_list.size(); i++){
                     past_initial_solution.push_back(i);
@@ -52,6 +58,16 @@ int main(int argc, char *argv[])
                 return 0;
             }
             
+            // TIME END
+            auto end = std::chrono::high_resolution_clock::now();
+            // Calculating total time taken by the program. 
+            double time_taken = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count(); 
+            time_taken *= 1e-9;
+            // PRINT TOTAL TIME
+            std::cout << "Time taken by program is : " << std::fixed  << time_taken << std::setprecision(9);
+            std::cout << " sec" << std::endl;
+            std::cout << std::endl;
+
         }
         file.close();
     }

@@ -581,10 +581,16 @@ std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list, bool r
     
     
     if(random){
-        // Embaralha a lista de indices e depois os ordena(com excessao dos dois ultimos)
+        /* // Embaralha a lista de indices e depois os ordena(com excessao dos dois ultimos)
         for(int i=0; i<5; i++)
             std::random_shuffle( index_sort.begin(), index_sort.end());
-        std::sort(index_sort.begin(), index_sort.end() - 2, [&](int i, int j) { return adj_list[i].size() < adj_list[j].size(); } );
+        std::sort(index_sort.begin(), index_sort.end() - 2, [&](int i, int j) { return adj_list[i].size() < adj_list[j].size(); } ); */
+
+        // Embaralha a lista de indices e depois os ordena(com excessao dos dois ultimos)
+        std::sort(index_sort.begin(), index_sort.end(), [&](int i, int j) { return adj_list[i].size() < adj_list[j].size(); } );
+        for(int i=0; i<5; i++){
+            std::random_shuffle(index_sort.begin()+(3*index_sort.size()/4), index_sort.end()); //Embaralha os 25% vertices com mais arestas
+        }
     }else{
         // Ordena a lista de indices com base no numero de adjacencias
         // em cada vertice da lista de adjacencia
@@ -606,6 +612,11 @@ std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list, bool r
     // Remove os mesmos dos indices ordenados
     index_sort.pop_back();
     index_sort.pop_back();
+
+    // Caso o metodo seja randomico, reordena a parte embaralhada que nao foi retirada
+    if(random){
+        std::sort(index_sort.begin()+(3*index_sort.size()/4), index_sort.end(), [&](int i, int j) { return adj_list[i].size() < adj_list[j].size(); } );
+    }
 
     // Enquanto ainda ha elemento no vector de indices
     int i = 0;
@@ -766,9 +777,9 @@ std::pair<int, std::vector<int> > simulated_annealing(std::vector<std::vector<in
     return make_pair(best_value, best_solution);
 }
 
-/*
-* Executar o simulated annealing várias vezes para encontrar a melhor solução
-*/
+/**
+ * Executar o simulated annealing várias vezes para encontrar a melhor solução
+**/
 int best_simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution)
 {
     int best_value = evaluate(adj_list, initial_solution); 
