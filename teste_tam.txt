@@ -1,0 +1,134 @@
+CMPLIB2010/small/p17_16_24:
+tamanho da lista de adjacencia: 16 tamanho da solucao inicial: 16
+CMPLIB2010/small/p18_16_21:
+tamanho da lista de adjacencia: 16 tamanho da solucao inicial: 16
+CMPLIB2010/small/p19_16_19:
+tamanho da lista de adjacencia: 16 tamanho da solucao inicial: 16
+CMPLIB2010/small/p20_16_18:
+tamanho da lista de adjacencia: 16 tamanho da solucao inicial: 16
+CMPLIB2010/small/p21_17_20:
+tamanho da lista de adjacencia: 17 tamanho da solucao inicial: 17
+CMPLIB2010/small/p23_17_23:
+tamanho da lista de adjacencia: 17 tamanho da solucao inicial: 17
+CMPLIB2010/small/p24_17_29:
+tamanho da lista de adjacencia: 17 tamanho da solucao inicial: 17
+CMPLIB2010/small/p40_18_32:
+tamanho da lista de adjacencia: 18 tamanho da solucao inicial: 18
+CMPLIB2010/small/p41_19_20:
+tamanho da lista de adjacencia: 19 tamanho da solucao inicial: 19
+CMPLIB2010/small/p42_19_24:
+tamanho da lista de adjacencia: 19 tamanho da solucao inicial: 19
+CMPLIB2010/small/p60_20_22:
+tamanho da lista de adjacencia: 20 tamanho da solucao inicial: 20
+CMPLIB2010/small/p61_21_22:
+tamanho da lista de adjacencia: 21 tamanho da solucao inicial: 21
+CMPLIB2010/small/p62_21_30:
+tamanho da lista de adjacencia: 21 tamanho da solucao inicial: 21
+CMPLIB2010/small/p63_21_42:
+tamanho da lista de adjacencia: 21 tamanho da solucao inicial: 21
+CMPLIB2010/small/p64_21_22:
+tamanho da lista de adjacencia: 21 tamanho da solucao inicial: 21
+CMPLIB2010/small/p70_21_25:
+tamanho da lista de adjacencia: 21 tamanho da solucao inicial: 21
+CMPLIB2010/small/p71_22_29:
+tamanho da lista de adjacencia: 22 tamanho da solucao inicial: 22
+CMPLIB2010/small/p72_22_49:
+tamanho da lista de adjacencia: 22 tamanho da solucao inicial: 22
+CMPLIB2010/small/p73_22_29:
+tamanho da lista de adjacencia: 22 tamanho da solucao inicial: 22
+CMPLIB2010/small/p74_22_30:
+tamanho da lista de adjacencia: 22 tamanho da solucao inicial: 22
+CMPLIB2010/small/p80_22_30:
+tamanho da lista de adjacencia: 22 tamanho da solucao inicial: 22
+CMPLIB2010/small/p81_23_46:
+tamanho da lista de adjacencia: 23 tamanho da solucao inicial: 23
+CMPLIB2010/small/p82_23_24:
+tamanho da lista de adjacencia: 23 tamanho da solucao inicial: 23
+CMPLIB2010/small/p99_24_27:
+tamanho da lista de adjacencia: 24 tamanho da solucao inicial: 24
+CMPLIB2010/small/p100_24_34:
+tamanho da lista de adjacencia: 24 tamanho da solucao inicial: 24
+CMPLIB2010/harwellboeing/494_bus.mtx.rnd:
+tamanho da lista de adjacencia: 494 tamanho da solucao inicial: 494
+CMPLIB2010/harwellboeing/662_bus.mtx.rnd:
+tamanho da lista de adjacencia: 662 tamanho da solucao inicial: 662
+CMPLIB2010/harwellboeing/arc130.mtx.rnd:
+tamanho da lista de adjacencia: 130 tamanho da solucao inicial: 130
+CMPLIB2010/harwellboeing/ash292.mtx.rnd:
+tamanho da lista de adjacencia: 292 tamanho da solucao inicial: 292
+CMPLIB2010/harwellboeing/bcspwr01.mtx.rnd:
+tamanho da lista de adjacencia: 39 tamanho da solucao inicial: 39
+CMPLIB2010/harwellboeing/bcspwr05.mtx.rnd:
+tamanho da lista de adjacencia: 443 tamanho da solucao inicial: 443
+CMPLIB2010/harwellboeing/bcsstk01.mtx.rnd:
+tamanho da lista de adjacencia: 48 tamanho da solucao inicial: 48
+CMPLIB2010/harwellboeing/bcsstk02.mtx.rnd:
+tamanho da lista de adjacencia: 66 tamanho da solucao inicial: 66
+CMPLIB2010/harwellboeing/bcsstk04.mtx.rnd:
+tamanho da lista de adjacencia: 132 tamanho da solucao inicial: 132
+CMPLIB2010/harwellboeing/bcsstk20.mtx.rnd:
+tamanho da lista de adjacencia: 467 tamanho da solucao inicial: 467
+CMPLIB2010/harwellboeing/bcsstk22.mtx.rnd:
+tamanho da lista de adjacencia: 110 tamanho da solucao inicial: 110
+CMPLIB2010/harwellboeing/can__144.mtx.rnd:
+tamanho da lista de adjacencia: 144 tamanho da solucao inicial: 144
+CMPLIB2010/harwellboeing/can__161.mtx.rnd:
+tamanho da lista de adjacencia: 161 tamanho da solucao inicial: 161
+CMPLIB2010/harwellboeing/curtis54.mtx.rnd:
+tamanho da lista de adjacencia: 54 tamanho da solucao inicial: 54
+CMPLIB2010/harwellboeing/lund_a.mtx.rnd:
+tamanho da lista de adjacencia: 147 tamanho da solucao inicial: 147
+CMPLIB2010/harwellboeing/mcca.mtx.rnd:
+tamanho da lista de adjacencia: 168 tamanho da solucao inicial: 168
+CMPLIB2010/harwellboeing/nnc261.mtx.rnd:
+tamanho da lista de adjacencia: 261 tamanho da solucao inicial: 261
+CMPLIB2010/harwellboeing/nos5.mtx.rnd:
+tamanho da lista de adjacencia: 468 tamanho da solucao inicial: 468
+CMPLIB2010/harwellboeing/nos6.mtx.rnd:
+tamanho da lista de adjacencia: 675 tamanho da solucao inicial: 675
+CMPLIB2010/harwellboeing/plat362.mtx.rnd:
+tamanho da lista de adjacencia: 362 tamanho da solucao inicial: 362
+CMPLIB2010/harwellboeing/plskz362.mtx.rnd:
+tamanho da lista de adjacencia: 362 tamanho da solucao inicial: 362
+CMPLIB2010/harwellboeing/shl__200.mtx.rnd:
+tamanho da lista de adjacencia: 663 tamanho da solucao inicial: 663
+CMPLIB2010/harwellboeing/shl__400.mtx.rnd:
+tamanho da lista de adjacencia: 663 tamanho da solucao inicial: 663
+CMPLIB2010/harwellboeing/str__200.mtx.rnd:
+tamanho da lista de adjacencia: 363 tamanho da solucao inicial: 363
+CMPLIB2010/harwellboeing/str__600.mtx.rnd:
+tamanho da lista de adjacencia: 363 tamanho da solucao inicial: 363
+CMPLIB2010/harwellboeing/will199.mtx.rnd:
+tamanho da lista de adjacencia: 199 tamanho da solucao inicial: 199
+CMPLIB2010/harwellboeing/will57.mtx.rnd:
+tamanho da lista de adjacencia: 57 tamanho da solucao inicial: 57
+CMPLIB2010/grids/Grid12x3:
+tamanho da lista de adjacencia: 36 tamanho da solucao inicial: 36
+CMPLIB2010/grids/Grid12x6:
+tamanho da lista de adjacencia: 72 tamanho da solucao inicial: 72
+CMPLIB2010/grids/Grid12x9:
+tamanho da lista de adjacencia: 108 tamanho da solucao inicial: 108
+CMPLIB2010/grids/Grid15x12:
+tamanho da lista de adjacencia: 180 tamanho da solucao inicial: 180
+CMPLIB2010/grids/Grid15x15:
+tamanho da lista de adjacencia: 225 tamanho da solucao inicial: 225
+CMPLIB2010/grids/Grid15x18:
+tamanho da lista de adjacencia: 270 tamanho da solucao inicial: 270
+CMPLIB2010/grids/Grid18x21:
+tamanho da lista de adjacencia: 378 tamanho da solucao inicial: 378
+CMPLIB2010/grids/Grid21x24:
+tamanho da lista de adjacencia: 504 tamanho da solucao inicial: 504
+CMPLIB2010/grids/Grid24x27:
+tamanho da lista de adjacencia: 648 tamanho da solucao inicial: 648
+CMPLIB2010/grids/Grid27x24:
+tamanho da lista de adjacencia: 648 tamanho da solucao inicial: 648
+CMPLIB2010/grids/Grid27x27:
+tamanho da lista de adjacencia: 729 tamanho da solucao inicial: 729
+CMPLIB2010/grids/Grid3x3:
+tamanho da lista de adjacencia: 9 tamanho da solucao inicial: 9
+CMPLIB2010/grids/Grid6x6:
+tamanho da lista de adjacencia: 36 tamanho da solucao inicial: 36
+CMPLIB2010/grids/Grid6x9:
+tamanho da lista de adjacencia: 54 tamanho da solucao inicial: 54
+CMPLIB2010/grids/Grid9x18:
+tamanho da lista de adjacencia: 162 tamanho da solucao inicial: 162

@@ -452,7 +452,8 @@ std::pair<int, std::vector<int> > local_search_best_improvement(std::vector<std:
 **/
 std::pair<int, std::vector<int> > local_search_first_improvement(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, int best_value)
 {
-    std::vector<int> best_solution = initial_solution; 
+    std::vector<int> best_solution(initial_solution); 
+    std::vector<int> aux_solution(initial_solution); 
     int init;
     int end;
     int current_value = best_value;
@@ -461,17 +462,17 @@ std::pair<int, std::vector<int> > local_search_first_improvement(std::vector<std
     int i = 0;
     while(!improved && i < iterations)
     {
-        init = abs(rand() % initial_solution.size());
-        end = abs(rand() % initial_solution.size());
+        init = abs(rand() % aux_solution.size());
+        end = abs(rand() % aux_solution.size());
 
-        int aux_swap = initial_solution[init];
-        initial_solution[init] = initial_solution[end];
-        initial_solution[end] = aux_swap;
+        int aux_swap = aux_solution[init];
+        aux_solution[init] = aux_solution[end];
+        aux_solution[end] = aux_swap;
 
-        current_value = evaluate(adj_list, initial_solution);
+        current_value = evaluate(adj_list, aux_solution);
         if(current_value < best_value)
         {
-            best_solution = initial_solution;
+            best_solution = aux_solution;
             best_value = current_value;
             improved = true;
         }
@@ -574,10 +575,16 @@ std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list, bool r
     
     
     if(random){
-        // Embaralha a lista de indices e depois os ordena(com excessao dos dois ultimos)
+        /* // Embaralha a lista de indices e depois os ordena(com excessao dos dois ultimos)
         for(int i=0; i<5; i++)
             std::random_shuffle( index_sort.begin(), index_sort.end());
-        std::sort(index_sort.begin(), index_sort.end() - 2, [&](int i, int j) { return adj_list[i].size() < adj_list[j].size(); } );
+        std::sort(index_sort.begin(), index_sort.end() - 2, [&](int i, int j) { return adj_list[i].size() < adj_list[j].size(); } ); */
+
+        // Embaralha a lista de indices e depois os ordena(com excessao dos dois ultimos)
+        std::sort(index_sort.begin(), index_sort.end(), [&](int i, int j) { return adj_list[i].size() < adj_list[j].size(); } );
+        for(int i=0; i<5; i++){
+            std::random_shuffle(index_sort.begin()+(3*index_sort.size()/4), index_sort.end()); //Embaralha os 25% vertices com mais arestas
+        }
     }else{
         // Ordena a lista de indices com base no numero de adjacencias
         // em cada vertice da lista de adjacencia
@@ -599,6 +606,11 @@ std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list, bool r
     // Remove os mesmos dos indices ordenados
     index_sort.pop_back();
     index_sort.pop_back();
+
+    // Caso o metodo seja randomico, reordena a parte embaralhada que nao foi retirada
+    if(random){
+        std::sort(index_sort.begin()+(3*index_sort.size()/4), index_sort.end(), [&](int i, int j) { return adj_list[i].size() < adj_list[j].size(); } );
+    }
 
     // Enquanto ainda ha elemento no vector de indices
     int i = 0;
@@ -759,9 +771,9 @@ int simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<in
     return best_value;
 }
 
-/*
-* Executar o simulated annealing várias vezes para encontrar a melhor solução
-*/
+/**
+ * Executar o simulated annealing várias vezes para encontrar a melhor solução
+**/
 int best_simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution)
 {
     int best_value = evaluate(adj_list, initial_solution); 
