@@ -82,3 +82,105 @@ solucao inicial nova: 67
 CMPLIB2010/harwellboeing/arc130.mtx.rnd:
 solucao inicial nova: 325
 218
+CMPLIB2010/harwellboeing/ash292.mtx.rnd:
+solucao inicial nova: 178
+177
+CMPLIB2010/harwellboeing/bcspwr01.mtx.rnd:
+solucao inicial nova: 9
+9
+CMPLIB2010/harwellboeing/bcspwr05.mtx.rnd:
+solucao inicial nova: 40
+40
+CMPLIB2010/harwellboeing/bcsstk01.mtx.rnd:
+solucao inicial nova: 54
+45
+CMPLIB2010/harwellboeing/bcsstk02.mtx.rnd:
+solucao inicial nova: 1089
+1089
+CMPLIB2010/harwellboeing/bcsstk04.mtx.rnd:
+solucao inicial nova: 614
+346
+CMPLIB2010/harwellboeing/bcsstk20.mtx.rnd:
+solucao inicial nova: 130
+125
+CMPLIB2010/harwellboeing/bcsstk22.mtx.rnd:
+solucao inicial nova: 38
+37
+CMPLIB2010/harwellboeing/can__144.mtx.rnd:
+solucao inicial nova: 134
+112
+CMPLIB2010/harwellboeing/can__161.mtx.rnd:
+solucao inicial nova: 101
+99
+CMPLIB2010/harwellboeing/curtis54.mtx.rnd:
+solucao inicial nova: 27
+27
+CMPLIB2010/harwellboeing/lund_a.mtx.rnd:
+solucao inicial nova: 203
+179
+CMPLIB2010/harwellboeing/mcca.mtx.rnd:
+solucao inicial nova: 640
+412
+CMPLIB2010/harwellboeing/nnc261.mtx.rnd:
+solucao inicial nova: 139
+137
+CMPLIB2010/harwellboeing/nos5.mtx.rnd:
+solucao inicial nova: 386
+380
+CMPLIB2010/harwellboeing/nos6.mtx.rnd:
+solucao inicial nova: 91
+91
+CMPLIB2010/harwellboeing/plat362.mtx.rnd:
+solucao inicial nova: 308
+308
+CMPLIB2010/harwellboeing/plskz362.mtx.rnd:
+solucao inicial nova: 96
+96
+CMPLIB2010/harwellboeing/shl__200.mtx.rnd:
+solucao inicial nova: 570
+570
+CMPLIB2010/harwellboeing/shl__400.mtx.rnd:
+solucao inicial nova: 555
+553
+CMPLIB2010/harwellboeing/str__200.mtx.rnd:
+solucao inicial nova: 823
+658
+CMPLIB2010/harwellboeing/str__600.mtx.rnd:
+solucao inicial nova: 780
+731
+CMPLIB2010/harwellboeing/will199.mtx.rnd:
+solucao inicial nova: 199
+199
+CMPLIB2010/harwellboeing/will57.mtx.rnd:
+solucao inicial nova: 27
+25
+CMPLIB2010/grids/Grid12x3:
+solucao inicial nova: 14
+12
+CMPLIB2010/grids/Grid12x6:
+solucao inicial nova: 29
+25
+CMPLIB2010/grids/Grid12x9:
+solucao inicial nova: 29
+27
+CMPLIB2010/grids/Grid15x12:
+solucao inicial nova: 46
+46
+CMPLIB2010/grids/Grid15x15:
+solucao inicial nova: 65
+65
+CMPLIB2010/grids/Grid15x18:
+solucao inicial nova: 57
+57
+CMPLIB2010/grids/Grid18x21:
+solucao inicial nova: 60
+60
+CMPLIB2010/grids/Grid21x24:
+solucao inicial nova: 80
+80
+CMPLIB2010/grids/Grid24x27:
+solucao inicial nova: 106
+106
+CMPLIB2010/grids/Grid27x24:
+solucao inicial nova: 109
+109

@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
                 
                 std::cout << "solucao inicial nova: " << init_value << "\n";
                 //std::cout << best_simulated_annealing(adj_list, initial_solution);
-                std::cout << iterated_local_search(adj_list, initial_solution, "ms", 100);
+                //std::cout << iterated_local_search(adj_list, initial_solution, "ms", 100);
                 std::cout << std::endl;
             }
             catch (char const *param)
