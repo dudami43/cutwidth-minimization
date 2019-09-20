@@ -554,11 +554,11 @@ std::pair<int, std::vector<int> > local_search(std::vector<std::vector<int> >& a
         }
     }while(is_changing);
 
-    for(int i = 0; i < best_solution.size(); i++)
+    /* for(int i = 0; i < best_solution.size(); i++)
     {
         std::cout << best_solution[i] << " ";
     }
-    std::cout << std::endl << "fim ls \n";
+    std::cout << std::endl << "fim ls \n"; */
 
     return make_pair(best_value, best_solution);
 }

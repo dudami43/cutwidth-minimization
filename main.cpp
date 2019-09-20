@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
                 std::pair<int, std::vector<int> > init_value_list = max_cutwidth_list(adj_list, initial_solution);
                 std::pair<int, std::vector<int> > past_init_value_list = max_cutwidth_list(adj_list, past_initial_solution);
                 
-                std::cout << "solucao inicial nova: " << init_value << "\n";
+                std::cout << "solucao inicial nova: " << init_value << " --- ";
                 /*teste simulated annealing
                 int i = 0;
                 
@@ -73,8 +73,9 @@ int main(int argc, char *argv[])
                     i++;
                 }*/
                 //std::cout << local_search(adj_list, initial_solution, "ms", "best").first;
-                std::cout << iterated_local_search( adj_list, initial_solution, "ms", 100);
-                std::cout << std::endl;
+                //std::cout << iterated_local_search( adj_list, initial_solution, "ms", 100);
+                //std::cout << std::endl;
+                std::cout << "GRASP: " << grasp(adj_list, "noAdj", "best", 50, 10) << std::endl;
             }
             catch (char const *param)
             {
