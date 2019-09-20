@@ -695,9 +695,9 @@ std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list, bool r
 /**
  * Simulated annealing padrão: parâmetros são passados na chamada
  * valores default:
- * temp_init = 120, temp_min = 1, cooling = 0.99, itermax = 
+ * temp_init = 120, temp_min = 1, cooling = 0.99, itermax = 120
  */
-int simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, double temp_init, double temp_min, double cooling, int itermax, bool move_and_swap)
+std::pair<int, std::vector<int> > simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, double temp_init, double temp_min, double cooling, int itermax, bool move_and_swap)
 {
     std::vector<int> current_solution = initial_solution; 
     std::vector<int> best_solution = initial_solution; 
@@ -774,7 +774,7 @@ int simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<in
         temp = temp * cooling;
         iterations_without_improve = 0;
     }
-    return best_value;
+    return make_pair(best_value, best_solution);
 }
 
 /**
@@ -787,7 +787,7 @@ int best_simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vect
     int i = 0, imax = 15;
     while(i < imax)
     {
-        iter_value = simulated_annealing(adj_list, initial_solution);
+        iter_value = simulated_annealing(adj_list, initial_solution).first;
         if(iter_value < best_value)
         {
             best_value = iter_value;
@@ -821,7 +821,7 @@ std::vector<int> pertubation(std::vector<int> solution, int level)
 int iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca, int imax)
 {
      
-    std::pair<int, std::vector<int> > result = local_search(adj_list, initial_solution, vizinhanca); 
+    std::pair<int, std::vector<int> > result = simulated_annealing(adj_list, initial_solution); 
     std::pair<int, std::vector<int> > iter_result;
 
     std::vector<int> best_solution = result.second;
@@ -839,7 +839,8 @@ int iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<
     {
         iter++;
         pert_solution = pertubation(best_solution, level);
-        iter_result = local_search(adj_list, pert_solution, vizinhanca);
+        //iter_result = local_search(adj_list, pert_solution, vizinhanca);
+        iter_result = simulated_annealing(adj_list, pert_solution);
         iter_solution = iter_result.second;
         iter_value = iter_result.first;
 
@@ -855,12 +856,6 @@ int iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<
             level++;
         }
     }
-    std::cout << std::endl << "ils \n";
-    for(int i = 0; i < best_solution.size(); i++)
-    {
-        std::cout << best_solution[i] << " ";
-    }
-    std::cout << std::endl;
     return best_value;   
 }
 

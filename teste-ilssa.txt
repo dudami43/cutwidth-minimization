@@ -1,207 +1,102 @@
 CMPLIB2010/small/p17_16_24:
 solucao inicial nova: 9
-110 8
-120 8
-130 8
-
+7
 CMPLIB2010/small/p18_16_21:
 solucao inicial nova: 7
-110 5
-120 5
-130 6
-
+5
 CMPLIB2010/small/p19_16_19:
 solucao inicial nova: 7
-110 6
-120 5
-130 5
-
+4
 CMPLIB2010/small/p20_16_18:
 solucao inicial nova: 7
-110 4
-120 5
-130 5
-
+4
 CMPLIB2010/small/p21_17_20:
 solucao inicial nova: 8
-110 6
-120 5
-130 6
-
+5
 CMPLIB2010/small/p23_17_23:
 solucao inicial nova: 8
-110 7
-120 6
-130 6
-
+6
 CMPLIB2010/small/p24_17_29:
 solucao inicial nova: 10
-110 9
-120 9
-130 9
-
+8
 CMPLIB2010/small/p40_18_32:
 solucao inicial nova: 9
-110 9
-120 9
-130 8
-
+8
 CMPLIB2010/small/p41_19_20:
 solucao inicial nova: 4
-110 4
-120 4
-130 4
-
+4
 CMPLIB2010/small/p42_19_24:
 solucao inicial nova: 8
-110 7
-120 7
-130 7
-
+6
 CMPLIB2010/small/p60_20_22:
 solucao inicial nova: 6
-110 6
-120 6
-130 5
-
+5
 CMPLIB2010/small/p61_21_22:
 solucao inicial nova: 6
-110 6
-120 6
-130 6
-
+5
 CMPLIB2010/small/p62_21_30:
 solucao inicial nova: 12
-110 9
-120 9
-130 8
-
+8
 CMPLIB2010/small/p63_21_42:
 solucao inicial nova: 16
-110 14
-120 14
-130 14
-
+13
 CMPLIB2010/small/p64_21_22:
 solucao inicial nova: 9
-110 6
-120 6
-130 6
-
+5
 CMPLIB2010/small/p70_21_25:
 solucao inicial nova: 7
-110 7
-120 7
-130 7
-
+6
 CMPLIB2010/small/p71_22_29:
 solucao inicial nova: 6
-110 6
-120 6
-130 6
-
+6
 CMPLIB2010/small/p72_22_49:
 solucao inicial nova: 19
-110 16
-120 17
-130 17
-
+15
 CMPLIB2010/small/p73_22_29:
 solucao inicial nova: 10
-110 8
-120 8
-130 8
-
+7
 CMPLIB2010/small/p74_22_30:
 solucao inicial nova: 10
-110 9
-120 8
-130 8
-
+7
 CMPLIB2010/small/p80_22_30:
 solucao inicial nova: 8
-110 8
-120 8
-130 8
-
+8
 CMPLIB2010/small/p81_23_46:
 solucao inicial nova: 19
-110 15
-120 15
-130 15
-
+14
 CMPLIB2010/small/p82_23_24:
 solucao inicial nova: 6
-110 6
-120 6
-130 6
-
+5
 CMPLIB2010/small/p99_24_27:
 solucao inicial nova: 7
-110 7
-120 7
-130 7
-
+6
 CMPLIB2010/small/p100_24_34:
 solucao inicial nova: 14
-110 11
-120 10
-130 11
-
+9
 CMPLIB2010/harwellboeing/494_bus.mtx.rnd:
 solucao inicial nova: 39
-110 39
-120 39
-130 39
-
+39
 CMPLIB2010/harwellboeing/662_bus.mtx.rnd:
 solucao inicial nova: 67
-110 67
-120 67
-130 67
-
+67
 CMPLIB2010/harwellboeing/arc130.mtx.rnd:
 solucao inicial nova: 325
-110 228
-120 226
-130 230
-
+215
 CMPLIB2010/harwellboeing/ash292.mtx.rnd:
 solucao inicial nova: 178
-110 178
-120 178
-130 178
-
+178
 CMPLIB2010/harwellboeing/bcspwr01.mtx.rnd:
 solucao inicial nova: 9
-110 9
-120 9
-130 9
-
+9
 CMPLIB2010/harwellboeing/bcspwr05.mtx.rnd:
 solucao inicial nova: 40
-110 40
-120 40
-130 40
-
+40
 CMPLIB2010/harwellboeing/bcsstk01.mtx.rnd:
 solucao inicial nova: 54
-110 45
-120 47
-130 45
-
+43
 CMPLIB2010/harwellboeing/bcsstk02.mtx.rnd:
 solucao inicial nova: 1089
-110 1089
-120 1089
-130 1089
-
+1089
 CMPLIB2010/harwellboeing/bcsstk04.mtx.rnd:
 solucao inicial nova: 614
-110 367
-120 360
-130 359
-
-CMPLIB2010/harwellboeing/bcsstk20.mtx.rnd:
-solucao inicial nova: 130
-110 128
+340
