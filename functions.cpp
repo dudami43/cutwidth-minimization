@@ -132,119 +132,6 @@ std::pair<int, std::vector<int>> n_max_cutwidth_list(std::vector<std::vector<int
 }
 
 /**
- * Recalcula todos os cortes do grafo dado que ouve um MOVE ou um SWAP
-**/
-std::pair<int, std::vector<int>> reevaluate(std::vector<std::vector<int> >& adj_list, std::vector<int>& solution, std::vector<int>& evaluate, bool swap, int val_1, int val_2){
-    /*  
-        Caso o movimento seja de swap, val1 = vertice 1 e val2 = vertice2
-        Caso contratio, val1 = vertice 1 e val2 = nova localizacao do mesmo
-    */
-
-    // Decrementa 1 para cada corte que as arestas do vertice em
-    // questao intercepta
-    bool init_edge = false, end_edge = false;
-    for(auto x: adj_list[solution[val_1]]){
-        for(int i=0; i<solution.size(); i++){
-            if(solution[i] == x || solution[i] == solution[val_1]){
-                init_edge = true;
-                evaluate[i]--;
-                continue;
-            }
-            if(init_edge){
-                if(solution[i] == x || solution[i] == solution[val_1]){
-                    break;
-                }
-                evaluate[i]--;  
-            }
-        }
-    }
-
-    if(swap){
-        // Decrementa 1 para cada corte que as arestas do segundo vertice
-        // interceptam
-        bool init_edge = false, end_edge = false;
-        for(auto x: adj_list[solution[val_1]]){
-            for(int i=0; i<solution.size(); i++){
-                if(solution[i] == x || solution[i] == solution[val_1]){
-                    init_edge = true;
-                    evaluate[i]--;
-                    continue;
-                }
-                if(init_edge){
-                    if(solution[i] == x || solution[i] == solution[val_1]){
-                        break;
-                    }
-                    evaluate[i]--;  
-                }
-            }
-        }
-
-        // Troca os elementos de lugar
-        int value = solution[val_1];
-        solution[val_1] = solution[val_2];
-        solution[val_2] = solution[val_1];
-
-        // Incrementa 1 para cada corte que as arestas do primeiro vertice,
-        // na nova posicao, intercepta
-        init_edge = false, end_edge = false;
-        for(auto x: adj_list[solution[val_2]]){
-            for(int i=0; i<solution.size(); i++){
-                if(solution[i] == x || solution[i] == solution[val_2]){
-                    init_edge = true;
-                    evaluate[i]++;
-                    continue;
-                }
-                if(init_edge){
-                    if(solution[i] == x || solution[i] == solution[val_2]){
-                        break;
-                    }
-                    evaluate[i]++;  
-                }
-            }
-        }
-
-    }else{
-        // Troca o elemento para o novo lugar
-        int value = solution[val_1];
-        if(val_1 < val_2){
-            // Caso o elemento se movimente pra frente, entao insira-o
-            // na posicao desejada - 1
-            auto pos = find(solution.begin(), solution.end(), solution[val_1]);
-            solution.erase(pos);
-            solution.insert(solution.begin()+(val_2 - 1), value);
-        }else{
-            // Caso o elemento se movimente pra tras, entao insira-o
-            // na posicao desejada
-            auto pos = find(solution.begin(), solution.end(), solution[val_1]);
-            solution.erase(pos);
-            solution.insert(solution.begin()+val_2, value);
-        }
-    }
-
-    // Incrementa 1 para cada corte que as arestas do vertice,
-    // na nova posicao, intercepta
-    init_edge = false, end_edge = false;
-    for(auto x: adj_list[solution[val_2]]){
-        for(int i=0; i<solution.size(); i++){
-            if(solution[i] == x || solution[i] == solution[val_2]){
-                init_edge = true;
-                evaluate[i]++;
-                continue;
-            }
-            if(init_edge){
-                if(solution[i] == x || solution[i] == solution[val_2]){
-                    break;
-                }
-                evaluate[i]++;  
-            }
-        }
-    }
-
-    auto max_cut = std::max_element(evaluate.begin(), evaluate.end());
-    return make_pair(*max_cut, evaluate);
-}
-
-/**
  * Retorna todos os vizinhos de uma dada solucao
  * Vizinho: grafo onde dois vertices adjacentes da solucao inicial
  * estao com posicoes trocadas
@@ -778,26 +665,6 @@ std::pair<int, std::vector<int> > simulated_annealing(std::vector<std::vector<in
 }
 
 /**
- * Executar o simulated annealing várias vezes para encontrar a melhor solução
-**/
-int best_simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution)
-{
-    int best_value = evaluate(adj_list, initial_solution); 
-    int iter_value;
-    int i = 0, imax = 15;
-    while(i < imax)
-    {
-        iter_value = simulated_annealing(adj_list, initial_solution).first;
-        if(iter_value < best_value)
-        {
-            best_value = iter_value;
-        }
-        i++;
-    }
-    return best_value;   
-}
-
-/**
  * Pertubação usada no ILS
 **/ 
 std::vector<int> pertubation(std::vector<int> solution, int level)
@@ -1040,69 +907,97 @@ int grasp(std::vector<std::vector<int> >& adj_list, std::string neighbourhood, s
 }
 
 /**
- * Funcao que testa se a funcao de avaliacao esta correta 
+ * Executar uma heurística várias vezes para encontrar a melhor solução
 **/
-bool testa_evaluate(std::vector<std::vector<int> >& adj_matrix, std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution){
-    // Inicializa variaveis
-    int init, end;
-    std::pair<int,std::vector<int>> result_evaluate_init = max_cutwidth_list(adj_list, initial_solution);
+int best_solution(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string meta)
+{
+    int best_value = evaluate(adj_list, initial_solution); 
+    int iter_value;
+    int i = 0, imax = 10;
+    if(meta.compare("sa") == 0)
+    {
+        while(i < imax)
+        {
+            auto start = std::chrono::high_resolution_clock::now(); 
+            iter_value = simulated_annealing(adj_list, initial_solution).first;
+            auto end = std::chrono::high_resolution_clock::now();
 
-    // Adquire dois numeros aleatorios para representarem os vertices que trocarao de lugar
-    init = abs(rand() % initial_solution.size());
-    end = abs(rand() % initial_solution.size());
-    
-    // Gera swap aleatorio
-    std::vector<int> rand_solution(initial_solution);
-    int rand_solution_swap = rand_solution[init];
-    rand_solution[init] = rand_solution[end];
-    rand_solution[end] = rand_solution_swap;
+            // Calculating total time taken by the program. 
+            double time_taken = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count(); 
+            time_taken *= 1e-9;
 
-    // Avalia a solucao adquirida
-    int result_evaluate = max_cutwidth(adj_matrix, rand_solution);
-    std::pair<int,std::vector<int>> result_evaluate_list = max_cutwidth_list(adj_list, rand_solution);
+            std::cout << iter_value << "," << std::fixed  << time_taken << std::setprecision(9) << std::endl;
 
-    std::cout << std::endl;
-    std::cout << "Evaluate: " << result_evaluate<< std::endl;
-    std::cout << "Reevaluate: " << result_evaluate_list.first << std::endl;
+            if(iter_value < best_value)
+            {
+                best_value = iter_value;
+            }
+            i++;
+        }
+    }
+    else if(meta.compare("ils") == 0)
+    {
+        while(i < imax)
+        {
+            auto start = std::chrono::high_resolution_clock::now(); 
+            iter_value = iterated_local_search(adj_list, initial_solution);
+            auto end = std::chrono::high_resolution_clock::now();
 
-    if(result_evaluate == result_evaluate_list.first)
-        return true;
-    else return false;
-}
+            // Calculating total time taken by the program. 
+            double time_taken = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count(); 
+            time_taken *= 1e-9;
 
-/**
- * Funcao que testa se a funcao de reavaliacao esta correta 
-**/
-bool testa_reevaluate(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution){
-    // Inicializa variaveis
-    int init, end;
-    std::pair<int,std::vector<int>> result_evaluate_init = max_cutwidth_list(adj_list, initial_solution);
+            std::cout << iter_value << "," << std::fixed  << time_taken << std::setprecision(9) << std::endl;
+            
+            if(iter_value < best_value)
+            {
+                best_value = iter_value;
+            }
+            i++;
+        }
+    }    
+    else if(meta.compare("sils") == 0)
+    {
+        while(i < imax)
+        {
+            auto start = std::chrono::high_resolution_clock::now(); 
+            iter_value = smart_iterated_local_search(adj_list, initial_solution);
+            auto end = std::chrono::high_resolution_clock::now();
 
-    // Adquire dois numeros aleatorios para representarem os vertices que trocarao de lugar
-    init = abs(rand() % initial_solution.size());
-    end = abs(rand() % initial_solution.size());
-    
-    // Gera swap aleatorio
-    std::vector<int> rand_solution(initial_solution);
-    int rand_solution_swap = rand_solution[init];
-    rand_solution[init] = rand_solution[end];
-    rand_solution[end] = rand_solution_swap;
+            // Calculating total time taken by the program. 
+            double time_taken = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count(); 
+            time_taken *= 1e-9;
 
-    // Avalia a solucao adquirida
-    std::pair<int,std::vector<int>> result_evaluate = max_cutwidth_list(adj_list, rand_solution);
-    std::pair<int,std::vector<int>> result_reevaluate = reevaluate(adj_list, initial_solution, result_evaluate_init.second, false, init, end);
+            std::cout << iter_value << "," << std::fixed  << time_taken << std::setprecision(9) << std::endl;
+            
+            if(iter_value < best_value)
+            {
+                best_value = iter_value;
+            }
+            i++;
+        }
 
-    std::cout << std::endl;
-    std::cout << "Evaluate: " << result_evaluate.first << std::endl;
-    for(auto x: result_evaluate.second){
-        std::cout << x << " ";
-    }std::cout << std::endl;
-    std::cout << "Reevaluate: " << result_reevaluate.first << std::endl;
-    for(auto x: result_reevaluate.second){
-        std::cout << x << " ";
-    }std::cout << std::endl;
+    }  
+    else if(meta.compare("grasp") == 0)
+    {
+        while(i < imax)
+        {
+            auto start = std::chrono::high_resolution_clock::now(); 
+            iter_value = grasp(adj_list);
+            auto end = std::chrono::high_resolution_clock::now();
 
-    if(result_evaluate.first == result_reevaluate.first)
-        return true;
-    else return false;
+            // Calculating total time taken by the program. 
+            double time_taken = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count(); 
+            time_taken *= 1e-9;
+
+            std::cout << iter_value << "," << std::fixed  << time_taken << std::setprecision(9) << std::endl;
+            
+            if(iter_value < best_value)
+            {
+                best_value = iter_value;
+            }
+            i++;
+        }
+    }  
+    return best_value;   
 }

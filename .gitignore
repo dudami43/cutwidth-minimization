@@ -3,3 +3,6 @@ a.exe
 *.exe
 *.exe
 *.exe
+venv
+a
+*.out
