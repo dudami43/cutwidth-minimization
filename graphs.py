@@ -2,14 +2,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # objetive function
-# ils = np.array([12, 12, 12, 11, 13, 12, 11, 11, 12, 12])
-# sa = np.array([11, 9, 10, 10, 9, 11, 10, 10, 10, 10])
-# grasp = np.array([7, 7, 7, 7, 7, 7, 7, 7, 7, 7])
+ils = np.array([27, 27, 24, 26, 22, 23, 27, 27, 26, 27])
+sa = np.array([27, 27, 27, 27, 27, 27, 27, 27, 27, 25])
+grasp = np.array([15, 14, 14, 13, 16, 14, 17, 13, 15, 15, 15])
 
 # time
-ils = np.array([0.029682795, 0.033090071, 0.026068379, 0.026570250, 0.024878934, 0.040473048, 0.044437668, 0.035759985, 0.038910128, 0.036845952])
-sa = np.array([0.933908235,0.904623546,0.947468873,0.977612243,1.031136168,1.025418928,1.037667986,1.011749513,0.916951541,0.931902331])
-grasp = np.array([0.355543827,0.385749168,0.350252360,0.370451595,0.365448040,0.404355507,0.3660348357,0.3522808707,0.3804527007,0.411762780])
+#ils = np.array([0.623047913,0.615358620,0.617936913,0.850333418,0.617621557,0.618744397,0.678033620,0.688204204,0.688279620,0.683572074])
+#sa = np.array([19.498041826,19.730346615,20.136175567,19.628962226,19.816157062,20.014666675,20.230360326,19.335969313,20.097981627,19.345286029])
+#grasp = np.array([16.561013909,14.321600927,16.627203014,16.038694689,14.509302808,15.333934729,15.238818004,16.441438305,16.369450682,16.429305464])
 
 # Calculate the average
 ils_mean = np.mean(ils)
@@ -39,12 +39,13 @@ ax.errorbar(x_pos, CTEs,
 ax.set_ylabel('Função objetivo')
 ax.set_xticks(x_pos)
 ax.set_xticklabels(labels)
-ax.set_title('Resultados de cada heurística para a instância p100_24_34, com 10 execuções')
+ax.set_title('Resultados de cada heurística para a instância will57,\n com 10 execuções')
+#ax.set_title('Tempo médio cada heurística para a instância Grid9x18')
 ax.yaxis.grid(True)
 for i in range(len(cw)):
     plt.plot(x_pos[i], cw[i], 'bo')
 
 # Save the figure and show
 plt.tight_layout()
-plt.savefig('error_bars.png')
+plt.savefig('hb_obj.png')
 plt.show()

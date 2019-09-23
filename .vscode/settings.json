@@ -71,5 +71,6 @@
         "charconv": "cpp",
         "optional": "cpp",
         "string_view": "cpp"
-    }
+    },
+    "python.pythonPath": "venv/bin/python3.6"
 }
