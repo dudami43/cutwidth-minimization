@@ -11,6 +11,7 @@ for i in range(len(lines)//14):
     tempos_grasp.append(final[1][:-1])
 
 arq = open('resultados finais/simulated_annealing.txt', 'r')
+lines = arq.readlines()
 valores_sa, tempos_sa = list(), list()
 for i in range(len(lines)//14):
     final = lines[i*14 + 12].split(',')
@@ -18,6 +19,7 @@ for i in range(len(lines)//14):
     tempos_sa.append(final[1][:-1])
 
 arq = open('resultados finais/smart15.txt', 'r')
+lines = arq.readlines()
 valores_ils, tempos_ils = list(), list()
 for i in range(len(lines)//14):
     final = lines[i*14 + 12].split(',')
