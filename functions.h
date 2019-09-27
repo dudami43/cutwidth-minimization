@@ -1,6 +1,4 @@
 int evaluate(std::vector<std::vector<int> >& adj_list, std::vector<int>& solution, std::string metodo = "max");
-int max_cutwidth(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& solution);
-int n_max_cutwidth(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& solution);
 
 std::pair<int, std::vector<int>> max_cutwidth_list(std::vector<std::vector<int> >& adj_list, std::vector<int>& solution);
 std::pair<int, std::vector<int>> n_max_cutwidth_list(std::vector<std::vector<int> >& adj_list, std::vector<int>& solution);
@@ -20,7 +18,6 @@ std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list, bool r
 std::pair<int, std::vector<int> > simulated_annealing(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, double temp_init = 120, double temp_min = 1, double cooling = 0.99, int itermax = 120, bool move_and_swap = true);
 
 std::vector<int> pertubation(std::vector<int> solution, int level);
-int iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca = "ms", int imax = 15);
 int smart_iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca = "ms", int imax = 100, int vmax = 10);
 
 int grasp(std::vector<std::vector<int> >& adj_list, std::string neighbourhood="ms", std::string method="best", int n_iterations=60, int path_relinking_size=12);

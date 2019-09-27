@@ -102,13 +102,6 @@ std::vector<std::vector<int> > get_adj_list(std::vector<std::vector<int> > adj_m
         adj_list.push_back(aux);
         aux.clear();
     }
-    
-    /*std::cout << std::endl;
-    for(auto vertex: adj_list){
-        for(auto adj: vertex)
-            std::cout << adj << " ";
-        std::cout << std::endl;
-    }*/
-
+   
     return adj_list;
 }

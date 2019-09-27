@@ -16,71 +16,6 @@ int evaluate(std::vector<std::vector<int> >& adj_list, std::vector<int>& solutio
  * Metrica para avaliar uma dada solucao
  * Avaliacao: eh retornado o corte com maior numero de arestas
 **/
-int max_cutwidth(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& solution)
-{
-    int max_cut = 0;
-    int cut = 0;
-    for (int i = 0; i < solution.size(); i++)
-    {
-        for (int j = 0; j < i; j++)
-        {
-            for (int k = i; k < solution.size(); k++)
-            {
-                if (adj_matrix[solution[j]][solution[k]] == 1 and j != k)
-                {
-                    cut += 1;
-                }
-            }
-        }
-        if (cut >= max_cut)
-        {
-            max_cut = cut;
-        }
-        cut = 0;
-    }
-    return max_cut;
-}
-
-/**
- * Metrica para avaliar uma dada solucao
- * Avaliacao: eh retornado o corte com maior numero de arestas, multiplicado pelo
- * numero de vezes que ele acontece
-**/
-int n_max_cutwidth(std::vector<std::vector<int> >& adj_matrix, std::vector<int>& solution)
-{
-    int max_cut = 0;
-    int cut = 0;
-    int n_max_cut = 0;
-    for (int i = 0; i < solution.size(); i++)
-    {
-        for (int j = 0; j < i; j++)
-        {
-            for (int k = i; k < solution.size(); k++)
-            {
-                if (adj_matrix[solution[j]][solution[k]] == 1 and j != k)
-                {
-                    cut += 1;
-                }
-            }
-        }
-        if (cut > max_cut)
-        {
-            max_cut = cut;
-            n_max_cut = 1;
-        }
-        else if(cut == max_cut)
-        {
-            n_max_cut++;
-        }
-        cut = 0;
-    }
-    return n_max_cut*max_cut;
-}
-
-/**
- * Metrica para avaliar uma dada solucao
- * Avaliacao: eh retornado o corte com maior numero de arestas
-**/
 std::pair<int, std::vector<int>> max_cutwidth_list(std::vector<std::vector<int> >& adj_list, std::vector<int>& solution)
 {
     // Inicializa o vetor com os cortes entre os vertices
@@ -160,14 +95,6 @@ std::vector<std::vector<int>> genNeighbourhood(std::vector<int>& initial_solutio
         }
         neighbours[i] = aux;
     }
-    /*for(int i = 0; i < initial_solution.size(); i++) //Vetor de vizinhos
-    {
-        for(int j = 0; j < initial_solution.size(); j++) //Vetor auxiliar
-        {
-            std::cout << neighbours[i][j] << " ";
-        }
-        std::cout << "\n";
-    }*/
     return neighbours;
 }
 
@@ -198,11 +125,9 @@ std::vector<std::vector<int>> genNeighbourhood_noAdj(std::vector<int>& initial_s
         int i=0;
         while(i < num_vizinhos)
         {    
-            //std::cout << "Vizinho " << i << std::endl;
             // Adquire dois numeros aleatorios para representarem os vertices que trocarao de lugar
             init = abs(rand() % initial_solution.size());
             end = abs(rand() % initial_solution.size());
-            //std::cout << i << " " << init << " " << end << std::endl;
             // Cria par de troca e o inverso do mesmo
             trade = std::make_pair(init, end);
             trade_inv = std::make_pair(end, init);
@@ -376,7 +301,7 @@ std::pair<int, std::vector<int> >  local_search_random_selection(std::vector<std
     // Inicializa variaveis
     int init, end;
 
-    // Adquire dois numeros aleatorios para representarem os vertices que trocarao de lugar
+    // Adquire dois numeros aleatorios para representarem os vertices que trocaralocal_search_first_improvemento de lugar
     init = abs(rand() % initial_solution.size());
     end = abs(rand() % initial_solution.size());
     
@@ -440,12 +365,6 @@ std::pair<int, std::vector<int> > local_search(std::vector<std::vector<int> >& a
             is_changing = true;
         }
     }while(is_changing);
-
-    /* for(int i = 0; i < best_solution.size(); i++)
-    {
-        std::cout << best_solution[i] << " ";
-    }
-    std::cout << std::endl << "fim ls \n"; */
 
     return make_pair(best_value, best_solution);
 }
@@ -570,12 +489,6 @@ std::vector<int> first_solution(std::vector<std::vector<int> >& adj_list, bool r
         }
     }
 
-    /*
-    for(auto x: initial_solution){
-        std::cout << x << " ";
-    }
-    std::cout << std::endl; */
-
     return initial_solution;
 }
 
@@ -683,50 +596,6 @@ std::vector<int> pertubation(std::vector<int> solution, int level)
 }
 
 /**
- * ILS padrão
-**/ 
-int iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca, int imax)
-{
-     
-    std::pair<int, std::vector<int> > result = simulated_annealing(adj_list, initial_solution); 
-    std::pair<int, std::vector<int> > iter_result;
-
-    std::vector<int> best_solution = result.second;
-    std::vector<int> pert_solution, iter_solution;
-    
-    int best_value = result.first; 
-    int iter_value;
-
-    int iter = 0;
-    int itermax = 0;
-    int melhor_iter = iter;
-    int level = 1;
-
-    while(iter - melhor_iter < imax)
-    {
-        iter++;
-        pert_solution = pertubation(best_solution, level);
-        //iter_result = local_search(adj_list, pert_solution, vizinhanca);
-        iter_result = simulated_annealing(adj_list, pert_solution);
-        iter_solution = iter_result.second;
-        iter_value = iter_result.first;
-
-        if(iter_value < best_value)
-        {
-            best_solution = iter_solution;
-            best_value = iter_value;
-            melhor_iter = iter;
-            level = 1;
-        }
-        else
-        {
-            level++;
-        }
-    }
-    return best_value;   
-}
-
-/**
  * Smart ILS
 **/ 
 int smart_iterated_local_search(std::vector<std::vector<int> >& adj_list, std::vector<int>& initial_solution, std::string vizinhanca, int imax, int vmax)
@@ -763,7 +632,7 @@ int smart_iterated_local_search(std::vector<std::vector<int> >& adj_list, std::v
         }
         else
         {
-            if(nvezes >= vmax) // só aumenta o nível de pertubação após algumas tentativas sem sucesso, para o caso da região não ter sido explorada adequadamente
+            if(nvezes >= vmax) //smart: só aumenta o nível de pertubação após algumas tentativas sem sucesso, para o caso da região não ter sido explorada adequadamente
             {
                 level++;
                 nvezes = 1;
@@ -862,13 +731,6 @@ int grasp(std::vector<std::vector<int> >& adj_list, std::string neighbourhood, s
                 aux_solution = next_step(rand_elite_solution, aux_solution);
                 int aux_value = evaluate(adj_list, aux_solution);
 
-                /* for(auto x: rand_elite_solution){
-                    std::cout << x << " ";
-                }std::cout << " -elite" << std::endl;
-                for(auto x: aux_solution){
-                    std::cout << x << " ";
-                }std::cout << " -aux" << std::endl; */
-                
                 // Se esse passo for melhor que a solucao elite
                 if(aux_value < best_aux_value){
                     best_aux_value = aux_value;
@@ -935,27 +797,6 @@ int best_solution(std::vector<std::vector<int> >& adj_list, std::vector<int>& in
             i++;
         }
     }
-    else if(meta.compare("ils") == 0)
-    {
-        while(i < imax)
-        {
-            auto start = std::chrono::high_resolution_clock::now(); 
-            iter_value = iterated_local_search(adj_list, initial_solution);
-            auto end = std::chrono::high_resolution_clock::now();
-
-            // Calculating total time taken by the program. 
-            double time_taken = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count(); 
-            time_taken *= 1e-9;
-
-            std::cout << iter_value << "," << std::fixed  << time_taken << std::setprecision(9) << std::endl;
-            
-            if(iter_value < best_value)
-            {
-                best_value = iter_value;
-            }
-            i++;
-        }
-    }    
     else if(meta.compare("sils") == 0)
     {
         while(i < imax)
